@@ -33,7 +33,7 @@ export const RiverMap = ({
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/light-v11', // Minimalist light theme to highlight blue water
+      style: 'mapbox://styles/mapbox/outdoors-v12', // Topographical Outdoors style to highlight river networks
       center: [-113.55, 53.45], // Anchored around Edmonton/Devon
       zoom: 9,
     });
