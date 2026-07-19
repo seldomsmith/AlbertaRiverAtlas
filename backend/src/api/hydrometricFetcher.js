@@ -48,7 +48,7 @@ const synchronizeHydrometricData = async (routes) => {
       const targetUrl = `https://dd.weather.gc.ca/hydrometric/csv/AB/hourly/AB_${gaugeId}_hourly_hydrometric.csv`;
       
       const response = await axios.get(targetUrl, { 
-        timeout: 8000,
+        timeout: 15000,
         headers: { 'User-Agent': 'Alberta-Paddling-Dashboard-Dev' }
       });
 
