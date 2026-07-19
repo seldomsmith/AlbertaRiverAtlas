@@ -45,7 +45,7 @@ const synchronizeHydrometricData = async (routes) => {
 
   for (const gaugeId of uniqueGaugeIds) {
     try {
-      const targetUrl = `https://dd.weather.gc.ca/hydrometric/csv/AB/hourly/AB_${gaugeId}_hourly_hydrometric.csv`;
+      const targetUrl = `https://dd.weather.gc.ca/today/hydrometric/csv/AB/hourly/AB_${gaugeId}_hourly_hydrometric.csv`;
       
       const response = await axios.get(targetUrl, { 
         timeout: 15000,
