@@ -36,5 +36,157 @@
     "vehicle_suitability": "2WD",
     "cell_service": true,
     "management_authority": "City of Edmonton"
+  },
+  {
+    "access_id": "acc-bow-cochrane",
+    "name": "Cochrane Riverfront Park Boat Launch",
+    "type": "put_in",
+    "coordinates": {
+      "latitude": 51.1834,
+      "longitude": -114.4712
+    },
+    "river_bank": "right",
+    "infrastructure": {
+      "ramp_type": "gravel",
+      "parking_capacity_vehicles": 30,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "Town of Cochrane"
+  },
+  {
+    "access_id": "acc-bow-bowness",
+    "name": "Bowness Park Boat Launch",
+    "type": "take_out",
+    "coordinates": {
+      "latitude": 51.0965,
+      "longitude": -114.2215
+    },
+    "river_bank": "left",
+    "infrastructure": {
+      "ramp_type": "paved_concrete",
+      "parking_capacity_vehicles": 80,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "City of Calgary"
+  },
+  {
+    "access_id": "acc-kan-widowmaker",
+    "name": "Widow Maker Access Site",
+    "type": "put_in",
+    "coordinates": {
+      "latitude": 51.0954,
+      "longitude": -115.0345
+    },
+    "river_bank": "right",
+    "infrastructure": {
+      "ramp_type": "natural_dirt",
+      "parking_capacity_vehicles": 20,
+      "fees_required": false,
+      "washrooms_available": false
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "Alberta Parks"
+  },
+  {
+    "access_id": "acc-kan-canoemeadows",
+    "name": "Canoe Meadows Recreation Site",
+    "type": "take_out",
+    "coordinates": {
+      "latitude": 51.1152,
+      "longitude": -115.0210
+    },
+    "river_bank": "right",
+    "infrastructure": {
+      "ramp_type": "stairs_gravel",
+      "parking_capacity_vehicles": 40,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "Alberta Parks"
+  },
+  {
+    "access_id": "acc-rdr-fortnormandeau",
+    "name": "Fort Normandeau Boat Launch",
+    "type": "put_in",
+    "coordinates": {
+      "latitude": 52.2743,
+      "longitude": -113.8967
+    },
+    "river_bank": "left",
+    "infrastructure": {
+      "ramp_type": "gravel",
+      "parking_capacity_vehicles": 25,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "Waskasoo Environmental Education Society"
+  },
+  {
+    "access_id": "acc-rdr-joffre",
+    "name": "Joffre Bridge Access",
+    "type": "take_out",
+    "coordinates": {
+      "latitude": 52.3364,
+      "longitude": -113.6212
+    },
+    "river_bank": "right",
+    "infrastructure": {
+      "ramp_type": "natural_dirt",
+      "parking_capacity_vehicles": 15,
+      "fees_required": false,
+      "washrooms_available": false
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": false,
+    "management_authority": "Lacombe County"
+  },
+  {
+    "access_id": "acc-rdr-tolman",
+    "name": "Tolman Bridge Campground East Launch",
+    "type": "put_in",
+    "coordinates": {
+      "latitude": 51.8345,
+      "longitude": -113.0125
+    },
+    "river_bank": "right",
+    "infrastructure": {
+      "ramp_type": "gravel",
+      "parking_capacity_vehicles": 30,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": false,
+    "management_authority": "Alberta Parks"
+  },
+  {
+    "access_id": "acc-rdr-bleriot",
+    "name": "Bleriot Ferry Recreation Area",
+    "type": "take_out",
+    "coordinates": {
+      "latitude": 51.5721,
+      "longitude": -112.8798
+    },
+    "river_bank": "left",
+    "infrastructure": {
+      "ramp_type": "natural_dirt",
+      "parking_capacity_vehicles": 20,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "Starland County"
   }
 ]

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sliders, AlertTriangle } from 'lucide-react';
+import { Sliders } from 'lucide-react';
 
 export const Sidebar = ({
   routes,
@@ -17,7 +17,7 @@ export const Sidebar = ({
       </div>
 
       <div className="sidebar-content">
-        {/* Dynamic Controls Deck */}
+        {/* Search & Visual Filters Deck */}
         <div className="filter-section">
           <div className="filter-label-row" style={{ marginBottom: '8px' }}>
             <span className="filter-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -26,6 +26,43 @@ export const Sidebar = ({
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div>
+              <span className="filter-label" style={{ display: 'block', marginBottom: '6px' }}>Search Routes</span>
+              <input
+                type="text"
+                placeholder="Search by river or trip..."
+                className="select-dropdown"
+                value={filters.searchQuery}
+                onChange={(e) => onFilterChange('searchQuery', e.target.value)}
+              />
+            </div>
+
+            <div>
+              <span className="filter-label" style={{ display: 'block', marginBottom: '6px' }}>Difficulty Class</span>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {['all', '1', '2', '3'].map((d) => (
+                  <button
+                    key={d}
+                    style={{
+                      flex: 1,
+                      padding: '8px 10px',
+                      borderRadius: '4px',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: filters.difficultyClass === d ? '#3b82f6' : 'rgba(255,255,255,0.03)',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      transition: 'background 0.2s'
+                    }}
+                    onClick={() => onFilterChange('difficultyClass', d)}
+                  >
+                    {d === 'all' ? 'All' : `Class ${d === '1' ? 'I' : d === '2' ? 'II' : 'III'}`}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div>
               <div className="filter-label-row">
                 <span className="filter-label">Max Distance</span>
@@ -63,7 +100,7 @@ export const Sidebar = ({
                 value={colourMetric}
                 onChange={(e) => onColourMetricChange(e.target.value)}
               >
-                <option value="default">Default Blue</option>
+                <option value="default">Default Pink</option>
                 <option value="difficulty">Difficulty Class</option>
               </select>
             </div>
@@ -88,11 +125,6 @@ export const Sidebar = ({
                 <span className="badge" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)' }}>
                   {route.distance_km} km
                 </span>
-                {route.is_high_flow && (
-                  <span className="badge badge-flow-alert" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <AlertTriangle size={10} /> High Flow
-                  </span>
-                )}
               </div>
             </div>
           ))}

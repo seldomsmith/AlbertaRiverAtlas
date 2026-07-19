@@ -42,6 +42,97 @@
           [-113.5543, 53.5112]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "feat-bow-cochrane-bown",
+      "properties": {
+        "route_id": "bow-cochrane-bowness",
+        "river_name": "Bow River",
+        "trip_name": "Cochrane to Bowness Park",
+        "difficulty_class": 2,
+        "recommended_duration_days": 1,
+        "distance_km": 26.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-114.4712, 51.1834],
+          [-114.4400, 51.1750],
+          [-114.4000, 51.1600],
+          [-114.3600, 51.1400],
+          [-114.3200, 51.1200],
+          [-114.2800, 51.1100],
+          [-114.2215, 51.0965]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "feat-kan-widow-canoe",
+      "properties": {
+        "route_id": "kan-widowmaker-canoemeadows",
+        "river_name": "Kananaskis River",
+        "trip_name": "Widow Maker to Canoe Meadows",
+        "difficulty_class": 3,
+        "recommended_duration_days": 1,
+        "distance_km": 3.5
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-115.0345, 51.0954],
+          [-115.0335, 51.0980],
+          [-115.0310, 51.1030],
+          [-115.0260, 51.1090],
+          [-115.0210, 51.1152]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "feat-rdr-red-joffre",
+      "properties": {
+        "route_id": "rdr-reddeer-joffre",
+        "river_name": "Red Deer River",
+        "trip_name": "Red Deer to Joffre Bridge",
+        "difficulty_class": 1,
+        "recommended_duration_days": 1,
+        "distance_km": 20.5
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-113.8967, 52.2743],
+          [-113.8400, 52.2900],
+          [-113.7800, 52.2850],
+          [-113.7200, 52.3000],
+          [-113.6700, 52.3200],
+          [-113.6212, 52.3364]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "feat-rdr-tolman-bleriot",
+      "properties": {
+        "route_id": "rdr-tolman-bleriot",
+        "river_name": "Red Deer River",
+        "trip_name": "Tolman Bridge to Bleriot Ferry",
+        "difficulty_class": 1,
+        "recommended_duration_days": 2,
+        "distance_km": 46.5
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-113.0125, 51.8345],
+          [-112.9800, 51.7800],
+          [-112.9500, 51.7200],
+          [-112.9200, 51.6500],
+          [-112.8798, 51.5721]
+        ]
+      }
     }
   ]
 }

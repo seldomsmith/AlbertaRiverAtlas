@@ -12,8 +12,10 @@ export const App = () => {
   const [colourMetric, setColourMetric] = useState('default');
   
   const [filters, setFilters] = useState({
-    maxDistance: 50,
-    maxDays: 2
+    maxDistance: 100,
+    maxDays: 5,
+    searchQuery: '',
+    difficultyClass: 'all'
   });
 
   const apiHost = process.env.REACT_APP_API_URL || 'http://localhost:5001';
@@ -53,10 +55,15 @@ export const App = () => {
 
   // Filter local route array based on slide configs
   const filteredRoutes = routes.filter(route => {
-    return (
-      route.distance_km <= filters.maxDistance &&
-      route.recommended_duration_days <= filters.maxDays
-    );
+    const matchesDistance = route.distance_km <= filters.maxDistance;
+    const matchesDuration = route.recommended_duration_days <= filters.maxDays;
+    const matchesSearch = !filters.searchQuery || 
+      route.river_name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+      route.trip_name.toLowerCase().includes(filters.searchQuery.toLowerCase());
+    const matchesDifficulty = filters.difficultyClass === 'all' || 
+      route.difficulty_class === parseInt(filters.difficultyClass);
+      
+    return matchesDistance && matchesDuration && matchesSearch && matchesDifficulty;
   });
 
   const filteredRouteIds = filteredRoutes.map(r => r.route_id);

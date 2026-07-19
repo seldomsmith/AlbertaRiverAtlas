@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Download, AlertTriangle, MapPin, Compass, ShieldAlert } from 'lucide-react';
+import { X, Download, AlertTriangle, MapPin, ShieldAlert } from 'lucide-react';
 
 const DetailPanel = ({
   routes,
@@ -15,32 +15,78 @@ const DetailPanel = ({
   const selectedTakeOut = accessPoints.find(a => a.access_id === selectedRoute.take_out_id);
   const routeHazards = hazards.filter(h => h.river_name === selectedRoute.river_name);
 
-  const handleDownloadGPX = () => {
-    const gpxContent = `<?xml version="1.0" encoding="UTF-8"?>
+  // Flow thresholds
+  const currentDischarge = selectedRoute.current_gauge_reading;
+  const minFlow = selectedRoute.flow_thresholds.minimum_m3_s;
+  const maxFlow = selectedRoute.flow_thresholds.maximum_m3_s;
+  
+  // Calculate index for padding months (May=0, Jun=1, Jul=2, Aug=3, Sep=4, Oct=5)
+  const currentMonthIndex = Math.max(0, Math.min(5, new Date().getMonth() - 4));
+  const activeMonthName = ['May', 'June', 'July', 'August', 'September', 'October'][currentMonthIndex];
+  const monthNormal = selectedRoute.historical_monthly_averages?.[currentMonthIndex] || 0;
+
+  // Determine dynamic flow status
+  let flowStatusText = 'No telemetry available for this reach.';
+  let flowStatusColor = 'var(--text-secondary)';
+  let isAlert = false;
+
+  if (currentDischarge) {
+    if (currentDischarge < minFlow) {
+      flowStatusText = `Low Flow Advisory: Discharge (${currentDischarge} m³/s) is below recommended minimum (${minFlow} m³/s). Scraping likely.`;
+      flowStatusColor = '#f59e0b';
+      isAlert = true;
+    } else if (currentDischarge > maxFlow) {
+      flowStatusText = `High Flow Warning: Discharge (${currentDischarge} m³/s) exceeds maximum safe limit (${maxFlow} m³/s). Strong currents.`;
+      flowStatusColor = '#ef4444';
+      isAlert = true;
+    } else {
+      const comparisonText = monthNormal 
+        ? ` (Historical normal for ${activeMonthName} is ${monthNormal} m³/s)`
+        : '';
+      flowStatusText = `Normal Flow: Current discharge is ${currentDischarge} m³/s.${comparisonText}`;
+      flowStatusColor = '#10b981';
+    }
+  }
+
+  // Handle GPX download mapping full vector track coordinates
+  const handleDownloadGPX = async () => {
+    try {
+      const res = await fetch('/vectors/vector_routes.geojson');
+      const geojson = await res.json();
+      const feature = geojson.features.find(f => f.properties.route_id === selectedRouteId);
+      
+      let trackPoints = '';
+      if (feature?.geometry?.coordinates) {
+        trackPoints = feature.geometry.coordinates.map(coord => 
+          `      <trkpt lat="${coord[1]}" lon="${coord[0]}"></trkpt>`
+        ).join('\n');
+      }
+
+      const gpxContent = `<?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="Alberta River Atlas" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata>
     <name>${selectedRoute.trip_name}</name>
     <desc>${selectedRoute.description}</desc>
   </metadata>
-  <rte>
+  <trk>
     <name>${selectedRoute.trip_name}</name>
-    <rtept lat="${selectedPutIn?.coordinates.latitude || 0}" lon="${selectedPutIn?.coordinates.longitude || 0}">
-      <name>PUT IN: ${selectedPutIn?.name || ''}</name>
-    </rtept>
-    <rtept lat="${selectedTakeOut?.coordinates.latitude || 0}" lon="${selectedTakeOut?.coordinates.longitude || 0}">
-      <name>TAKE OUT: ${selectedTakeOut?.name || ''}</name>
-    </rtept>
-  </rte>
+    <trkseg>
+${trackPoints}
+    </trkseg>
+  </trk>
 </gpx>`;
 
-    const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${selectedRoute.route_id}.gpx`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${selectedRoute.route_id}.gpx`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error('GPX generation failed:', err);
+    }
   };
 
   return (
@@ -58,14 +104,12 @@ const DetailPanel = ({
       </div>
 
       <div className="detail-panel-content">
-        {selectedRoute.is_high_flow && (
+        {isAlert && (
           <div className="flow-warning-card">
             <AlertTriangle size={20} style={{ flexShrink: 0 }} />
             <div>
-              <strong>High Flow Warning!</strong>
-              <div style={{ marginTop: '2px' }}>
-                Live flow ({selectedRoute.current_gauge_reading} m³/s) exceeds the safe operational limit ({selectedRoute.flow_thresholds.maximum_m3_s} m³/s).
-              </div>
+              <strong>Advisory Alert</strong>
+              <div style={{ marginTop: '2px' }}>{flowStatusText}</div>
             </div>
           </div>
         )}
@@ -76,23 +120,59 @@ const DetailPanel = ({
           </p>
         </div>
 
+        {/* Discharge Observations Panel */}
         <div className="detail-panel-card">
-          <div className="detail-section-title">Hydrometric Observations</div>
-          <div className="stats-grid">
+          <div className="detail-section-title">Hydrometric Status</div>
+          <div className="stats-grid" style={{ marginBottom: '16px' }}>
             <div className="stat-item">
               <span className="stat-label">Current Discharge</span>
-              <span className="stat-value" style={{ color: selectedRoute.is_high_flow ? '#fb7185' : '#10b981' }}>
-                {selectedRoute.current_gauge_reading ? `${selectedRoute.current_gauge_reading} m³/s` : 'Unknown'}
+              <span className="stat-value" style={{ color: flowStatusColor }}>
+                {currentDischarge ? `${currentDischarge} m³/s` : 'No Data'}
               </span>
             </div>
             <div className="stat-item">
-              <span className="stat-label">Optimal Flow Range</span>
-              <span className="stat-value">
-                {selectedRoute.flow_thresholds.minimum_m3_s} - {selectedRoute.flow_thresholds.maximum_m3_s} m³/s
+              <span className="stat-label">Recreational Window</span>
+              <span className="stat-value" style={{ fontSize: '14px', marginTop: '4px' }}>
+                {minFlow} - {maxFlow} m³/s
               </span>
             </div>
           </div>
+          
+          <div style={{ fontSize: '12px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '10px' }}>
+            <span style={{ color: flowStatusColor, fontWeight: '500' }}>{flowStatusText}</span>
+          </div>
         </div>
+
+        {/* Historical averages list */}
+        {selectedRoute.historical_monthly_averages && (
+          <div className="detail-panel-card">
+            <div className="detail-section-title">Historical Monthly Averages</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '6px', marginTop: '10px', textAlign: 'center' }}>
+              {['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'].map((month, idx) => {
+                const isCurrent = idx === currentMonthIndex;
+                return (
+                  <div 
+                    key={month} 
+                    style={{
+                      background: isCurrent ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.02)',
+                      border: isCurrent ? '1px solid rgba(59, 130, 246, 0.4)' : '1px solid rgba(255,255,255,0.05)',
+                      padding: '6px 2px',
+                      borderRadius: '4px'
+                    }}
+                  >
+                    <div style={{ fontSize: '10px', color: isCurrent ? '#60a5fa' : 'var(--text-secondary)', fontWeight: '600' }}>{month}</div>
+                    <div style={{ fontSize: '12px', fontWeight: '700', color: '#fff', marginTop: '2px' }}>
+                      {selectedRoute.historical_monthly_averages[idx]}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '8px', lineHeight: '1.3' }}>
+              Historical averages represent historical monthly discharge normals in cubic meters per second (m³/s). Current month is highlighted.
+            </p>
+          </div>
+        )}
 
         <div className="detail-panel-card">
           <div className="detail-section-title">Logistics & Put-in/Take-out</div>

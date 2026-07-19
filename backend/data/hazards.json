@@ -28,5 +28,80 @@
     "portage_available": false,
     "portage_bank": "none",
     "safety_notes": "Active structural instream work. Keep clear of heavy machinery support scaffolding and follow local directional signage."
+  },
+  {
+    "hazard_id": "haz-bow-bearspaw",
+    "river_name": "Bow River",
+    "type": "dam",
+    "severity": "extreme",
+    "name": "Bearspaw Dam Portage",
+    "coordinates": {
+      "latitude": 51.1012,
+      "longitude": -114.2690
+    },
+    "river_mileage_km": 21.3,
+    "portage_available": true,
+    "portage_bank": "left",
+    "safety_notes": "Mandatory portage on river left before Bearspaw Dam. Do not approach intake or spillway structures."
+  },
+  {
+    "hazard_id": "haz-kan-widowmaker",
+    "river_name": "Kananaskis River",
+    "type": "rapid",
+    "severity": "Class III",
+    "name": "Widow Maker Rapid",
+    "coordinates": {
+      "latitude": 51.0960,
+      "longitude": -115.0335
+    },
+    "river_mileage_km": 0.2,
+    "portage_available": true,
+    "portage_bank": "left",
+    "safety_notes": "Heavy waves and keeper holes at high flows. Popular whitewater kayaking play spot."
+  },
+  {
+    "hazard_id": "haz-kan-racecourse",
+    "river_name": "Kananaskis River",
+    "type": "rapid",
+    "severity": "Class II",
+    "name": "Racecourse Rapids",
+    "coordinates": {
+      "latitude": 51.1120,
+      "longitude": -115.0235
+    },
+    "river_mileage_km": 3.0,
+    "portage_available": false,
+    "portage_bank": "none",
+    "safety_notes": "Continuous Class II riffles and wave trains leading into the slalom course section."
+  },
+  {
+    "hazard_id": "haz-rdr-joffre-riffle",
+    "river_name": "Red Deer River",
+    "type": "rapid",
+    "severity": "Class I",
+    "name": "Joffre Riffles",
+    "coordinates": {
+      "latitude": 52.3210,
+      "longitude": -113.6540
+    },
+    "river_mileage_km": 17.2,
+    "portage_available": false,
+    "portage_bank": "none",
+    "safety_notes": "Shallow gravel bar riffle. Pick the deepest channel on river right at lower flow rates."
+  },
+  {
+    "hazard_id": "haz-rdr-ferry-cable",
+    "river_name": "Red Deer River",
+    "type": "cable",
+    "severity": "caution",
+    "name": "Bleriot Ferry Cable",
+    "coordinates": {
+      "latitude": 51.5730,
+      "longitude": -112.8810
+    },
+    "river_mileage_km": 46.1,
+    "portage_available": false,
+    "portage_bank": "none",
+    "safety_notes": "Watch for overhead and submerged cable. Avoid passing when the ferry is actively moving."
   }
 ]

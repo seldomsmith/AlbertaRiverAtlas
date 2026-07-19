@@ -15,6 +15,17 @@ export const RiverMap = ({
 }) => {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
+  const geojsonRef = useRef(null);
+
+  // Load geojson coordinates data locally to calculate bounding boxes dynamically
+  useEffect(() => {
+    fetch('/vectors/vector_routes.geojson')
+      .then(res => res.json())
+      .then(data => {
+        geojsonRef.current = data;
+      })
+      .catch(err => console.error('GeoJSON coordinates prefetch error:', err));
+  }, []);
 
   // Initialize Map
   useEffect(() => {
@@ -117,6 +128,29 @@ export const RiverMap = ({
       }
     };
   }, []);
+
+  // Fit view bounds automatically to active route
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !selectedRouteId || !geojsonRef.current) return;
+
+    const feature = geojsonRef.current.features.find(
+      f => f.properties.route_id === selectedRouteId
+    );
+
+    if (feature && feature.geometry && feature.geometry.coordinates) {
+      const coordinates = feature.geometry.coordinates;
+      const bounds = coordinates.reduce((acc, coord) => {
+        return acc.extend(coord);
+      }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+
+      map.fitBounds(bounds, {
+        padding: 80,
+        maxZoom: 11,
+        duration: 1200
+      });
+    }
+  }, [selectedRouteId]);
 
   // Update map layer filters when active state selections filter changes
   useEffect(() => {
