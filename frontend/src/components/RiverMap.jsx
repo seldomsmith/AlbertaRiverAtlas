@@ -22,7 +22,7 @@ export const RiverMap = ({
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/dark-v11', // Sleek dark/minimalist canvas style
+      style: 'mapbox://styles/mapbox/light-v11', // Minimalist light theme to highlight blue water
       center: [-113.55, 53.45], // Anchored around Edmonton/Devon
       zoom: 9,
     });
@@ -45,9 +45,9 @@ export const RiverMap = ({
         source: 'river-routes',
         layout: { 'line-join': 'round', 'line-cap': 'round' },
         paint: {
-          'line-color': '#1e293b',
+          'line-color': '#e2e8f0',
           'line-width': 3,
-          'line-opacity': 0.5
+          'line-opacity': 0.7
         }
       });
 

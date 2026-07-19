@@ -52,7 +52,6 @@ export const Sidebar = ({
     <div className="sidebar">
       <div className="sidebar-header">
         <h1><span>Alberta</span> River Atlas</h1>
-        <p>Interactive Voyageur & Canoe Trip Dashboard</p>
       </div>
 
       <div className="sidebar-content">
