@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import RiverMap from './components/RiverMap';
+import DetailPanel from './components/DetailPanel';
 
 export const App = () => {
   const [routes, setRoutes] = useState([]);
@@ -66,8 +67,6 @@ export const App = () => {
         routes={filteredRoutes}
         selectedRouteId={selectedRouteId}
         onSelectRoute={setSelectedRouteId}
-        accessPoints={accessPoints}
-        hazards={hazards}
         filters={filters}
         onFilterChange={handleFilterChange}
         colourMetric={colourMetric}
@@ -82,6 +81,15 @@ export const App = () => {
         hazards={hazards}
         colourMetric={colourMetric}
       />
+      {selectedRouteId && (
+        <DetailPanel
+          routes={routes}
+          selectedRouteId={selectedRouteId}
+          onClose={() => setSelectedRouteId(null)}
+          accessPoints={accessPoints}
+          hazards={hazards}
+        />
+      )}
     </div>
   );
 };
