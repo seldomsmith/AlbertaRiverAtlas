@@ -3,10 +3,20 @@ const cors = require('cors');
 const path = require('path');
 const cron = require('node-cron');
 const { synchronizeHydrometricData } = require('./api/hydrometricFetcher');
-require('dotenv').config();
+
+// Resolve .env explicitly relative to server.js, not CWD
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+
+// Diagnostic: verify token loaded
+const mbToken = process.env.MAPBOX_ACCESS_TOKEN || '';
+if (mbToken) {
+  console.log(`Mapbox token loaded successfully (length: ${mbToken.length})`);
+} else {
+  console.warn('WARNING: MAPBOX_ACCESS_TOKEN is empty. Map tiles will not render. Run "node scripts/setup-env.js" to generate backend/.env');
+}
 
 app.use(cors());
 app.use(express.json());

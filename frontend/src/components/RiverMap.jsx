@@ -15,6 +15,7 @@ export const RiverMap = ({
   const mapRef = useRef(null);
   const geojsonRef = useRef(null);
   const [mapReady, setMapReady] = useState(false);
+  const [tokenError, setTokenError] = useState(false);
 
   // Load geojson coordinates data locally to calculate bounding boxes dynamically
   useEffect(() => {
@@ -34,9 +35,16 @@ export const RiverMap = ({
       try {
         const configRes = await fetch('/api/config');
         const config = await configRes.json();
+        console.log('[RiverMap] Token fetch result:', config.mapboxToken ? `loaded (${config.mapboxToken.length} chars)` : 'EMPTY — map tiles will not render');
+        if (!config.mapboxToken) {
+          console.error('[RiverMap] MAPBOX TOKEN IS EMPTY. Check that backend/.env contains MAPBOX_ACCESS_TOKEN.');
+          setTokenError(true);
+          return;
+        }
         mapboxgl.accessToken = config.mapboxToken;
       } catch (err) {
-        console.error('Failed to fetch Mapbox token from backend:', err);
+        console.error('[RiverMap] Failed to fetch /api/config:', err);
+        setTokenError(true);
         return;
       }
 
@@ -302,6 +310,15 @@ export const RiverMap = ({
 
   return (
     <div className="map-container-wrapper">
+      {tokenError && (
+        <div style={{
+          position: 'absolute', top: 20, left: '50%', transform: 'translateX(-50%)',
+          zIndex: 999, background: '#ef4444', color: '#fff', padding: '12px 24px',
+          borderRadius: '8px', fontWeight: 600, fontSize: '14px', boxShadow: '0 4px 20px rgba(0,0,0,0.4)'
+        }}>
+          Mapbox token missing — check backend/.env contains MAPBOX_ACCESS_TOKEN
+        </div>
+      )}
       <div ref={mapContainerRef} style={{ width: '100%', height: '100%' }} />
     </div>
   );
