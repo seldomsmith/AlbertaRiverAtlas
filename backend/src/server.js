@@ -68,6 +68,10 @@ app.get('/api/alerts', (req, res) => {
   res.json({ high_flow_route_ids: activeHighFlowAlerts });
 });
 
+app.get('/api/config', (req, res) => {
+  res.json({ mapboxToken: process.env.MAPBOX_ACCESS_TOKEN || '' });
+});
+
 // --- Serve React Static Frontend Bundle Assets ---
 const frontendBuildPath = path.join(__dirname, '../../frontend/build');
 app.use(express.static(frontendBuildPath));

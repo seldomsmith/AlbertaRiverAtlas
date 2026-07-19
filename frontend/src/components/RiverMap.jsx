@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN || '';
 
 export const RiverMap = ({ 
   routes, 
@@ -16,6 +14,7 @@ export const RiverMap = ({
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const geojsonRef = useRef(null);
+  const [mapReady, setMapReady] = useState(false);
 
   // Load geojson coordinates data locally to calculate bounding boxes dynamically
   useEffect(() => {
@@ -27,99 +26,113 @@ export const RiverMap = ({
       .catch(err => console.error('GeoJSON coordinates prefetch error:', err));
   }, []);
 
-  // Initialize Map
+  // Fetch token from backend at runtime, then initialize map
   useEffect(() => {
     if (mapRef.current || !mapContainerRef.current) return;
 
-    mapRef.current = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/outdoors-v12', // Topographical Outdoors style to highlight river networks
-      center: [-113.55, 53.45], // Anchored around Edmonton/Devon
-      zoom: 9,
-    });
+    const initMap = async () => {
+      try {
+        const configRes = await fetch('/api/config');
+        const config = await configRes.json();
+        mapboxgl.accessToken = config.mapboxToken;
+      } catch (err) {
+        console.error('Failed to fetch Mapbox token from backend:', err);
+        return;
+      }
 
-    const map = mapRef.current;
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-    map.on('load', () => {
-      // 1. Add route LineStrings source
-      map.addSource('river-routes', {
-        type: 'geojson',
-        data: '/vectors/vector_routes.geojson',
-        promoteId: 'route_id'
+      mapRef.current = new mapboxgl.Map({
+        container: mapContainerRef.current,
+        style: 'mapbox://styles/mapbox/outdoors-v12',
+        center: [-113.55, 53.45],
+        zoom: 9,
       });
 
-      // 2. Base/Background line style layer (dimmed)
-      map.addLayer({
-        id: 'river-lines-base',
-        type: 'line',
-        source: 'river-routes',
-        layout: { 'line-join': 'round', 'line-cap': 'round' },
-        paint: {
-          'line-color': '#e2e8f0',
-          'line-width': 3,
-          'line-opacity': 0.7
-        }
-      });
+      const map = mapRef.current;
+      map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-      // 3. Dynamic Active route layer style
-      map.addLayer({
-        id: 'river-lines-active',
-        type: 'line',
-        source: 'river-routes',
-        layout: { 'line-join': 'round', 'line-cap': 'round' },
-        paint: {
-          'line-width': [
-            'case',
-            ['boolean', ['feature-state', 'hover'], false], 12,
-            8
-          ],
-          'line-opacity': 0.95
-        }
-      });
+      map.on('load', () => {
+        // 1. Add route LineStrings source
+        map.addSource('river-routes', {
+          type: 'geojson',
+          data: '/vectors/vector_routes.geojson',
+          promoteId: 'route_id'
+        });
 
-      // Click callback integration
-      map.on('click', 'river-lines-active', (e) => {
-        if (e.features.length > 0) {
-          const clickedId = e.features[0].properties.route_id;
-          onSelectRoute(clickedId);
-        }
-      });
+        // 2. Base/Background line style layer (dimmed)
+        map.addLayer({
+          id: 'river-lines-base',
+          type: 'line',
+          source: 'river-routes',
+          layout: { 'line-join': 'round', 'line-cap': 'round' },
+          paint: {
+            'line-color': '#e2e8f0',
+            'line-width': 3,
+            'line-opacity': 0.7
+          }
+        });
 
-      // Hover status logic
-      let hoveredFeatureId = null;
-      map.on('mousemove', 'river-lines-active', (e) => {
-        if (e.features.length > 0) {
-          map.getCanvas().style.cursor = 'pointer';
+        // 3. Dynamic Active route layer style
+        map.addLayer({
+          id: 'river-lines-active',
+          type: 'line',
+          source: 'river-routes',
+          layout: { 'line-join': 'round', 'line-cap': 'round' },
+          paint: {
+            'line-width': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false], 12,
+              8
+            ],
+            'line-opacity': 0.95
+          }
+        });
+
+        // Click callback integration
+        map.on('click', 'river-lines-active', (e) => {
+          if (e.features.length > 0) {
+            const clickedId = e.features[0].properties.route_id;
+            onSelectRoute(clickedId);
+          }
+        });
+
+        // Hover status logic
+        let hoveredFeatureId = null;
+        map.on('mousemove', 'river-lines-active', (e) => {
+          if (e.features.length > 0) {
+            map.getCanvas().style.cursor = 'pointer';
+            if (hoveredFeatureId !== null) {
+              map.setFeatureState(
+                { source: 'river-routes', id: hoveredFeatureId },
+                { hover: false }
+              );
+            }
+            hoveredFeatureId = e.features[0].id;
+            map.setFeatureState(
+              { source: 'river-routes', id: hoveredFeatureId },
+              { hover: true }
+            );
+          }
+        });
+
+        map.on('mouseleave', 'river-lines-active', () => {
+          map.getCanvas().style.cursor = '';
           if (hoveredFeatureId !== null) {
             map.setFeatureState(
               { source: 'river-routes', id: hoveredFeatureId },
               { hover: false }
             );
           }
-          hoveredFeatureId = e.features[0].id;
-          map.setFeatureState(
-            { source: 'river-routes', id: hoveredFeatureId },
-            { hover: true }
-          );
-        }
-      });
+          hoveredFeatureId = null;
+        });
 
-      map.on('mouseleave', 'river-lines-active', () => {
-        map.getCanvas().style.cursor = '';
-        if (hoveredFeatureId !== null) {
-          map.setFeatureState(
-            { source: 'river-routes', id: hoveredFeatureId },
-            { hover: false }
-          );
-        }
-        hoveredFeatureId = null;
+        setMapReady(true);
+        updateMapFilters();
+        updateLayerStyles();
+        updatePoints();
       });
+    };
 
-      updateMapFilters();
-      updateLayerStyles();
-      updatePoints();
-    });
+    initMap();
 
     return () => {
       if (mapRef.current) {

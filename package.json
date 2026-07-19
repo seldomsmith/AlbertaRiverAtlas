@@ -7,10 +7,7 @@
     "build:frontend": "npm run build --prefix frontend",
     "build": "npm run build:frontend",
     "start": "npm start --prefix backend",
-    "dev": "npm start --prefix backend"
-  },
-  "dependencies": {
-    "concurrently": "^8.2.2"
+    "dev": "npm run build:frontend && npm start --prefix backend"
   },
   "private": true
 }
