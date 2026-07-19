@@ -1,0 +1,32 @@
+[
+  {
+    "hazard_id": "haz-nsr-bunch",
+    "river_name": "North Saskatchewan River",
+    "type": "rapid",
+    "severity": "Class I",
+    "name": "Bunchberry Riffles",
+    "coordinates": {
+      "latitude": 53.4115,
+      "longitude": -113.6821
+    },
+    "river_mileage_km": 11.4,
+    "portage_available": false,
+    "portage_bank": "none",
+    "safety_notes": "Minor standing waves located on river left around the bend. Easily navigated down the center at all recreational flow volumes."
+  },
+  {
+    "hazard_id": "haz-nsr-bridge-construction",
+    "river_name": "North Saskatchewan River",
+    "type": "construction",
+    "severity": "caution",
+    "name": "Bridge Maintenance Zone",
+    "coordinates": {
+      "latitude": 53.4682,
+      "longitude": -113.6145
+    },
+    "river_mileage_km": 22.1,
+    "portage_available": false,
+    "portage_bank": "none",
+    "safety_notes": "Active structural instream work. Keep clear of heavy machinery support scaffolding and follow local directional signage."
+  }
+]

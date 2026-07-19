@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "feat-nsr-devon-edm",
+      "properties": {
+        "route_id": "nsr-devon-edmonton",
+        "river_name": "North Saskatchewan River",
+        "trip_name": "Devon Voyageur Park to Laurier Park",
+        "difficulty_class": 1,
+        "recommended_duration_days": 1,
+        "distance_km": 33.5
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-113.7484, 53.3512],
+          [-113.7312, 53.3645],
+          [-113.7051, 53.3789],
+          [-113.6821, 53.4115],
+          [-113.6643, 53.4301],
+          [-113.6398, 53.4412],
+          [-113.6145, 53.4682],
+          [-113.6110, 53.4891],
+          [-113.5924, 53.4998],
+          [-113.5681, 53.4912],
+          [-113.5543, 53.5112]
+        ]
+      }
+    }
+  ]
+}

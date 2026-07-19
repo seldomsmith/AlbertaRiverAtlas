@@ -1,0 +1,38 @@
+[
+  {
+    "access_id": "acc-nsr-devon",
+    "name": "Devon Voyageur Park Boat Launch",
+    "type": "put_in",
+    "coordinates": {
+      "latitude": 53.3512,
+      "longitude": -113.7484
+    },
+    "infrastructure": {
+      "ramp_type": "concrete_unmaintained",
+      "parking_capacity_vehicles": 50,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "Town of Devon"
+  },
+  {
+    "access_id": "acc-nsr-laurier",
+    "name": "Sir Wilfrid Laurier Park Boat Launch",
+    "type": "take_out",
+    "coordinates": {
+      "latitude": 53.5112,
+      "longitude": -113.5543
+    },
+    "infrastructure": {
+      "ramp_type": "paved_concrete",
+      "parking_capacity_vehicles": 60,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "City of Edmonton"
+  }
+]

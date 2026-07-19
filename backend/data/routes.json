@@ -1,0 +1,22 @@
+[
+  {
+    "route_id": "nsr-devon-edmonton",
+    "river_name": "North Saskatchewan River",
+    "trip_name": "Devon Voyageur Park to Laurier Park",
+    "difficulty_class": 1,
+    "distance_km": 33.5,
+    "recommended_duration_days": 1,
+    "estimated_pace_km_h": 4.5,
+    "put_in_id": "acc-nsr-devon",
+    "take_out_id": "acc-nsr-laurier",
+    "alberta_gauge_id": "05DF001",
+    "flow_thresholds": {
+      "minimum_m3_s": 70.0,
+      "optimal_m3_s": 140.0,
+      "maximum_m3_s": 400.0
+    },
+    "geojson_feature_id": "feat-nsr-devon-edm",
+    "land_use_tags": ["Municipal", "Parkland"],
+    "description": "A classic, beginner-friendly touring reach. Features scenic valley views, minor riffles, and wide gravel bars suitable for rest stops."
+  }
+]
