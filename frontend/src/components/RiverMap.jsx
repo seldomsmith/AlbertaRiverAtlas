@@ -60,10 +60,10 @@ export const RiverMap = ({
         paint: {
           'line-width': [
             'case',
-            ['boolean', ['feature-state', 'hover'], false], 6,
-            4
+            ['boolean', ['feature-state', 'hover'], false], 12,
+            8
           ],
-          'line-opacity': 0.9
+          'line-opacity': 0.95
         }
       });
 
@@ -163,10 +163,10 @@ export const RiverMap = ({
         1, '#10b981', // Class I: Emerald
         2, '#f59e0b', // Class II: Amber
         3, '#ef4444', // Class III: Crimson
-        '#3b82f6'     // Default Blue
+        '#ec4899'     // Default Vibrant Pink
       ];
     } else {
-      lineColourExpression = '#3b82f6';
+      lineColourExpression = '#ec4899'; // Vibrant Pink matching custom request
     }
 
     // Override colors for flow advisories
