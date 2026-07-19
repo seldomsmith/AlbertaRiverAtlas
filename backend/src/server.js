@@ -68,9 +68,13 @@ app.get('/api/alerts', (req, res) => {
   res.json({ high_flow_route_ids: activeHighFlowAlerts });
 });
 
-// Catch-all route handler for undefined endpoints
-app.use((req, res) => {
-  res.status(404).json({ error: 'Endpoint resource not found.' });
+// --- Serve React Static Frontend Bundle Assets ---
+const frontendBuildPath = path.join(__dirname, '../../frontend/build');
+app.use(express.static(frontendBuildPath));
+
+// Direct any non-API traffic back to React router index
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendBuildPath, 'index.html'));
 });
 
 // Bind server to designated network port

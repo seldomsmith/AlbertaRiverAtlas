@@ -1,12 +1,13 @@
 {
   "name": "alberta-rivers-monorepo",
   "version": "1.0.0",
-  "description": "Monorepo launcher for Alberta Rivers Padding Dashboard",
+  "description": "Monorepo configuration with unified build and static execution scripts",
   "scripts": {
     "install:all": "npm install --prefix backend && npm install --prefix frontend",
-    "dev:backend": "npm run dev --prefix backend",
-    "dev:frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+    "build:frontend": "npm run build --prefix frontend",
+    "build": "npm run build:frontend",
+    "start": "npm start --prefix backend",
+    "dev": "npm start --prefix backend"
   },
   "dependencies": {
     "concurrently": "^8.2.2"

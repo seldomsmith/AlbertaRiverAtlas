@@ -18,7 +18,7 @@ export const App = () => {
     difficultyClass: 'all'
   });
 
-  const apiHost = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+  const apiHost = process.env.REACT_APP_API_URL || '';
 
   // Fetch base relational data from local Node server
   useEffect(() => {
