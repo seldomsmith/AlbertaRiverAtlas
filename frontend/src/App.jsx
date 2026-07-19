@@ -76,7 +76,9 @@ export const App = () => {
         routes={routes}
         filteredRouteIds={filteredRouteIds}
         selectedRouteId={selectedRouteId}
-        onSelectRoute={setSelectedRouteId}
+        onSelectRoute={(id) => {
+          if (id) setSelectedRouteId(id);
+        }}
         accessPoints={accessPoints}
         hazards={hazards}
         colourMetric={colourMetric}

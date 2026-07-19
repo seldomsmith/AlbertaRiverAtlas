@@ -121,7 +121,7 @@ export const RiverMap = ({
   // Update map layer filters when active state selections filter changes
   useEffect(() => {
     updateMapFilters();
-  }, [filteredRouteIds]);
+  }, [filteredRouteIds, selectedRouteId]);
 
   // Update coloring expressions
   useEffect(() => {
@@ -137,7 +137,12 @@ export const RiverMap = ({
     const map = mapRef.current;
     if (!map || !map.isStyleLoaded()) return;
 
-    if (filteredRouteIds.length === 0) {
+    const activeIds = [...filteredRouteIds];
+    if (selectedRouteId && !activeIds.includes(selectedRouteId)) {
+      activeIds.push(selectedRouteId);
+    }
+
+    if (activeIds.length === 0) {
       map.setFilter('river-lines-active', ['==', ['get', 'route_id'], '']);
       return;
     }
@@ -145,7 +150,7 @@ export const RiverMap = ({
     map.setFilter('river-lines-active', [
       'in',
       ['get', 'route_id'],
-      ['literal', filteredRouteIds]
+      ['literal', activeIds]
     ]);
   };
 

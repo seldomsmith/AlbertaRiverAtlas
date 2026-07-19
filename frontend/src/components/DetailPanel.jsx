@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Download, AlertTriangle, MapPin, Compass, ShieldAlert } from 'lucide-react';
 
-export const DetailPanel = ({
+const DetailPanel = ({
   routes,
   selectedRouteId,
   onClose,
