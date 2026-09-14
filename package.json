@@ -8,7 +8,10 @@
     "build:frontend": "npm run build --prefix frontend",
     "build": "npm run build:frontend",
     "start": "npm start --prefix backend",
-    "dev": "node scripts/setup-env.js && npm run build --prefix frontend && npm start --prefix backend"
+    "dev": "node scripts/setup-env.js && npm run build --prefix frontend && npm start --prefix backend",
+    "extract:bow": "node backend/scripts/extract_bow_basin.js",
+    "layout:bow": "node backend/scripts/generate_schematic_layout.js",
+    "pipeline:bow": "node backend/scripts/extract_bow_basin.js && node backend/scripts/generate_schematic_layout.js"
   },
   "private": true
 }

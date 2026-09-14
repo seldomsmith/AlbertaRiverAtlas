@@ -2,43 +2,75 @@
   {
     "route_id": "nsr-devon-edmonton",
     "river_name": "North Saskatchewan River",
-    "trip_name": "Devon Voyageur Park to Laurier Park",
+    "trip_name": "Devon Voyageur Park to Riverdale",
     "difficulty_class": 1,
-    "distance_km": 33.5,
+    "distance_km": 47,
     "recommended_duration_days": 1,
-    "estimated_pace_km_h": 4.5,
+    "estimated_pace_km_h": 8,
     "put_in_id": "acc-nsr-devon",
-    "take_out_id": "acc-nsr-laurier",
+    "take_out_id": "acc-nsr-riverdale",
     "alberta_gauge_id": "05DF001",
     "flow_thresholds": {
-      "minimum_m3_s": 70.0,
-      "optimal_m3_s": 140.0,
-      "maximum_m3_s": 400.0
+      "minimum_m3_s": 70,
+      "optimal_m3_s": 140,
+      "maximum_m3_s": 400
     },
-    "historical_monthly_averages": [85.5, 175.2, 220.6, 160.4, 110.3, 85.1],
+    "historical_monthly_averages": [
+      85.5,
+      175.2,
+      220.6,
+      160.4,
+      110.3,
+      85.1
+    ],
     "geojson_feature_id": "feat-nsr-devon-edm",
-    "land_use_tags": ["Municipal", "Parkland"],
-    "description": "A classic, beginner-friendly touring reach. Features scenic valley views, minor riffles, and wide gravel bars suitable for rest stops."
+    "land_use_tags": [
+      "Municipal",
+      "Parkland"
+    ],
+    "description": "A classic, beginner-friendly touring reach. Features scenic valley views, minor riffles, and wide gravel bars suitable for rest stops.",
+    "recorded_runs": [
+      {
+        "date": "2026-08-03",
+        "activity_type": "Canoeing",
+        "distance_km": 47,
+        "duration_hours": 6.5,
+        "moving_time_hours": 5.9,
+        "average_moving_speed_km_h": 8,
+        "average_flow_rate_m3_s": 273,
+        "notes": "Verified high-fidelity GPX run. Flow rate was optimal (~273 m³/s) resulting in an excellent pace."
+      }
+    ]
   },
   {
     "route_id": "bow-cochrane-bowness",
     "river_name": "Bow River",
     "trip_name": "Cochrane to Bowness Park",
     "difficulty_class": 2,
-    "distance_km": 26.0,
+    "distance_km": 26,
     "recommended_duration_days": 1,
-    "estimated_pace_km_h": 5.0,
+    "estimated_pace_km_h": 5,
     "put_in_id": "acc-bow-cochrane",
     "take_out_id": "acc-bow-bowness",
     "alberta_gauge_id": "05BH004",
     "flow_thresholds": {
-      "minimum_m3_s": 40.0,
-      "optimal_m3_s": 90.0,
-      "maximum_m3_s": 250.0
+      "minimum_m3_s": 40,
+      "optimal_m3_s": 90,
+      "maximum_m3_s": 250
     },
-    "historical_monthly_averages": [65.0, 140.0, 110.0, 75.0, 55.0, 48.0],
+    "historical_monthly_averages": [
+      65,
+      140,
+      110,
+      75,
+      55,
+      48
+    ],
     "geojson_feature_id": "feat-bow-cochrane-bown",
-    "land_use_tags": ["Provincial", "Municipal"],
+    "land_use_tags": [
+      "Provincial",
+      "Municipal"
+    ],
     "description": "A scenic, fast-flowing float from the town of Cochrane down into the Calgary city limits. Watch for gravel bar channels and the Bearspaw Dam portage."
   },
   {
@@ -48,18 +80,27 @@
     "difficulty_class": 3,
     "distance_km": 3.5,
     "recommended_duration_days": 1,
-    "estimated_pace_km_h": 7.0,
+    "estimated_pace_km_h": 7,
     "put_in_id": "acc-kan-widowmaker",
     "take_out_id": "acc-kan-canoemeadows",
     "alberta_gauge_id": "05BF001",
     "flow_thresholds": {
-      "minimum_m3_s": 15.0,
-      "optimal_m3_s": 28.0,
-      "maximum_m3_s": 50.0
+      "minimum_m3_s": 15,
+      "optimal_m3_s": 28,
+      "maximum_m3_s": 50
     },
-    "historical_monthly_averages": [25.0, 30.0, 28.0, 26.0, 25.0, 20.0],
+    "historical_monthly_averages": [
+      25,
+      30,
+      28,
+      26,
+      25,
+      20
+    ],
     "geojson_feature_id": "feat-kan-widow-canoe",
-    "land_use_tags": ["Provincial Park"],
+    "land_use_tags": [
+      "Provincial Park"
+    ],
     "description": "Alberta's premiere whitewater play run. Features consistent Class II-III rapids due to upstream dam releases."
   },
   {
@@ -74,13 +115,23 @@
     "take_out_id": "acc-rdr-joffre",
     "alberta_gauge_id": "05CC002",
     "flow_thresholds": {
-      "minimum_m3_s": 20.0,
-      "optimal_m3_s": 50.0,
-      "maximum_m3_s": 180.0
+      "minimum_m3_s": 20,
+      "optimal_m3_s": 50,
+      "maximum_m3_s": 180
     },
-    "historical_monthly_averages": [45.0, 110.0, 85.0, 40.0, 28.0, 22.0],
+    "historical_monthly_averages": [
+      45,
+      110,
+      85,
+      40,
+      28,
+      22
+    ],
     "geojson_feature_id": "feat-rdr-red-joffre",
-    "land_use_tags": ["Municipal", "Parkland"],
+    "land_use_tags": [
+      "Municipal",
+      "Parkland"
+    ],
     "description": "A quiet, easy paddle starting from historical Fort Normandeau and winding through the city of Red Deer to Joffre Bridge."
   },
   {
@@ -90,18 +141,28 @@
     "difficulty_class": 1,
     "distance_km": 46.5,
     "recommended_duration_days": 2,
-    "estimated_pace_km_h": 4.0,
+    "estimated_pace_km_h": 4,
     "put_in_id": "acc-rdr-tolman",
     "take_out_id": "acc-rdr-bleriot",
     "alberta_gauge_id": "05CE001",
     "flow_thresholds": {
-      "minimum_m3_s": 15.0,
-      "optimal_m3_s": 45.0,
-      "maximum_m3_s": 150.0
+      "minimum_m3_s": 15,
+      "optimal_m3_s": 45,
+      "maximum_m3_s": 150
     },
-    "historical_monthly_averages": [40.0, 95.0, 75.0, 35.0, 25.0, 20.0],
+    "historical_monthly_averages": [
+      40,
+      95,
+      75,
+      35,
+      25,
+      20
+    ],
     "geojson_feature_id": "feat-rdr-tolman-bleriot",
-    "land_use_tags": ["Badlands", "Provincial"],
+    "land_use_tags": [
+      "Badlands",
+      "Provincial"
+    ],
     "description": "Multi-day badlands exploration trip. Wind through spectacular clay hoods, coulees, and dinosaur country, ending at the historic Bleriot Ferry."
   }
 ]

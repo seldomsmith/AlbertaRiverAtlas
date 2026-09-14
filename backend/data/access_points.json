@@ -100,7 +100,7 @@
     "type": "take_out",
     "coordinates": {
       "latitude": 51.1152,
-      "longitude": -115.0210
+      "longitude": -115.021
     },
     "river_bank": "right",
     "infrastructure": {
@@ -188,5 +188,24 @@
     "vehicle_suitability": "2WD",
     "cell_service": true,
     "management_authority": "Starland County"
+  },
+  {
+    "access_id": "acc-nsr-riverdale",
+    "name": "Riverdale Access / Dawson Park Hand Launch",
+    "type": "take_out",
+    "coordinates": {
+      "latitude": 53.5495,
+      "longitude": -113.4691
+    },
+    "river_bank": "right",
+    "infrastructure": {
+      "ramp_type": "natural_dirt",
+      "parking_capacity_vehicles": 30,
+      "fees_required": false,
+      "washrooms_available": true
+    },
+    "vehicle_suitability": "2WD",
+    "cell_service": true,
+    "management_authority": "City of Edmonton"
   }
 ]

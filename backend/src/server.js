@@ -78,6 +78,14 @@ app.get('/api/alerts', (req, res) => {
   res.json({ high_flow_route_ids: activeHighFlowAlerts });
 });
 
+app.get('/api/schematic/bow-basin', (req, res) => {
+  res.json(loadLocalData('bow_basin_schematic_map.json'));
+});
+
+app.get('/api/topology/bow-basin', (req, res) => {
+  res.json(loadLocalData('bow_basin_topology.json'));
+});
+
 app.get('/api/config', (req, res) => {
   res.json({ mapboxToken: process.env.MAPBOX_ACCESS_TOKEN || '' });
 });

@@ -1,0 +1,5025 @@
+{
+  "basin": "Bow River Basin",
+  "pilotArea": "Bow River watershed down to Oldman River confluence at Grand Forks",
+  "totalStreams": 272,
+  "trunk": {
+    "name": "BOW RIVER",
+    "strahlerOrder": 9,
+    "keyWaypoints": [
+      {
+        "name": "Bow Glacier (Source)",
+        "lon": -116.48,
+        "lat": 51.68,
+        "type": "headwater"
+      },
+      {
+        "name": "Bow Lake",
+        "lon": -116.45,
+        "lat": 51.67,
+        "type": "lake"
+      },
+      {
+        "name": "Lake Louise",
+        "lon": -116.18,
+        "lat": 51.43,
+        "type": "town"
+      },
+      {
+        "name": "Castle Junction",
+        "lon": -115.93,
+        "lat": 51.27,
+        "type": "junction"
+      },
+      {
+        "name": "Banff",
+        "lon": -115.57,
+        "lat": 51.18,
+        "type": "town"
+      },
+      {
+        "name": "Canmore",
+        "lon": -115.36,
+        "lat": 51.09,
+        "type": "town"
+      },
+      {
+        "name": "Exshaw / Lac des Arcs",
+        "lon": -115.16,
+        "lat": 51.06,
+        "type": "town"
+      },
+      {
+        "name": "Morley / Ghost Lake",
+        "lon": -114.92,
+        "lat": 51.17,
+        "type": "reservoir"
+      },
+      {
+        "name": "Cochrane",
+        "lon": -114.47,
+        "lat": 51.19,
+        "type": "town"
+      },
+      {
+        "name": "Bearspaw Dam",
+        "lon": -114.28,
+        "lat": 51.1,
+        "type": "dam"
+      },
+      {
+        "name": "Calgary (Downtown / Peace Bridge)",
+        "lon": -114.07,
+        "lat": 51.05,
+        "type": "city"
+      },
+      {
+        "name": "Harvie Passage",
+        "lon": -114.01,
+        "lat": 51.04,
+        "type": "weir"
+      },
+      {
+        "name": "Fish Creek Provincial Park",
+        "lon": -114.01,
+        "lat": 50.9,
+        "type": "junction"
+      },
+      {
+        "name": "Carseland Weir",
+        "lon": -113.43,
+        "lat": 50.83,
+        "type": "dam"
+      },
+      {
+        "name": "Arrowwood / Shouldice",
+        "lon": -113.01,
+        "lat": 50.72,
+        "type": "junction"
+      },
+      {
+        "name": "Bassano Dam",
+        "lon": -112.47,
+        "lat": 50.78,
+        "type": "dam"
+      },
+      {
+        "name": "Grand Forks (Confluence with Oldman -> South Sask)",
+        "lon": -111.18,
+        "lat": 49.93,
+        "type": "outlet"
+      }
+    ]
+  },
+  "majorBranches": [
+    "HIGHWOOD RIVER",
+    "ELBOW RIVER",
+    "SHEEP RIVER",
+    "KANANASKIS RIVER",
+    "SPRAY RIVER",
+    "GHOST RIVER",
+    "CASCADE RIVER",
+    "PIPESTONE RIVER",
+    "FISH CREEK",
+    "JUMPINGPOUND CREEK",
+    "NOSE CREEK",
+    "BIGHILL CREEK",
+    "CROWFOOT CREEK",
+    "WEST ARROWWOOD CREEK",
+    "EAST ARROWWOOD CREEK"
+  ],
+  "streams": [
+    {
+      "name": "BIRDWOOD CREEK",
+      "commonName": "BIRDWOOD CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 1.49,
+      "center": [
+        -115.4077,
+        50.7852
+      ],
+      "confluenceCoord": [
+        -115.4286,
+        50.7868
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HECTOR CREEK",
+      "commonName": "HECTOR CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 1.09,
+      "center": [
+        -116.3016,
+        51.6035
+      ],
+      "confluenceCoord": [
+        -116.3174,
+        51.6031
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "KERFOOT CREEK",
+      "commonName": "KERFOOT CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020401",
+      "parentStream": "GRAND VALLEY CREEK",
+      "confluenceDistanceKm": 1.42,
+      "center": [
+        -114.6296,
+        51.295
+      ],
+      "confluenceCoord": [
+        -114.6091,
+        51.295
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LEVAL CREEK",
+      "commonName": "LEVAL CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 1.02,
+      "center": [
+        -115.4292,
+        50.7687
+      ],
+      "confluenceCoord": [
+        -115.4197,
+        50.7757
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RAWSON CREEK",
+      "commonName": "RAWSON CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020601",
+      "parentStream": "BOULTON CREEK",
+      "confluenceDistanceKm": 3.63,
+      "center": [
+        -115.1447,
+        50.6013
+      ],
+      "confluenceCoord": [
+        -115.1304,
+        50.6326
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SARRAIL CREEK",
+      "commonName": "SARRAIL CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020601",
+      "parentStream": "BOULTON CREEK",
+      "confluenceDistanceKm": 2.62,
+      "center": [
+        -115.1314,
+        50.609
+      ],
+      "confluenceCoord": [
+        -115.1304,
+        50.6326
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SPURLING CREEK",
+      "commonName": "SPURLING CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020301",
+      "parentStream": "WEST WIND CREEK",
+      "confluenceDistanceKm": 2.59,
+      "center": [
+        -115.3119,
+        50.9828
+      ],
+      "confluenceCoord": [
+        -115.2926,
+        51.0026
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "STONES CANYON CREEK",
+      "commonName": "STONES CANYON CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020401",
+      "parentStream": "CANMORE CREEK",
+      "confluenceDistanceKm": 0.77,
+      "center": [
+        -115.3928,
+        51.0696
+      ],
+      "confluenceCoord": [
+        -115.3912,
+        51.0764
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WARRE CREEK",
+      "commonName": "WARRE CREEK",
+      "strahlerOrder": 1,
+      "tier": 1,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 0.96,
+      "center": [
+        -115.4459,
+        50.7957
+      ],
+      "confluenceCoord": [
+        -115.4387,
+        50.8031
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ALLENBY CREEK",
+      "commonName": "ALLENBY CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "BRYANT CREEK",
+      "confluenceDistanceKm": 1.96,
+      "center": [
+        -115.5449,
+        50.936
+      ],
+      "confluenceCoord": [
+        -115.5587,
+        50.9206
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BABEL CREEK",
+      "commonName": "BABEL CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "MORAINE CREEK",
+      "confluenceDistanceKm": 1.1,
+      "center": [
+        -116.1651,
+        51.3253
+      ],
+      "confluenceCoord": [
+        -116.1756,
+        51.3327
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BLACKSHALE CREEK",
+      "commonName": "BLACKSHALE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 0.91,
+      "center": [
+        -115.1749,
+        50.7015
+      ],
+      "confluenceCoord": [
+        -115.1764,
+        50.6934
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CAIRNES CREEK",
+      "commonName": "CAIRNES CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020401",
+      "parentStream": "MARSH CREEK",
+      "confluenceDistanceKm": 1,
+      "center": [
+        -115.2733,
+        51.0321
+      ],
+      "confluenceCoord": [
+        -115.2698,
+        51.0408
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "COPE CREEK",
+      "commonName": "COPE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020802",
+      "parentStream": "PILE OF BONES CREEK",
+      "confluenceDistanceKm": 3.97,
+      "center": [
+        -114.6326,
+        51.1619
+      ],
+      "confluenceCoord": [
+        -114.6077,
+        51.1298
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FALL CREEK",
+      "commonName": "FALL CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020401",
+      "parentStream": "STEWART CREEK",
+      "confluenceDistanceKm": 1,
+      "center": [
+        -115.3156,
+        51.0378
+      ],
+      "confluenceCoord": [
+        -115.3026,
+        51.0415
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HAIDUK CREEK",
+      "commonName": "HAIDUK CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020201",
+      "parentStream": "ALTRUDE CREEK",
+      "confluenceDistanceKm": 12,
+      "center": [
+        -115.9552,
+        51.1411
+      ],
+      "confluenceCoord": [
+        -115.9742,
+        51.2484
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HEADWALL CREEK",
+      "commonName": "HEADWALL CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 2.01,
+      "center": [
+        -115.2649,
+        50.7874
+      ],
+      "confluenceCoord": [
+        -115.282,
+        50.7728
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HEEL CREEK",
+      "commonName": "HEEL CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04021202",
+      "parentStream": "MACABEE CREEK",
+      "confluenceDistanceKm": 1.29,
+      "center": [
+        -114.4513,
+        50.6556
+      ],
+      "confluenceCoord": [
+        -114.4495,
+        50.6441
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HOOD CREEK",
+      "commonName": "JAMES WALKER CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 1.54,
+      "center": [
+        -115.1135,
+        50.7434
+      ],
+      "confluenceCoord": [
+        -115.1326,
+        50.7366
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HOWARD DOUGLAS CREEK",
+      "commonName": "HOWARD DOUGLAS CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020201",
+      "parentStream": "BREWSTER CREEK",
+      "confluenceDistanceKm": 5.04,
+      "center": [
+        -115.7028,
+        51.0604
+      ],
+      "confluenceCoord": [
+        -115.6689,
+        51.1004
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JAMES WALKER CREEK",
+      "commonName": "JAMES WALKER CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 3.34,
+      "center": [
+        -115.24,
+        50.7719
+      ],
+      "confluenceCoord": [
+        -115.2479,
+        50.7423
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JIM CREEK",
+      "commonName": "JIM CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04021201",
+      "parentStream": "SULLIVAN CREEK",
+      "confluenceDistanceKm": 2.33,
+      "center": [
+        -114.422,
+        50.5476
+      ],
+      "confluenceCoord": [
+        -114.4059,
+        50.5293
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LOST HORSE CREEK",
+      "commonName": "LOST HORSE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020201",
+      "parentStream": "HEALY CREEK",
+      "confluenceDistanceKm": 6.81,
+      "center": [
+        -115.8602,
+        51.1536
+      ],
+      "confluenceCoord": [
+        -115.8548,
+        51.0924
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LOUISE CREEK",
+      "commonName": "LOUISE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 1.3,
+      "center": [
+        -116.1967,
+        51.4187
+      ],
+      "confluenceCoord": [
+        -116.1782,
+        51.4204
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MERCER CREEK",
+      "commonName": "MERCER CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "BRYANT CREEK",
+      "confluenceDistanceKm": 1.32,
+      "center": [
+        -115.5384,
+        50.9245
+      ],
+      "confluenceCoord": [
+        -115.5463,
+        50.9137
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "NOSEEUM CREEK",
+      "commonName": "NOSEEUM CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 1.67,
+      "center": [
+        -116.3083,
+        51.6276
+      ],
+      "confluenceCoord": [
+        -116.3253,
+        51.617
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "OPAL CREEK",
+      "commonName": "OPAL CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "POCATERRA CREEK",
+      "confluenceDistanceKm": 0.7,
+      "center": [
+        -115.0866,
+        50.6812
+      ],
+      "confluenceCoord": [
+        -115.0961,
+        50.6794
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "OWL CREEK",
+      "commonName": "OWL CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "BRYANT CREEK",
+      "confluenceDistanceKm": 3.17,
+      "center": [
+        -115.5248,
+        50.8587
+      ],
+      "confluenceCoord": [
+        -115.5099,
+        50.8856
+      ],
+      "segmentCount": 2
+    },
+    {
+      "name": "PARADISE CREEK",
+      "commonName": "PARADISE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 4.77,
+      "center": [
+        -116.2084,
+        51.3727
+      ],
+      "confluenceCoord": [
+        -116.1582,
+        51.402
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PHARAOH CREEK",
+      "commonName": "PHARAOH CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020201",
+      "parentStream": "HEALY CREEK",
+      "confluenceDistanceKm": 6.26,
+      "center": [
+        -115.908,
+        51.1394
+      ],
+      "confluenceCoord": [
+        -115.8609,
+        51.0915
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RHODES CREEK",
+      "commonName": "RHODES CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020401",
+      "parentStream": "GRAND VALLEY CREEK",
+      "confluenceDistanceKm": 1.44,
+      "center": [
+        -114.6357,
+        51.3111
+      ],
+      "confluenceCoord": [
+        -114.6154,
+        51.3088
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SILVERTON CREEK",
+      "commonName": "SILVERTON CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 2.93,
+      "center": [
+        -115.9097,
+        51.2874
+      ],
+      "confluenceCoord": [
+        -115.9143,
+        51.2612
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SOUTH GLASGOW CREEK",
+      "commonName": "SOUTH GLASGOW CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04021001",
+      "parentStream": "GLASGOW CREEK",
+      "confluenceDistanceKm": 3.04,
+      "center": [
+        -114.8992,
+        50.7556
+      ],
+      "confluenceCoord": [
+        -114.8626,
+        50.7701
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SUNDANCE CREEK",
+      "commonName": "SUNDANCE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020201",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 4.25,
+      "center": [
+        -115.603,
+        51.13
+      ],
+      "confluenceCoord": [
+        -115.6129,
+        51.1678
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SUNSHINE CREEK",
+      "commonName": "SUNSHINE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020201",
+      "parentStream": "HEALY CREEK",
+      "confluenceDistanceKm": 1.68,
+      "center": [
+        -115.7763,
+        51.0979
+      ],
+      "confluenceCoord": [
+        -115.7757,
+        51.113
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "THREE ISLE CREEK",
+      "commonName": "THREE ISLE CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "UPPER KANANASKIS RIVER",
+      "confluenceDistanceKm": 2.18,
+      "center": [
+        -115.2411,
+        50.6156
+      ],
+      "confluenceCoord": [
+        -115.2264,
+        50.6328
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "TURBULENT CREEK",
+      "commonName": "TURBULENT CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 4.81,
+      "center": [
+        -115.4584,
+        50.9072
+      ],
+      "confluenceCoord": [
+        -115.4122,
+        50.8752
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WHITE MAN CREEK",
+      "commonName": "WHITE MAN CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "CURRIE CREEK",
+      "confluenceDistanceKm": 3.33,
+      "center": [
+        -115.4695,
+        50.7963
+      ],
+      "confluenceCoord": [
+        -115.4627,
+        50.8259
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WILDFLOWER CREEK",
+      "commonName": "WILDFLOWER CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "BAKER CREEK",
+      "confluenceDistanceKm": 1.65,
+      "center": [
+        -116,
+        51.4405
+      ],
+      "confluenceCoord": [
+        -116.0152,
+        51.452
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WIND CREEK",
+      "commonName": "WIND CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020401",
+      "parentStream": "WEST WIND CREEK",
+      "confluenceDistanceKm": 1.84,
+      "center": [
+        -115.2542,
+        50.9978
+      ],
+      "confluenceCoord": [
+        -115.2595,
+        51.0141
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WRITING CREEK",
+      "commonName": "WRITING CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020803",
+      "parentStream": "NOSE CREEK",
+      "confluenceDistanceKm": 4.42,
+      "center": [
+        -114.0934,
+        51.3253
+      ],
+      "confluenceCoord": [
+        -114.0298,
+        51.3247
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MAUDE BROOK",
+      "commonName": "MAUDE BROOK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "UPPER KANANASKIS RIVER",
+      "confluenceDistanceKm": 1.2,
+      "center": [
+        -115.2738,
+        50.6865
+      ],
+      "confluenceCoord": [
+        -115.2569,
+        50.6875
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BOOM CREEK",
+      "commonName": "BOOM CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "ALTRUDE CREEK",
+      "confluenceDistanceKm": 2.29,
+      "center": [
+        -116.045,
+        51.2523
+      ],
+      "confluenceCoord": [
+        -116.0147,
+        51.2443
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BURSTALL CREEK",
+      "commonName": "BURSTALL CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "SMUTS CREEK",
+      "confluenceDistanceKm": 3.38,
+      "center": [
+        -115.3286,
+        50.7685
+      ],
+      "confluenceCoord": [
+        -115.3119,
+        50.797
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CHESTER CREEK",
+      "commonName": "CHESTER CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 1.56,
+      "center": [
+        -115.2902,
+        50.8012
+      ],
+      "confluenceCoord": [
+        -115.3049,
+        50.7906
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CONNOP CREEK",
+      "commonName": "CONNOP CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 2.06,
+      "center": [
+        -114.6415,
+        50.899
+      ],
+      "confluenceCoord": [
+        -114.6303,
+        50.9161
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FOX CREEK",
+      "commonName": "FOX CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "BOULTON CREEK",
+      "confluenceDistanceKm": 2.32,
+      "center": [
+        -115.1055,
+        50.5946
+      ],
+      "confluenceCoord": [
+        -115.1012,
+        50.6152
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GRIZZLY CREEK",
+      "commonName": "GRIZZLY CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 1.97,
+      "center": [
+        -115.1253,
+        50.7682
+      ],
+      "confluenceCoord": [
+        -115.1521,
+        50.7633
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "TAYLOR CREEK",
+      "commonName": "TAYLOR CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 2.42,
+      "center": [
+        -116.055,
+        51.3016
+      ],
+      "confluenceCoord": [
+        -116.0217,
+        51.3078
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WILDMAN CREEK",
+      "commonName": "WILDMAN CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020802",
+      "parentStream": "CHINIKI CREEK",
+      "confluenceDistanceKm": 3.97,
+      "center": [
+        -114.7771,
+        51.1416
+      ],
+      "confluenceCoord": [
+        -114.7963,
+        51.1752
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BULLER CREEK",
+      "commonName": "BULLER CREEK",
+      "strahlerOrder": 2,
+      "tier": 2,
+      "huc8": "04020301",
+      "parentStream": "SMUTS CREEK",
+      "confluenceDistanceKm": 3.16,
+      "center": [
+        -115.3224,
+        50.8829
+      ],
+      "confluenceCoord": [
+        -115.3671,
+        50.8791
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ALTRUDE CREEK",
+      "commonName": "ALTRUDE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 4.35,
+      "center": [
+        -115.9833,
+        51.2496
+      ],
+      "confluenceCoord": [
+        -115.927,
+        51.2666
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ASTER CREEK",
+      "commonName": "ASTER CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 12.93,
+      "center": [
+        -115.2211,
+        50.5797
+      ],
+      "confluenceCoord": [
+        -115.1755,
+        50.6923
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BALFOUR CREEK",
+      "commonName": "BALFOUR CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 4.7,
+      "center": [
+        -116.4024,
+        51.5848
+      ],
+      "confluenceCoord": [
+        -116.3367,
+        51.5739
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BATH CREEK",
+      "commonName": "BATH CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 7.39,
+      "center": [
+        -116.2863,
+        51.4861
+      ],
+      "confluenceCoord": [
+        -116.2084,
+        51.4407
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BEDDINGTON CREEK",
+      "commonName": "BEDDINGTON CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020803",
+      "parentStream": "NOSE CREEK",
+      "confluenceDistanceKm": 4.92,
+      "center": [
+        -114.0854,
+        51.177
+      ],
+      "confluenceCoord": [
+        -114.0401,
+        51.1431
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BIGSPRING CREEK",
+      "commonName": "BIGSPRING CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020803",
+      "parentStream": "WEST NOSE CREEK",
+      "confluenceDistanceKm": 5.53,
+      "center": [
+        -114.2987,
+        51.2428
+      ],
+      "confluenceCoord": [
+        -114.2221,
+        51.2298
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CURRIE CREEK",
+      "commonName": "CURRIE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 3.69,
+      "center": [
+        -115.507,
+        50.8182
+      ],
+      "confluenceCoord": [
+        -115.4582,
+        50.8305
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CUTHEAD CREEK",
+      "commonName": "CUTHEAD CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020501",
+      "parentStream": "CASCADE RIVER",
+      "confluenceDistanceKm": 4.04,
+      "center": [
+        -115.7145,
+        51.4294
+      ],
+      "confluenceCoord": [
+        -115.6809,
+        51.3997
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FATIGUE CREEK",
+      "commonName": "FATIGUE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020201",
+      "parentStream": "BREWSTER CREEK",
+      "confluenceDistanceKm": 4.07,
+      "center": [
+        -115.658,
+        51.0456
+      ],
+      "confluenceCoord": [
+        -115.6524,
+        51.0821
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FOCH CREEK",
+      "commonName": "FOCH CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 11.65,
+      "center": [
+        -115.1941,
+        50.5882
+      ],
+      "confluenceCoord": [
+        -115.1755,
+        50.6923
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FRENCH CREEK",
+      "commonName": "FRENCH CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 2.08,
+      "center": [
+        -115.3043,
+        50.7619
+      ],
+      "confluenceCoord": [
+        -115.2848,
+        50.776
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GYPSUM CREEK",
+      "commonName": "GYPSUM CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 2.23,
+      "center": [
+        -115.1596,
+        50.6708
+      ],
+      "confluenceCoord": [
+        -115.1492,
+        50.6897
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HEALY CREEK",
+      "commonName": "HEALY CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020201",
+      "parentStream": "BREWSTER CREEK",
+      "confluenceDistanceKm": 6.45,
+      "center": [
+        -115.7756,
+        51.1108
+      ],
+      "confluenceCoord": [
+        -115.6901,
+        51.1331
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "INDIAN CREEK",
+      "commonName": "PORCUPINE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 1.75,
+      "center": [
+        -115.0601,
+        50.9874
+      ],
+      "confluenceCoord": [
+        -115.0837,
+        50.9925
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JAMIESON CREEK",
+      "commonName": "JAMIESON CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020701",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 4.55,
+      "center": [
+        -114.8148,
+        51.2337
+      ],
+      "confluenceCoord": [
+        -114.7572,
+        51.253
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JURA CREEK",
+      "commonName": "JURA CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 4.41,
+      "center": [
+        -115.1582,
+        51.102
+      ],
+      "confluenceCoord": [
+        -115.1292,
+        51.0668
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LORETTE CREEK",
+      "commonName": "LORETTE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 2.76,
+      "center": [
+        -115.148,
+        50.9812
+      ],
+      "confluenceCoord": [
+        -115.1194,
+        50.9641
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MARCH CREEK",
+      "commonName": "MARCH CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 2.14,
+      "center": [
+        -114.5854,
+        50.6359
+      ],
+      "confluenceCoord": [
+        -114.5567,
+        50.6423
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MARSH CREEK",
+      "commonName": "MARSH CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 1.3,
+      "center": [
+        -115.2782,
+        51.0327
+      ],
+      "confluenceCoord": [
+        -115.2691,
+        51.0429
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MARVEL CREEK",
+      "commonName": "MARVEL CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020301",
+      "parentStream": "BRYANT CREEK",
+      "confluenceDistanceKm": 3.45,
+      "center": [
+        -115.5519,
+        50.8658
+      ],
+      "confluenceCoord": [
+        -115.5143,
+        50.8858
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MCLENNAN CREEK",
+      "commonName": "MCLENNAN CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "HORSE CREEK",
+      "confluenceDistanceKm": 3.89,
+      "center": [
+        -114.5805,
+        51.1923
+      ],
+      "confluenceCoord": [
+        -114.5256,
+        51.1986
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MESA CREEK",
+      "commonName": "MESA CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021202",
+      "parentStream": "FISHER CREEK",
+      "confluenceDistanceKm": 2.26,
+      "center": [
+        -114.515,
+        50.7702
+      ],
+      "confluenceCoord": [
+        -114.483,
+        50.7693
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MOLAR CREEK",
+      "commonName": "MOLAR CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "PIPESTONE RIVER",
+      "confluenceDistanceKm": 5.78,
+      "center": [
+        -116.2068,
+        51.5997
+      ],
+      "confluenceCoord": [
+        -116.1561,
+        51.5583
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MOOSE DOME CREEK",
+      "commonName": "MOOSE DOME CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "CANYON CREEK",
+      "confluenceDistanceKm": 2.15,
+      "center": [
+        -114.8126,
+        50.9171
+      ],
+      "confluenceCoord": [
+        -114.7958,
+        50.9009
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MURRAY CREEK",
+      "commonName": "MURRAY CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 1.59,
+      "center": [
+        -115.2334,
+        50.7542
+      ],
+      "confluenceCoord": [
+        -115.2453,
+        50.742
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "NORTH RIBBON CREEK",
+      "commonName": "NORTH RIBBON CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "RIBBON CREEK",
+      "confluenceDistanceKm": 2.2,
+      "center": [
+        -115.2197,
+        50.9338
+      ],
+      "confluenceCoord": [
+        -115.1928,
+        50.9237
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PARKS CREEK",
+      "commonName": "PARKS CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020802",
+      "parentStream": "PILE OF BONES CREEK",
+      "confluenceDistanceKm": 3.55,
+      "center": [
+        -114.6573,
+        51.1452
+      ],
+      "confluenceCoord": [
+        -114.621,
+        51.1229
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PLATEAU CREEK",
+      "commonName": "PLATEAU CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "SALTER CREEK",
+      "confluenceDistanceKm": 2.92,
+      "center": [
+        -114.5437,
+        50.2584
+      ],
+      "confluenceCoord": [
+        -114.5625,
+        50.2817
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RANCHE CREEK",
+      "commonName": "RANCHE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "GRAND VALLEY CREEK",
+      "confluenceDistanceKm": 3.42,
+      "center": [
+        -114.7211,
+        51.2976
+      ],
+      "confluenceCoord": [
+        -114.7156,
+        51.3282
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RIPPLE ROCK CREEK",
+      "commonName": "RIPPLE ROCK CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 1.78,
+      "center": [
+        -115.1217,
+        50.7564
+      ],
+      "confluenceCoord": [
+        -115.1422,
+        50.7471
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ROCK CREEK",
+      "commonName": "ROCK CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021202",
+      "parentStream": "VOLCANO CREEK",
+      "confluenceDistanceKm": 3.11,
+      "center": [
+        -114.7701,
+        50.7059
+      ],
+      "confluenceCoord": [
+        -114.7281,
+        50.7146
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RUMMEL CREEK",
+      "commonName": "RUMMEL CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020301",
+      "parentStream": "SMUTS CREEK",
+      "confluenceDistanceKm": 2.41,
+      "center": [
+        -115.3163,
+        50.8406
+      ],
+      "confluenceCoord": [
+        -115.3462,
+        50.8511
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SPRINGBANK CREEK",
+      "commonName": "SPRINGBANK CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 5.15,
+      "center": [
+        -114.3842,
+        51.0643
+      ],
+      "confluenceCoord": [
+        -114.3287,
+        51.0339
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "STEWART CREEK",
+      "commonName": "STEWART CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 3.27,
+      "center": [
+        -115.3088,
+        51.0286
+      ],
+      "confluenceCoord": [
+        -115.2994,
+        51.0574
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "STRAWBERRY CREEK",
+      "commonName": "STRAWBERRY CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 2.44,
+      "center": [
+        -114.7126,
+        50.3889
+      ],
+      "confluenceCoord": [
+        -114.6788,
+        50.385
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "THREE SISTERS CREEK",
+      "commonName": "THREE SISTERS CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 2.45,
+      "center": [
+        -115.3528,
+        51.047
+      ],
+      "confluenceCoord": [
+        -115.3304,
+        51.0639
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "TOWERS CREEK",
+      "commonName": "TOWERS CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020802",
+      "parentStream": "JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 2.74,
+      "center": [
+        -114.5218,
+        51.1256
+      ],
+      "confluenceCoord": [
+        -114.5209,
+        51.1503
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WALDIE CREEK",
+      "commonName": "WALDIE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 2.51,
+      "center": [
+        -114.447,
+        50.4607
+      ],
+      "confluenceCoord": [
+        -114.4195,
+        50.4749
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WARSPITE CREEK",
+      "commonName": "WARSPITE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 0.54,
+      "center": [
+        -115.2123,
+        50.7068
+      ],
+      "confluenceCoord": [
+        -115.2054,
+        50.7089
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WHISKEY CREEK",
+      "commonName": "WHISKEY CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020201",
+      "parentStream": "FISH CREEK",
+      "confluenceDistanceKm": 45.14,
+      "center": [
+        -114.9902,
+        51.0185
+      ],
+      "confluenceCoord": [
+        -114.4024,
+        50.8524
+      ],
+      "segmentCount": 2
+    },
+    {
+      "name": "NORTH CASCADE RIVER",
+      "commonName": "NORTH CASCADE RIVER",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020501",
+      "parentStream": "CASCADE RIVER",
+      "confluenceDistanceKm": 4.4,
+      "center": [
+        -115.8063,
+        51.4332
+      ],
+      "confluenceCoord": [
+        -115.7587,
+        51.4071
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "UPPER KANANASKIS RIVER",
+      "commonName": "UPPER KANANASKIS RIVER",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "SMITH-DORRIEN CREEK",
+      "confluenceDistanceKm": 8.3,
+      "center": [
+        -115.2334,
+        50.6779
+      ],
+      "confluenceCoord": [
+        -115.2594,
+        50.7506
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BEHANHOUSE CREEK",
+      "commonName": "BEHANHOUSE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 6.25,
+      "center": [
+        -114.7392,
+        51.2967
+      ],
+      "confluenceCoord": [
+        -114.7313,
+        51.2407
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BEAR CREEK",
+      "commonName": "BEAR CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "PEKISKO CREEK",
+      "confluenceDistanceKm": 3.39,
+      "center": [
+        -114.5006,
+        50.3377
+      ],
+      "confluenceCoord": [
+        -114.4575,
+        50.351
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BEAVER CREEK",
+      "commonName": "BEAVER CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "SHEPPARD CREEK",
+      "confluenceDistanceKm": 3.15,
+      "center": [
+        -114.3689,
+        50.3391
+      ],
+      "confluenceCoord": [
+        -114.3265,
+        50.3308
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BISHOP CREEK",
+      "commonName": "BISHOP CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "LOOMIS CREEK",
+      "confluenceDistanceKm": 2.32,
+      "center": [
+        -114.8412,
+        50.4474
+      ],
+      "confluenceCoord": [
+        -114.8226,
+        50.4646
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BOULTON CREEK",
+      "commonName": "BOULTON CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "POCATERRA CREEK",
+      "confluenceDistanceKm": 4.47,
+      "center": [
+        -115.0786,
+        50.6059
+      ],
+      "confluenceCoord": [
+        -115.0195,
+        50.5914
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BULL CREEK",
+      "commonName": "BULL CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 3.04,
+      "center": [
+        -114.2941,
+        50.5253
+      ],
+      "confluenceCoord": [
+        -114.2577,
+        50.5398
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CANMORE CREEK",
+      "commonName": "CANMORE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 1.39,
+      "center": [
+        -115.3783,
+        51.0737
+      ],
+      "confluenceCoord": [
+        -115.3591,
+        51.0771
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CARROT CREEK",
+      "commonName": "CARROT CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 6.06,
+      "center": [
+        -115.3763,
+        51.1798
+      ],
+      "confluenceCoord": [
+        -115.4405,
+        51.1431
+      ],
+      "segmentCount": 3
+    },
+    {
+      "name": "COMMONWEALTH CREEK",
+      "commonName": "COMMONWEALTH CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020301",
+      "parentStream": "SMUTS CREEK",
+      "confluenceDistanceKm": 2.26,
+      "center": [
+        -115.3557,
+        50.8134
+      ],
+      "confluenceCoord": [
+        -115.3395,
+        50.831
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CULLEN CREEK",
+      "commonName": "CULLEN CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 2.62,
+      "center": [
+        -114.2863,
+        51.049
+      ],
+      "confluenceCoord": [
+        -114.2764,
+        51.0262
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CUTTHROAT CREEK",
+      "commonName": "CUTTHROAT CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "FLAT CREEK",
+      "confluenceDistanceKm": 3.93,
+      "center": [
+        -114.5335,
+        50.4567
+      ],
+      "confluenceCoord": [
+        -114.4895,
+        50.4783
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "DEEP CREEK",
+      "commonName": "DEEP CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 3.39,
+      "center": [
+        -114.5162,
+        50.4308
+      ],
+      "confluenceCoord": [
+        -114.4698,
+        50.4232
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ELPOCA CREEK",
+      "commonName": "ELPOCA CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "POCATERRA CREEK",
+      "confluenceDistanceKm": 1.63,
+      "center": [
+        -115.07,
+        50.6718
+      ],
+      "confluenceCoord": [
+        -115.0908,
+        50.6653
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HARRIS CREEK",
+      "commonName": "HARRIS CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 2.75,
+      "center": [
+        -114.5365,
+        51.012
+      ],
+      "confluenceCoord": [
+        -114.4981,
+        51.007
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HELEN CREEK",
+      "commonName": "HELEN CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 2.1,
+      "center": [
+        -116.3962,
+        51.6674
+      ],
+      "confluenceCoord": [
+        -116.3837,
+        51.6502
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HOWARD CREEK",
+      "commonName": "HOWARD CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "QUIRK CREEK",
+      "confluenceDistanceKm": 3.49,
+      "center": [
+        -114.7601,
+        50.7783
+      ],
+      "confluenceCoord": [
+        -114.7168,
+        50.7935
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "IRON CREEK",
+      "commonName": "IRON CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 3.64,
+      "center": [
+        -114.641,
+        50.9332
+      ],
+      "confluenceCoord": [
+        -114.5918,
+        50.9438
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JACOB CREEK",
+      "commonName": "JACOB CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 2.86,
+      "center": [
+        -114.8535,
+        51.199
+      ],
+      "confluenceCoord": [
+        -114.8181,
+        51.186
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JOSHUA CREEK",
+      "commonName": "JOSHUA CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 5.28,
+      "center": [
+        -114.9163,
+        51.2105
+      ],
+      "confluenceCoord": [
+        -114.8787,
+        51.1693
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LANTERN CREEK",
+      "commonName": "LANTERN CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 1.74,
+      "center": [
+        -114.7968,
+        50.5025
+      ],
+      "confluenceCoord": [
+        -114.8114,
+        50.4899
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LESUEUR CREEK",
+      "commonName": "LESUEUR CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020701",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 4.49,
+      "center": [
+        -115.0211,
+        51.2859
+      ],
+      "confluenceCoord": [
+        -114.9677,
+        51.2632
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LIVINGSTONE CREEK",
+      "commonName": "LIVINGSTONE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020802",
+      "parentStream": "LITTLE JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 5.38,
+      "center": [
+        -114.6948,
+        51.115
+      ],
+      "confluenceCoord": [
+        -114.6404,
+        51.0807
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LONG PRAIRIE CREEK",
+      "commonName": "LONG PRAIRIE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 2.17,
+      "center": [
+        -114.4934,
+        50.6355
+      ],
+      "confluenceCoord": [
+        -114.4647,
+        50.6285
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LOST KNIFE CREEK",
+      "commonName": "LOST KNIFE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020701",
+      "parentStream": "WAIPAROUS CREEK",
+      "confluenceDistanceKm": 2.82,
+      "center": [
+        -115.0201,
+        51.3534
+      ],
+      "confluenceCoord": [
+        -114.9838,
+        51.3646
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MAC CREEK",
+      "commonName": "MAC CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "QUIRK CREEK",
+      "confluenceDistanceKm": 2.71,
+      "center": [
+        -114.7786,
+        50.7896
+      ],
+      "confluenceCoord": [
+        -114.7533,
+        50.808
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MACABEE CREEK",
+      "commonName": "MACABEE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 4.66,
+      "center": [
+        -114.4424,
+        50.6505
+      ],
+      "confluenceCoord": [
+        -114.3785,
+        50.6396
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MARSTON CREEK",
+      "commonName": "MARSTON CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 2.57,
+      "center": [
+        -114.5322,
+        50.4152
+      ],
+      "confluenceCoord": [
+        -114.4996,
+        50.4052
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MAY CREEK",
+      "commonName": "MAY CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 1.73,
+      "center": [
+        -114.2376,
+        51.0303
+      ],
+      "confluenceCoord": [
+        -114.2317,
+        51.0152
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MILLBURN CREEK",
+      "commonName": "MILBURN CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 6.45,
+      "center": [
+        -114.4243,
+        50.9936
+      ],
+      "confluenceCoord": [
+        -114.3756,
+        51.0429
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MORAINE CREEK",
+      "commonName": "MORAINE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 3.68,
+      "center": [
+        -116.1414,
+        51.349
+      ],
+      "confluenceCoord": [
+        -116.1016,
+        51.3709
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MUIR CREEK",
+      "commonName": "MUIR CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "MCPHAIL CREEK",
+      "confluenceDistanceKm": 1.89,
+      "center": [
+        -114.7955,
+        50.4126
+      ],
+      "confluenceCoord": [
+        -114.7852,
+        50.4283
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MUSKEG CREEK",
+      "commonName": "MUSKEG CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021202",
+      "parentStream": "THREEPOINT CREEK",
+      "confluenceDistanceKm": 3.14,
+      "center": [
+        -114.6816,
+        50.7862
+      ],
+      "confluenceCoord": [
+        -114.6592,
+        50.7618
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PICKLEJAR CREEK",
+      "commonName": "PICKLEJAR CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 2.16,
+      "center": [
+        -114.8144,
+        50.5246
+      ],
+      "confluenceCoord": [
+        -114.8276,
+        50.5071
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PIRMEZ CREEK",
+      "commonName": "PIRMEZ CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 2.33,
+      "center": [
+        -114.4869,
+        51.0483
+      ],
+      "confluenceCoord": [
+        -114.4585,
+        51.0374
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "POLICEMAN CREEK",
+      "commonName": "POLICEMAN CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 2.53,
+      "center": [
+        -115.3579,
+        51.0892
+      ],
+      "confluenceCoord": [
+        -115.3797,
+        51.1073
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RAINY CREEK",
+      "commonName": "RAINY CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 2.05,
+      "center": [
+        -114.821,
+        50.8434
+      ],
+      "confluenceCoord": [
+        -114.7961,
+        50.8531
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ROBINSON CREEK",
+      "commonName": "ROBINSON CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020701",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 2.21,
+      "center": [
+        -114.8322,
+        51.3
+      ],
+      "confluenceCoord": [
+        -114.8132,
+        51.2841
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SALT CREEK",
+      "commonName": "SALT CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04021201",
+      "parentStream": "PEKISKO CREEK",
+      "confluenceDistanceKm": 2.57,
+      "center": [
+        -114.4858,
+        50.3008
+      ],
+      "confluenceCoord": [
+        -114.4505,
+        50.3056
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SIBBALD CREEK",
+      "commonName": "SIBBALD CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020802",
+      "parentStream": "JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 4.3,
+      "center": [
+        -114.91,
+        51.0475
+      ],
+      "confluenceCoord": [
+        -114.8498,
+        51.0396
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SPENCER CREEK",
+      "commonName": "SPENCER CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 5.68,
+      "center": [
+        -114.6912,
+        51.2671
+      ],
+      "confluenceCoord": [
+        -114.6609,
+        51.2197
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SPOTTED WOLF CREEK",
+      "commonName": "SPOTTED WOLF CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020601",
+      "parentStream": "POCATERRA CREEK",
+      "confluenceDistanceKm": 3.74,
+      "center": [
+        -115.0769,
+        50.6439
+      ],
+      "confluenceCoord": [
+        -115.0978,
+        50.6748
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WATRIDGE CREEK",
+      "commonName": "WATRIDGE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 2.04,
+      "center": [
+        -115.4037,
+        50.8629
+      ],
+      "confluenceCoord": [
+        -115.3857,
+        50.8773
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "AURA CREEK",
+      "commonName": "AURA CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020701",
+      "parentStream": "WAIPAROUS CREEK",
+      "confluenceDistanceKm": 2.55,
+      "center": [
+        -114.9252,
+        51.3559
+      ],
+      "confluenceCoord": [
+        -114.9361,
+        51.334
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BAYMAR CREEK",
+      "commonName": "BAYMAR CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020701",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 3.6,
+      "center": [
+        -114.8322,
+        51.2563
+      ],
+      "confluenceCoord": [
+        -114.7879,
+        51.2731
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CORRAL CREEK",
+      "commonName": "CORRAL CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 4.9,
+      "center": [
+        -116.1217,
+        51.4408
+      ],
+      "confluenceCoord": [
+        -116.1423,
+        51.3987
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LITTLE PIPESTONE CREEK",
+      "commonName": "LITTLE PIPESTONE CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020101",
+      "parentStream": "PIPESTONE RIVER",
+      "confluenceDistanceKm": 3.32,
+      "center": [
+        -116.1027,
+        51.5574
+      ],
+      "confluenceCoord": [
+        -116.1488,
+        51.566
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SAWBACK CREEK",
+      "commonName": "SAWBACK CREEK",
+      "strahlerOrder": 3,
+      "tier": 3,
+      "huc8": "04020501",
+      "parentStream": "CASCADE RIVER",
+      "confluenceDistanceKm": 2.97,
+      "center": [
+        -115.7546,
+        51.3796
+      ],
+      "confluenceCoord": [
+        -115.7585,
+        51.4063
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BAKER CREEK",
+      "commonName": "BAKER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 8.4,
+      "center": [
+        -116.0407,
+        51.4189
+      ],
+      "confluenceCoord": [
+        -116.0697,
+        51.3455
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BEAUPRE CREEK",
+      "commonName": "BEAUPRE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 6.18,
+      "center": [
+        -114.6518,
+        51.2632
+      ],
+      "confluenceCoord": [
+        -114.6118,
+        51.2136
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BRYANT CREEK",
+      "commonName": "BRYANT CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020802",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 21.51,
+      "center": [
+        -115.1891,
+        50.967
+      ],
+      "confluenceCoord": [
+        -115.4451,
+        50.8604
+      ],
+      "segmentCount": 2
+    },
+    {
+      "name": "BURNS CREEK",
+      "commonName": "BURNS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 2.97,
+      "center": [
+        -114.9283,
+        50.6121
+      ],
+      "confluenceCoord": [
+        -114.8903,
+        50.6236
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CHINIKI CREEK",
+      "commonName": "CHINIKI CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 5.82,
+      "center": [
+        -114.8473,
+        51.1445
+      ],
+      "confluenceCoord": [
+        -114.7933,
+        51.1844
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ECHO CREEK",
+      "commonName": "ECHO CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020201",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0.56,
+      "center": [
+        -115.5834,
+        51.1798
+      ],
+      "confluenceCoord": [
+        -115.5772,
+        51.1766
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GLASGOW CREEK",
+      "commonName": "GLASGOW CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 2.99,
+      "center": [
+        -114.8849,
+        50.7686
+      ],
+      "confluenceCoord": [
+        -114.8425,
+        50.7676
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JOHNSTON CREEK",
+      "commonName": "JOHNSTON CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 10.33,
+      "center": [
+        -115.8851,
+        51.332
+      ],
+      "confluenceCoord": [
+        -115.8537,
+        51.2411
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "KENT CREEK",
+      "commonName": "KENT CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 5.79,
+      "center": [
+        -115.1743,
+        50.7339
+      ],
+      "confluenceCoord": [
+        -115.1318,
+        50.6893
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LINEHAM CREEK",
+      "commonName": "LINEHAM CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 4.41,
+      "center": [
+        -114.3824,
+        50.66
+      ],
+      "confluenceCoord": [
+        -114.3205,
+        50.6661
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MARMOT CREEK",
+      "commonName": "MARMOT CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 2.96,
+      "center": [
+        -115.1756,
+        50.9549
+      ],
+      "confluenceCoord": [
+        -115.1348,
+        50.948
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "NIHAHI CREEK",
+      "commonName": "NIHAHI CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "LITTLE ELBOW RIVER",
+      "confluenceDistanceKm": 3.42,
+      "center": [
+        -114.9461,
+        50.8157
+      ],
+      "confluenceCoord": [
+        -114.9087,
+        50.796
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PIGEON CREEK",
+      "commonName": "PIGEON CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 3.85,
+      "center": [
+        -115.2214,
+        51.0222
+      ],
+      "confluenceCoord": [
+        -115.2641,
+        51.0439
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "POWDERFACE CREEK",
+      "commonName": "POWDERFACE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 2.84,
+      "center": [
+        -114.8292,
+        50.8586
+      ],
+      "confluenceCoord": [
+        -114.7897,
+        50.864
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RAE CREEK",
+      "commonName": "RAE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 3.36,
+      "center": [
+        -114.9308,
+        50.6396
+      ],
+      "confluenceCoord": [
+        -114.8903,
+        50.6236
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RANGER CREEK",
+      "commonName": "RANGER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020201",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 42.72,
+      "center": [
+        -115.2286,
+        51.0761
+      ],
+      "confluenceCoord": [
+        -114.6839,
+        50.9026
+      ],
+      "segmentCount": 2
+    },
+    {
+      "name": "SALTER CREEK",
+      "commonName": "SALTER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "CATARACT CREEK",
+      "confluenceDistanceKm": 2.87,
+      "center": [
+        -114.5507,
+        50.2716
+      ],
+      "confluenceCoord": [
+        -114.584,
+        50.2862
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SHOULDER CREEK",
+      "commonName": "SHOULDER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "LITTLE ELBOW RIVER",
+      "confluenceDistanceKm": 3.56,
+      "center": [
+        -114.9712,
+        50.7998
+      ],
+      "confluenceCoord": [
+        -114.9219,
+        50.7924
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SMITH CREEK",
+      "commonName": "SMITH CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 3.19,
+      "center": [
+        -115.1451,
+        51.03
+      ],
+      "confluenceCoord": [
+        -115.1627,
+        51.0565
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "STONY CREEK",
+      "commonName": "STONY CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 67.45,
+      "center": [
+        -115.1093,
+        50.9078
+      ],
+      "confluenceCoord": [
+        -114.6133,
+        50.3891
+      ],
+      "segmentCount": 3
+    },
+    {
+      "name": "VOLCANO CREEK",
+      "commonName": "VOLCANO CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "THREEPOINT CREEK",
+      "confluenceDistanceKm": 4.73,
+      "center": [
+        -114.7607,
+        50.7219
+      ],
+      "confluenceCoord": [
+        -114.7113,
+        50.7507
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WASOOTCH CREEK",
+      "commonName": "WASOOTCH CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 5.18,
+      "center": [
+        -115.06,
+        50.9385
+      ],
+      "confluenceCoord": [
+        -115.1025,
+        50.9766
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WEST WIND CREEK",
+      "commonName": "WEST WIND CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 3.77,
+      "center": [
+        -115.2728,
+        51.0129
+      ],
+      "confluenceCoord": [
+        -115.257,
+        51.0453
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "TWELVE MILE COULEE CREEK",
+      "commonName": "12 MILE COULEE",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021302",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 23.55,
+      "center": [
+        -111.7054,
+        50.3513
+      ],
+      "confluenceCoord": [
+        -111.6778,
+        50.1403
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BARIL CREEK",
+      "commonName": "BARIL CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "ETHERINGTON CREEK",
+      "confluenceDistanceKm": 5.93,
+      "center": [
+        -114.7079,
+        50.3356
+      ],
+      "confluenceCoord": [
+        -114.6359,
+        50.3626
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BATEMAN CREEK",
+      "commonName": "BATEMAN CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020802",
+      "parentStream": "JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 3.45,
+      "center": [
+        -114.8479,
+        51.0579
+      ],
+      "confluenceCoord": [
+        -114.8123,
+        51.0364
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BLUEROCK CREEK",
+      "commonName": "BLUEROCK CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 4.66,
+      "center": [
+        -114.7853,
+        50.6279
+      ],
+      "confluenceCoord": [
+        -114.7277,
+        50.6073
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BRAGG CREEK",
+      "commonName": "BRAGG CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 8,
+      "center": [
+        -114.6902,
+        50.9505
+      ],
+      "confluenceCoord": [
+        -114.5761,
+        50.9474
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CAT CREEK",
+      "commonName": "CAT CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 3.11,
+      "center": [
+        -114.7117,
+        50.4343
+      ],
+      "confluenceCoord": [
+        -114.7162,
+        50.4064
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CLIFF CREEK",
+      "commonName": "CLIFF CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 2.6,
+      "center": [
+        -114.8256,
+        50.5871
+      ],
+      "confluenceCoord": [
+        -114.7927,
+        50.5976
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "COUGAR CREEK",
+      "commonName": "COUGAR CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 3.98,
+      "center": [
+        -114.8627,
+        50.6799
+      ],
+      "confluenceCoord": [
+        -114.8616,
+        50.7157
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "COXHILL CREEK",
+      "commonName": "COXHILL CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020802",
+      "parentStream": "JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 5.23,
+      "center": [
+        -114.8666,
+        51.0007
+      ],
+      "confluenceCoord": [
+        -114.8104,
+        51.0318
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CUMMINGS CREEK",
+      "commonName": "CUMMINGS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "CATARACT CREEK",
+      "confluenceDistanceKm": 4.31,
+      "center": [
+        -114.6408,
+        50.2284
+      ],
+      "confluenceCoord": [
+        -114.6552,
+        50.2661
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "DEADHORSE CREEK",
+      "commonName": "DEADHORSE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020903",
+      "parentStream": "CROWFOOT CREEK",
+      "confluenceDistanceKm": 22.53,
+      "center": [
+        -112.6241,
+        51.1373
+      ],
+      "confluenceCoord": [
+        -112.7048,
+        50.9411
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "DEATH VALLEY CREEK",
+      "commonName": "DEATH VALLEY CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "WARE CREEK",
+      "confluenceDistanceKm": 3.53,
+      "center": [
+        -114.5399,
+        50.6822
+      ],
+      "confluenceCoord": [
+        -114.5239,
+        50.7122
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "DYSON CREEK",
+      "commonName": "DYSON CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 5.6,
+      "center": [
+        -114.6537,
+        50.6017
+      ],
+      "confluenceCoord": [
+        -114.6167,
+        50.6463
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "EMERSON CREEK",
+      "commonName": "EMERSON CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "PEKISKO CREEK",
+      "confluenceDistanceKm": 3.53,
+      "center": [
+        -114.3716,
+        50.408
+      ],
+      "confluenceCoord": [
+        -114.3231,
+        50.4008
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "EXSHAW CREEK",
+      "commonName": "EXSHAW CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 6.06,
+      "center": [
+        -115.1945,
+        51.1083
+      ],
+      "confluenceCoord": [
+        -115.161,
+        51.058
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FIR CREEK",
+      "commonName": "FIR CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 1.37,
+      "center": [
+        -114.5617,
+        50.4005
+      ],
+      "confluenceCoord": [
+        -114.5432,
+        50.397
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FISHER CREEK",
+      "commonName": "FISHER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "THREEPOINT CREEK",
+      "confluenceDistanceKm": 10.87,
+      "center": [
+        -114.5355,
+        50.7852
+      ],
+      "confluenceCoord": [
+        -114.387,
+        50.7579
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FITZSIMMONS CREEK",
+      "commonName": "FITZSIMMONS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 3.6,
+      "center": [
+        -114.7019,
+        50.3611
+      ],
+      "confluenceCoord": [
+        -114.6601,
+        50.3795
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FORD CREEK",
+      "commonName": "FORD CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 3.34,
+      "center": [
+        -114.8744,
+        50.8233
+      ],
+      "confluenceCoord": [
+        -114.8375,
+        50.8044
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GALATEA CREEK",
+      "commonName": "GALATEA CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 2.47,
+      "center": [
+        -115.2133,
+        50.8637
+      ],
+      "confluenceCoord": [
+        -115.1781,
+        50.8632
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GOAT CREEK",
+      "commonName": "GOAT CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 5.7,
+      "center": [
+        -115.4512,
+        51.0609
+      ],
+      "confluenceCoord": [
+        -115.5006,
+        51.1016
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GRAND VALLEY CREEK",
+      "commonName": "GRAND VALLEY CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 9.33,
+      "center": [
+        -114.6398,
+        51.2881
+      ],
+      "confluenceCoord": [
+        -114.5647,
+        51.2186
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GREENFEED CREEK",
+      "commonName": "GREENFEED CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "PEKISKO CREEK",
+      "confluenceDistanceKm": 3.23,
+      "center": [
+        -114.4937,
+        50.3235
+      ],
+      "confluenceCoord": [
+        -114.4487,
+        50.3278
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HAY CREEK",
+      "commonName": "HAY CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "SHEPPARD CREEK",
+      "confluenceDistanceKm": 3.16,
+      "center": [
+        -114.3199,
+        50.3022
+      ],
+      "confluenceCoord": [
+        -114.3078,
+        50.3296
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HEAD CREEK",
+      "commonName": "HEAD CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "FLAT CREEK",
+      "confluenceDistanceKm": 2.7,
+      "center": [
+        -114.6459,
+        50.4687
+      ],
+      "confluenceCoord": [
+        -114.611,
+        50.4784
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HORSE CREEK",
+      "commonName": "HORSE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 8.74,
+      "center": [
+        -114.5558,
+        51.2748
+      ],
+      "confluenceCoord": [
+        -114.5261,
+        51.1984
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "INGS CREEK",
+      "commonName": "INGS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 5.04,
+      "center": [
+        -114.4047,
+        50.5729
+      ],
+      "confluenceCoord": [
+        -114.3366,
+        50.5593
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JOHNSON CREEK",
+      "commonName": "JOHNSON CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020701",
+      "parentStream": "WAIPAROUS CREEK",
+      "confluenceDistanceKm": 7.01,
+      "center": [
+        -115.186,
+        51.3724
+      ],
+      "confluenceCoord": [
+        -115.0901,
+        51.3923
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JUNCTION CREEK",
+      "commonName": "JUNCTION CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 5.33,
+      "center": [
+        -114.7254,
+        50.5561
+      ],
+      "confluenceCoord": [
+        -114.736,
+        50.6035
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "KING CREEK",
+      "commonName": "KING CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 2.88,
+      "center": [
+        -115.0886,
+        50.7069
+      ],
+      "confluenceCoord": [
+        -115.1262,
+        50.7172
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LINK CREEK",
+      "commonName": "LINK CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "WARE CREEK",
+      "confluenceDistanceKm": 2.94,
+      "center": [
+        -114.613,
+        50.7028
+      ],
+      "confluenceCoord": [
+        -114.6034,
+        50.7285
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LITTLE JUMPINGPOUND CREEK",
+      "commonName": "LITTLE JUMPINGPOUND CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020802",
+      "parentStream": "JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 10.41,
+      "center": [
+        -114.7025,
+        51.0785
+      ],
+      "confluenceCoord": [
+        -114.5548,
+        51.0663
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LOOMIS CREEK",
+      "commonName": "LOOMIS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 4.56,
+      "center": [
+        -114.8479,
+        50.46
+      ],
+      "confluenceCoord": [
+        -114.7844,
+        50.4672
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LOST CREEK",
+      "commonName": "LOST CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "CATARACT CREEK",
+      "confluenceDistanceKm": 5.84,
+      "center": [
+        -114.6936,
+        50.2114
+      ],
+      "confluenceCoord": [
+        -114.669,
+        50.2616
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LOTT CREEK",
+      "commonName": "LOTT CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 7.24,
+      "center": [
+        -114.3244,
+        50.9753
+      ],
+      "confluenceCoord": [
+        -114.2455,
+        51.0174
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LUSK CREEK",
+      "commonName": "LUSK CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 3.99,
+      "center": [
+        -115.015,
+        51.0103
+      ],
+      "confluenceCoord": [
+        -115.0301,
+        51.0449
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MCLEAN CREEK",
+      "commonName": "MCLEAN CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 5.11,
+      "center": [
+        -114.686,
+        50.8605
+      ],
+      "confluenceCoord": [
+        -114.6699,
+        50.9054
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MCPHAIL CREEK",
+      "commonName": "MCPHAIL CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "CARNARVON CREEK",
+      "confluenceDistanceKm": 4.07,
+      "center": [
+        -114.8059,
+        50.4218
+      ],
+      "confluenceCoord": [
+        -114.7491,
+        50.416
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MILLER CREEK",
+      "commonName": "MILLER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "PEKISKO CREEK",
+      "confluenceDistanceKm": 3.78,
+      "center": [
+        -114.4874,
+        50.3691
+      ],
+      "confluenceCoord": [
+        -114.4346,
+        50.3644
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MIST CREEK",
+      "commonName": "MIST CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "STORM CREEK",
+      "confluenceDistanceKm": 5.13,
+      "center": [
+        -114.8812,
+        50.5513
+      ],
+      "confluenceCoord": [
+        -114.8382,
+        50.5141
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MOOSE CREEK",
+      "commonName": "MOOSE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020802",
+      "parentStream": "JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 4.78,
+      "center": [
+        -114.8103,
+        50.9874
+      ],
+      "confluenceCoord": [
+        -114.8026,
+        51.0301
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MOOSE MOUNTAIN CREEK",
+      "commonName": "MOOSE MOUNTAIN CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "CANYON CREEK",
+      "confluenceDistanceKm": 1.76,
+      "center": [
+        -114.8648,
+        50.9265
+      ],
+      "confluenceCoord": [
+        -114.8675,
+        50.9108
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MOSQUITO CREEK",
+      "commonName": "MOSQUITO CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 3.93,
+      "center": [
+        -116.2909,
+        51.6512
+      ],
+      "confluenceCoord": [
+        -116.3364,
+        51.63
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MUDSPRINGS CREEK",
+      "commonName": "MUDSPRINGS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "WARE CREEK",
+      "confluenceDistanceKm": 2.36,
+      "center": [
+        -114.486,
+        50.6897
+      ],
+      "confluenceCoord": [
+        -114.4851,
+        50.711
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "NORTH COAL CREEK",
+      "commonName": "NORTH COAL CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SOUTH COAL CREEK",
+      "confluenceDistanceKm": 3.7,
+      "center": [
+        -114.6093,
+        50.5974
+      ],
+      "confluenceCoord": [
+        -114.5665,
+        50.6165
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "NORTH SULLIVAN CREEK",
+      "commonName": "NORTH SULLIVAN CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "SULLIVAN CREEK",
+      "confluenceDistanceKm": 3.8,
+      "center": [
+        -114.4648,
+        50.5445
+      ],
+      "confluenceCoord": [
+        -114.4195,
+        50.5262
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ODLUM CREEK",
+      "commonName": "ODLUM CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 4.24,
+      "center": [
+        -114.8708,
+        50.4819
+      ],
+      "confluenceCoord": [
+        -114.8124,
+        50.4904
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "OLD FORT CREEK",
+      "commonName": "OLD FORT CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020401",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 6.77,
+      "center": [
+        -115.0916,
+        51.1515
+      ],
+      "confluenceCoord": [
+        -114.996,
+        51.1407
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PILE OF BONES CREEK",
+      "commonName": "PILE OF BONES CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020802",
+      "parentStream": "JUMPINGPOUND CREEK",
+      "confluenceDistanceKm": 5.53,
+      "center": [
+        -114.6539,
+        51.1469
+      ],
+      "confluenceCoord": [
+        -114.5749,
+        51.1512
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "POCATERRA CREEK",
+      "commonName": "POCATERRA CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 7.72,
+      "center": [
+        -115.0617,
+        50.65
+      ],
+      "confluenceCoord": [
+        -115.1199,
+        50.7089
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "POTHOLE CREEK",
+      "commonName": "POTHOLE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "THREEPOINT CREEK",
+      "confluenceDistanceKm": 6.54,
+      "center": [
+        -114.3445,
+        50.7986
+      ],
+      "confluenceCoord": [
+        -114.2638,
+        50.7694
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PRIDDIS CREEK",
+      "commonName": "PRIDDIS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021101",
+      "parentStream": "FISH CREEK",
+      "confluenceDistanceKm": 10.88,
+      "center": [
+        -114.4805,
+        50.9054
+      ],
+      "confluenceCoord": [
+        -114.3288,
+        50.885
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "QUIRK CREEK",
+      "commonName": "QUIRK CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 5.14,
+      "center": [
+        -114.7478,
+        50.7976
+      ],
+      "confluenceCoord": [
+        -114.7832,
+        50.8381
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "RIBBON CREEK",
+      "commonName": "RIBBON CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 5.48,
+      "center": [
+        -115.1992,
+        50.9081
+      ],
+      "confluenceCoord": [
+        -115.1299,
+        50.931
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ROCKY CREEK",
+      "commonName": "ROCKY CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 4.46,
+      "center": [
+        -115.1458,
+        50.8115
+      ],
+      "confluenceCoord": [
+        -115.1745,
+        50.8473
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SILVESTER CREEK",
+      "commonName": "SILVESTER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 3.18,
+      "center": [
+        -114.7165,
+        50.8382
+      ],
+      "confluenceCoord": [
+        -114.7229,
+        50.8665
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SMITH-DORRIEN CREEK",
+      "commonName": "SMITH-DORRIEN CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 8.73,
+      "center": [
+        -115.227,
+        50.7397
+      ],
+      "confluenceCoord": [
+        -115.1318,
+        50.6893
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SMUTS CREEK",
+      "commonName": "SMUTS CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020301",
+      "parentStream": "SPRAY RIVER",
+      "confluenceDistanceKm": 5.35,
+      "center": [
+        -115.3437,
+        50.8407
+      ],
+      "confluenceCoord": [
+        -115.3754,
+        50.8845
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SOUTH SULLIVAN CREEK",
+      "commonName": "SOUTH SULLIVAN CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "SULLIVAN CREEK",
+      "confluenceDistanceKm": 3.8,
+      "center": [
+        -114.5487,
+        50.5009
+      ],
+      "confluenceCoord": [
+        -114.4954,
+        50.5048
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SPRING CREEK",
+      "commonName": "SPRING CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 8.56,
+      "center": [
+        -114.1213,
+        50.6722
+      ],
+      "confluenceCoord": [
+        -114.0257,
+        50.7196
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "TRAIL CREEK",
+      "commonName": "TRAIL CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021001",
+      "parentStream": "PRAIRIE CREEK",
+      "confluenceDistanceKm": 1.88,
+      "center": [
+        -114.8796,
+        50.8624
+      ],
+      "confluenceCoord": [
+        -114.8885,
+        50.8783
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WEST NOSE CREEK",
+      "commonName": "WEST NOSE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020803",
+      "parentStream": "NOSE CREEK",
+      "confluenceDistanceKm": 16.79,
+      "center": [
+        -114.1564,
+        51.2644
+      ],
+      "confluenceCoord": [
+        -114.0471,
+        51.1299
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WILEMAN CREEK",
+      "commonName": "WILEMAN CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "FLAT CREEK",
+      "confluenceDistanceKm": 3.07,
+      "center": [
+        -114.5874,
+        50.4397
+      ],
+      "confluenceCoord": [
+        -114.5761,
+        50.4664
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WOLF CREEK",
+      "commonName": "WOLF CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 3.28,
+      "center": [
+        -114.5205,
+        50.598
+      ],
+      "confluenceCoord": [
+        -114.495,
+        50.6227
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ZEPHYR CREEK",
+      "commonName": "ZEPHYR CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 3.58,
+      "center": [
+        -114.5622,
+        50.359
+      ],
+      "confluenceCoord": [
+        -114.5703,
+        50.3907
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BREWSTER CREEK",
+      "commonName": "BREWSTER CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020201",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 10.85,
+      "center": [
+        -115.6161,
+        51.0654
+      ],
+      "confluenceCoord": [
+        -115.6501,
+        51.1606
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FORTY MILE CREEK",
+      "commonName": "FORTY MILE CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020201",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 10.7,
+      "center": [
+        -115.6455,
+        51.2662
+      ],
+      "confluenceCoord": [
+        -115.5859,
+        51.1775
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SPECTRAL CREEK",
+      "commonName": "SPECTRAL CREEK",
+      "strahlerOrder": 4,
+      "tier": 4,
+      "huc8": "04020701",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 3.01,
+      "center": [
+        -115.4386,
+        51.3559
+      ],
+      "confluenceCoord": [
+        -115.3998,
+        51.3437
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CARNARVON CREEK",
+      "commonName": "CARNARVON CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 3.31,
+      "center": [
+        -114.779,
+        50.3953
+      ],
+      "confluenceCoord": [
+        -114.7444,
+        50.4153
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PARFLESH CREEK",
+      "commonName": "PARFLESH CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04020903",
+      "parentStream": "CROWFOOT CREEK",
+      "confluenceDistanceKm": 11.3,
+      "center": [
+        -112.8819,
+        51.0716
+      ],
+      "confluenceCoord": [
+        -112.8123,
+        50.9799
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CANYON CREEK",
+      "commonName": "CANYON CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 9.46,
+      "center": [
+        -114.8811,
+        50.8875
+      ],
+      "confluenceCoord": [
+        -114.7507,
+        50.866
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "ETHERINGTON CREEK",
+      "commonName": "ETHERINGTON CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 6.05,
+      "center": [
+        -114.6845,
+        50.3298
+      ],
+      "confluenceCoord": [
+        -114.6489,
+        50.3792
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "EVAN-THOMAS CREEK",
+      "commonName": "EVAN-THOMAS CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 6.09,
+      "center": [
+        -115.0872,
+        50.8573
+      ],
+      "confluenceCoord": [
+        -115.151,
+        50.8945
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FLAT CREEK",
+      "commonName": "FLAT CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 9.94,
+      "center": [
+        -114.5536,
+        50.5059
+      ],
+      "confluenceCoord": [
+        -114.4196,
+        50.479
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GORGE CREEK",
+      "commonName": "GORGE CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 6.55,
+      "center": [
+        -114.7322,
+        50.6663
+      ],
+      "confluenceCoord": [
+        -114.6459,
+        50.6443
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "MEADOW CREEK",
+      "commonName": "MEADOW CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04020701",
+      "parentStream": "WAIPAROUS CREEK",
+      "confluenceDistanceKm": 5.14,
+      "center": [
+        -115.0734,
+        51.3621
+      ],
+      "confluenceCoord": [
+        -115.0021,
+        51.3745
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PEKISKO CREEK",
+      "commonName": "PEKISKO CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "STIMSON CREEK",
+      "confluenceDistanceKm": 16.41,
+      "center": [
+        -114.3264,
+        50.3614
+      ],
+      "confluenceCoord": [
+        -114.1577,
+        50.4625
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PINE CREEK",
+      "commonName": "PINE CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021102",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 10.96,
+      "center": [
+        -114.1155,
+        50.8514
+      ],
+      "confluenceCoord": [
+        -113.9596,
+        50.8469
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PORCUPINE CREEK",
+      "commonName": "PORCUPINE CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04020601",
+      "parentStream": "KANANASKIS RIVER",
+      "confluenceDistanceKm": 4.62,
+      "center": [
+        -115.0492,
+        50.9564
+      ],
+      "confluenceCoord": [
+        -115.0918,
+        50.9882
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PRAIRIE CREEK",
+      "commonName": "PRAIRIE CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 6.02,
+      "center": [
+        -114.8703,
+        50.876
+      ],
+      "confluenceCoord": [
+        -114.7857,
+        50.8669
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SHEPPARD CREEK",
+      "commonName": "SHEPPARD CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "STIMSON CREEK",
+      "confluenceDistanceKm": 6.68,
+      "center": [
+        -114.3271,
+        50.3297
+      ],
+      "confluenceCoord": [
+        -114.2335,
+        50.3366
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SOUTH COAL CREEK",
+      "commonName": "COAL CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 7.15,
+      "center": [
+        -114.6089,
+        50.5897
+      ],
+      "confluenceCoord": [
+        -114.5323,
+        50.6317
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "STORM CREEK",
+      "commonName": "STORM CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 7.48,
+      "center": [
+        -114.9126,
+        50.5619
+      ],
+      "confluenceCoord": [
+        -114.8382,
+        50.5141
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SULLIVAN CREEK",
+      "commonName": "SULLIVAN CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 9.61,
+      "center": [
+        -114.5201,
+        50.5263
+      ],
+      "confluenceCoord": [
+        -114.3844,
+        50.531
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "TONGUE CREEK",
+      "commonName": "TONGUE CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 19.51,
+      "center": [
+        -114.1464,
+        50.6126
+      ],
+      "confluenceCoord": [
+        -113.873,
+        50.6392
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WARE CREEK",
+      "commonName": "WARE CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021202",
+      "parentStream": "THREEPOINT CREEK",
+      "confluenceDistanceKm": 8.78,
+      "center": [
+        -114.5825,
+        50.7124
+      ],
+      "confluenceCoord": [
+        -114.458,
+        50.7149
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WILKINSON CREEK",
+      "commonName": "WILKINSON CREEK",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021201",
+      "parentStream": "CATARACT CREEK",
+      "confluenceDistanceKm": 6.85,
+      "center": [
+        -114.5857,
+        50.2222
+      ],
+      "confluenceCoord": [
+        -114.5922,
+        50.2836
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "LITTLE ELBOW RIVER",
+      "commonName": "LITTLE ELBOW RIVER",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04021001",
+      "parentStream": "ELBOW RIVER",
+      "confluenceDistanceKm": 7.82,
+      "center": [
+        -114.9241,
+        50.7453
+      ],
+      "confluenceCoord": [
+        -114.8463,
+        50.7955
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SOUTH GHOST RIVER",
+      "commonName": "SOUTH GHOST RIVER",
+      "strahlerOrder": 5,
+      "tier": 5,
+      "huc8": "04020701",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 10.56,
+      "center": [
+        -115.1508,
+        51.2223
+      ],
+      "confluenceCoord": [
+        -115.017,
+        51.2671
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CATARACT CREEK",
+      "commonName": "CATARACT CREEK",
+      "strahlerOrder": 6,
+      "tier": 6,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 10.81,
+      "center": [
+        -114.6536,
+        50.3041
+      ],
+      "confluenceCoord": [
+        -114.5827,
+        50.3902
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "STIMSON CREEK",
+      "commonName": "STIMSON CREEK",
+      "strahlerOrder": 6,
+      "tier": 6,
+      "huc8": "04021201",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 15.31,
+      "center": [
+        -114.2364,
+        50.363
+      ],
+      "confluenceCoord": [
+        -114.1284,
+        50.4823
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "THREEPOINT CREEK",
+      "commonName": "THREEPOINT CREEK",
+      "strahlerOrder": 6,
+      "tier": 6,
+      "huc8": "04021202",
+      "parentStream": "SHEEP RIVER",
+      "confluenceDistanceKm": 22.3,
+      "center": [
+        -114.5134,
+        50.7447
+      ],
+      "confluenceCoord": [
+        -114.1968,
+        50.7353
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WAIPAROUS CREEK",
+      "commonName": "WAIPAROUS CREEK",
+      "strahlerOrder": 6,
+      "tier": 6,
+      "huc8": "04020701",
+      "parentStream": "GHOST RIVER",
+      "confluenceDistanceKm": 19.28,
+      "center": [
+        -115.0965,
+        51.3433
+      ],
+      "confluenceCoord": [
+        -114.8368,
+        51.2822
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "EAST ARROWWOOD CREEK",
+      "commonName": "EAST ARROWWOOD CREEK",
+      "strahlerOrder": 4,
+      "tier": 25,
+      "huc8": "04020901",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -113.1652,
+        50.6552
+      ],
+      "confluenceCoord": [
+        -113.1652,
+        50.6552
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "WEST ARROWWOOD CREEK",
+      "commonName": "WEST ARROWWOOD CREEK",
+      "strahlerOrder": 5,
+      "tier": 25,
+      "huc8": "04020902",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -113.2827,
+        50.6241
+      ],
+      "confluenceCoord": [
+        -113.2827,
+        50.6241
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CROWFOOT CREEK",
+      "commonName": "CROWFOOT CREEK",
+      "strahlerOrder": 6,
+      "tier": 30,
+      "huc8": "04020903",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -112.917,
+        50.9522
+      ],
+      "confluenceCoord": [
+        -112.917,
+        50.9522
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BIGHILL CREEK",
+      "commonName": "BIGHILL CREEK",
+      "strahlerOrder": 4,
+      "tier": 35,
+      "huc8": "04020801",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.4187,
+        51.2584
+      ],
+      "confluenceCoord": [
+        -114.4187,
+        51.2584
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "NOSE CREEK",
+      "commonName": "NOSE CREEK",
+      "strahlerOrder": 5,
+      "tier": 40,
+      "huc8": "04020803",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.0663,
+        51.2318
+      ],
+      "confluenceCoord": [
+        -114.0663,
+        51.2318
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "JUMPINGPOUND CREEK",
+      "commonName": "JUMPINGPOUND CREEK",
+      "strahlerOrder": 5,
+      "tier": 45,
+      "huc8": "04020802",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.7293,
+        51.06
+      ],
+      "confluenceCoord": [
+        -114.7293,
+        51.06
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "FISH CREEK",
+      "commonName": "FISH CREEK",
+      "strahlerOrder": 6,
+      "tier": 50,
+      "huc8": "04021101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.342,
+        50.8806
+      ],
+      "confluenceCoord": [
+        -114.342,
+        50.8806
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "PIPESTONE RIVER",
+      "commonName": "PIPESTONE RIVER",
+      "strahlerOrder": 4,
+      "tier": 55,
+      "huc8": "04020101",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -116.1888,
+        51.5633
+      ],
+      "confluenceCoord": [
+        -116.1888,
+        51.5633
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "CASCADE RIVER",
+      "commonName": "CASCADE RIVER",
+      "strahlerOrder": 5,
+      "tier": 60,
+      "huc8": "04020501",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -115.6805,
+        51.2929
+      ],
+      "confluenceCoord": [
+        -115.6805,
+        51.2929
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "GHOST RIVER",
+      "commonName": "GHOST RIVER",
+      "strahlerOrder": 7,
+      "tier": 65,
+      "huc8": "04020701",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -115.1021,
+        51.318
+      ],
+      "confluenceCoord": [
+        -115.1021,
+        51.318
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SPRAY RIVER",
+      "commonName": "SPRAY RIVER",
+      "strahlerOrder": 5,
+      "tier": 70,
+      "huc8": "04020301",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -115.4671,
+        50.9403
+      ],
+      "confluenceCoord": [
+        -115.4671,
+        50.9403
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "KANANASKIS RIVER",
+      "commonName": "KANANASKIS RIVER",
+      "strahlerOrder": 6,
+      "tier": 75,
+      "huc8": "04020601",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -115.0964,
+        50.8931
+      ],
+      "confluenceCoord": [
+        -115.0964,
+        50.8931
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "SHEEP RIVER",
+      "commonName": "SHEEP RIVER",
+      "strahlerOrder": 7,
+      "tier": 80,
+      "huc8": "04021202",
+      "parentStream": "HIGHWOOD RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.3727,
+        50.6677
+      ],
+      "confluenceCoord": [
+        -113.85,
+        50.78
+      ],
+      "segmentCount": 4
+    },
+    {
+      "name": "ELBOW RIVER",
+      "commonName": "ELBOW RIVER",
+      "strahlerOrder": 6,
+      "tier": 85,
+      "huc8": "04021001",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.5237,
+        50.845
+      ],
+      "confluenceCoord": [
+        -114.5237,
+        50.845
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "HIGHWOOD RIVER",
+      "commonName": "HIGHWOOD RIVER",
+      "strahlerOrder": 8,
+      "tier": 90,
+      "huc8": "04021201",
+      "parentStream": "BOW RIVER",
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.3079,
+        50.5983
+      ],
+      "confluenceCoord": [
+        -114.3079,
+        50.5983
+      ],
+      "segmentCount": 1
+    },
+    {
+      "name": "BOW RIVER",
+      "commonName": "BOW RIVER",
+      "strahlerOrder": 9,
+      "tier": 100,
+      "huc8": "04020901",
+      "parentStream": null,
+      "confluenceDistanceKm": 0,
+      "center": [
+        -114.0368,
+        50.8236
+      ],
+      "confluenceCoord": null,
+      "segmentCount": 4
+    }
+  ]
+}

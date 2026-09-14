@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Download, AlertTriangle, MapPin, ShieldAlert } from 'lucide-react';
+import { X, Download, AlertTriangle, MapPin, ShieldAlert, Calendar, Clock, Zap } from 'lucide-react';
 
 const DetailPanel = ({
   routes,
@@ -171,6 +171,64 @@ ${trackPoints}
             <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '8px', lineHeight: '1.3' }}>
               Historical averages represent historical monthly discharge normals in cubic meters per second (m³/s). Current month is highlighted.
             </p>
+          </div>
+        )}
+
+        {/* Verified GPS Run Logs */}
+        {selectedRoute.recorded_runs && selectedRoute.recorded_runs.length > 0 && (
+          <div className="detail-panel-card">
+            <div className="detail-section-title" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Zap size={16} style={{ color: '#f59e0b' }} /> Verified GPS Run Logs
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '10px' }}>
+              {selectedRoute.recorded_runs.map((run, idx) => (
+                <div 
+                  key={idx} 
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    borderRadius: '6px',
+                    padding: '12px'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Calendar size={13} /> {run.date}
+                    </span>
+                    <span style={{ fontSize: '10px', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', padding: '2px 6px', borderRadius: '4px', fontWeight: '600' }}>
+                      {run.activity_type}
+                    </span>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px', marginBottom: '10px' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.01)', padding: '6px 8px', borderRadius: '4px' }}>
+                      <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Distance</div>
+                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff' }}>{run.distance_km} km</div>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.01)', padding: '6px 8px', borderRadius: '4px' }}>
+                      <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Avg Speed</div>
+                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff' }}>{run.average_moving_speed_km_h} km/h</div>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.01)', padding: '6px 8px', borderRadius: '4px' }}>
+                      <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Moving Duration</div>
+                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Clock size={12} /> {run.moving_time_hours} hrs
+                      </div>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.01)', padding: '6px 8px', borderRadius: '4px' }}>
+                      <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Matched Flow</div>
+                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#10b981' }}>{run.average_flow_rate_m3_s} m³/s</div>
+                    </div>
+                  </div>
+
+                  {run.notes && (
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: '1.4', fontStyle: 'italic', borderTop: '1px solid rgba(255,255,255,0.04)', paddingTop: '8px' }}>
+                      "{run.notes}"
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

@@ -43,29 +43,30 @@ const synchronizeHydrometricData = async (routes) => {
   // Deduplicate gauge requests across identical river systems
   const uniqueGaugeIds = [...new Set(routes.map(r => r.alberta_gauge_id).filter(Boolean))];
 
-  for (const gaugeId of uniqueGaugeIds) {
-    try {
-      const targetUrl = `https://dd.weather.gc.ca/today/hydrometric/csv/AB/hourly/AB_${gaugeId}_hourly_hydrometric.csv`;
-      
-      const response = await axios.get(targetUrl, { 
-        timeout: 15000,
-        headers: { 'User-Agent': 'Alberta-Paddling-Dashboard-Dev' }
-      });
+  // Fetch all gauges in parallel with non-blocking error handling
+  await Promise.allSettled(
+    uniqueGaugeIds.map(async (gaugeId) => {
+      try {
+        const targetUrl = `https://dd.weather.gc.ca/today/hydrometric/csv/AB/hourly/AB_${gaugeId}_hourly_hydrometric.csv`;
+        
+        const response = await axios.get(targetUrl, { 
+          timeout: 5000,
+          headers: { 'User-Agent': 'AlbertaRiverAtlas/1.0' }
+        });
 
-      const parsedFlow = parseLatestFlowFromCSV(response.data);
+        const parsedFlow = parseLatestFlowFromCSV(response.data);
 
-      if (parsedFlow !== null) {
-        updatedGaugeCache[gaugeId] = parsedFlow;
-        console.log(`Gauge ${gaugeId} synced successfully. Current Flow: ${parsedFlow} m³/s`);
-      } else {
-        console.warn(`Gauge ${gaugeId} data was retrieved but contained no valid numeric flow entries.`);
-        updatedGaugeCache[gaugeId] = localGaugeCache[gaugeId] || null; // Fallback to stale cache if available
+        if (parsedFlow !== null) {
+          updatedGaugeCache[gaugeId] = parsedFlow;
+        } else {
+          updatedGaugeCache[gaugeId] = localGaugeCache[gaugeId] || null;
+        }
+      } catch (error) {
+        // Upstream ECCC datamart can be intermittent in cloud environments
+        updatedGaugeCache[gaugeId] = localGaugeCache[gaugeId] || null;
       }
-    } catch (error) {
-      console.error(`Hydrometric synchronization failure for Gauge ${gaugeId}:`, error.message);
-      updatedGaugeCache[gaugeId] = localGaugeCache[gaugeId] || null;
-    }
-  }
+    })
+  );
 
   // Cross-reference parsed flows against defined maximum limits in routes database
   routes.forEach(route => {
