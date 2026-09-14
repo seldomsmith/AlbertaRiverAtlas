@@ -10,8 +10,7 @@ import {
   Droplets,
   Eye,
   EyeOff,
-  Sparkles,
-  MapPin
+  Sparkles
 } from 'lucide-react';
 import fallbackData from '../data/bow_basin_schematic_map.json';
 
@@ -22,10 +21,9 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
   const [activeLineFilter, setActiveLineFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showAllLabels, setShowAllLabels] = useState(false);
-  const [streamOrderMin, setStreamOrderMin] = useState(1);
 
   // SVG Pan & Zoom State
-  const [viewBox, setViewBox] = useState({ x: 100, y: 150, w: 3700, h: 2100 });
+  const [viewBox, setViewBox] = useState({ x: 100, y: 150, w: 3800, h: 2200 });
   const [isPanning, setIsPanning] = useState(false);
   const [startPan, setStartPan] = useState({ x: 0, y: 0 });
   const svgRef = useRef(null);
@@ -85,7 +83,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
   };
 
   const handleResetZoom = () => {
-    setViewBox({ x: 100, y: 150, w: 3700, h: 2100 });
+    setViewBox({ x: 100, y: 150, w: 3800, h: 2200 });
   };
 
   // Mouse Pan Handlers
@@ -139,7 +137,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
   }, [searchQuery, data]);
 
   // Is zoomed in enough to show minor creek labels by default
-  const isZoomedIn = viewBox.w < 1600;
+  const isZoomedIn = viewBox.w < 1800;
 
   return (
     <div className="relative w-full h-full flex flex-col bg-[#F6F3EC] text-[#1E293B] overflow-hidden select-none font-sans">
@@ -156,11 +154,11 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 Waterways of Alberta
               </h1>
               <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-blue-100/80 text-blue-900 rounded-full">
-                Bow River Basin
+                Bow River Basin Pilot
               </span>
             </div>
             <p className="text-[11px] text-slate-500">
-              Schematic Hydrological Transit Network • 272 Rivers & Creeks
+              Schematic Hydrological Transit Network • Anti-Collision Engine
             </p>
           </div>
         </div>
@@ -234,7 +232,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 ? 'bg-blue-600 text-white border-blue-700 shadow-sm' 
                 : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
-            title="Toggle display of all creek labels at once"
+            title="Toggle display of all creek labels simultaneously"
           >
             {showAllLabels ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
             <span>All Labels</span>
@@ -306,14 +304,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
           onMouseLeave={handleMouseUp}
           onWheel={handleWheel}
         >
-          <defs>
-            <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="5" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-
-          {/* Ecoregion Background Sectors (America's Waterways style) */}
+          {/* Ecoregion Background Sectors */}
           <g id="ecoregions">
             {data?.ecoregions?.map(eco => (
               <g key={eco.id}>
@@ -335,7 +326,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                   fontFamily="serif"
                   letterSpacing="3"
                   fill="#78716C"
-                  opacity="0.6"
+                  opacity="0.55"
                 >
                   {eco.name}
                 </text>
@@ -346,7 +337,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                   fontWeight="500"
                   letterSpacing="1"
                   fill="#A8A29E"
-                  opacity="0.7"
+                  opacity="0.65"
                 >
                   {eco.subtext}
                 </text>
@@ -354,7 +345,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
             ))}
           </g>
 
-          {/* Stylized Geometric Waterbodies (Lakes & Reservoirs) */}
+          {/* Stylized Geometric Waterbodies */}
           <g id="waterbodies">
             {data?.waterbodies?.map(wb => (
               <g key={wb.id}>
@@ -367,17 +358,23 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                   fill="#BAE6FD"
                   stroke="#38BDF8"
                   strokeWidth="2"
-                  opacity="0.85"
+                  opacity="0.8"
                 />
                 <text
                   x={wb.x + wb.width / 2}
-                  y={wb.y + wb.height / 2 + 4}
+                  y={wb.y + wb.height / 2 + 4 + (wb.labelYOffset || 0)}
                   textAnchor="middle"
                   fontSize="12"
-                  fontWeight="600"
+                  fontWeight="700"
                   fontFamily="sans-serif"
                   fill="#0369A1"
                   letterSpacing="0.5"
+                  style={{
+                    paintOrder: 'stroke fill',
+                    stroke: '#BAE6FD',
+                    strokeWidth: '4px',
+                    strokeLinejoin: 'round'
+                  }}
                 >
                   {wb.name}
                 </text>
@@ -419,7 +416,6 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
 
               return (
                 <g key={bp.branchName} opacity={isFiltered ? 0.2 : 1}>
-                  {/* Outer casing */}
                   <path
                     d={bp.d}
                     stroke="#FFFFFF"
@@ -428,7 +424,6 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                     strokeLinejoin="round"
                     fill="none"
                   />
-                  {/* Colored Core Track */}
                   <path
                     d={bp.d}
                     stroke={isHighlighted ? '#F59E0B' : bp.color}
@@ -439,7 +434,6 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                     className="transition-all duration-300"
                   />
                   
-                  {/* Inline River Name Label along path */}
                   {bp.points && bp.points.length >= 2 && (
                     <text
                       x={(bp.points[0].x + bp.points[bp.points.length - 1].x) / 2}
@@ -449,6 +443,12 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                       fontWeight="800"
                       letterSpacing="2.5"
                       fill={bp.color}
+                      style={{
+                        paintOrder: 'stroke fill',
+                        stroke: '#F4EFE6',
+                        strokeWidth: '4px',
+                        strokeLinejoin: 'round'
+                      }}
                       className="select-none"
                     >
                       — {bp.label || bp.branchName} —
@@ -462,7 +462,6 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
           {/* Bow River Trunk Line (Main Spine) */}
           {data?.trunkPath && (
             <g id="trunk-corridor">
-              {/* White casing */}
               <path
                 d={data.trunkPath.d}
                 stroke="#FFFFFF"
@@ -471,7 +470,6 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 strokeLinejoin="round"
                 fill="none"
               />
-              {/* Main Line Ribbon */}
               <path
                 d={data.trunkPath.d}
                 stroke={drainRouteActive() ? '#F59E0B' : data.trunkPath.color}
@@ -481,9 +479,18 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 fill="none"
                 className="transition-all duration-300"
               />
-              {/* Inline Trunk Badges */}
-              <text x="890" y="660" fontSize="13" fontWeight="800" letterSpacing="4" fill="#1E3A8A">— BOW RIVER TRUNK —</text>
-              <text x="2640" y="1185" fontSize="13" fontWeight="800" letterSpacing="4" fill="#1E3A8A">— BOW RIVER —</text>
+              <text 
+                x="890" y="660" fontSize="13" fontWeight="800" letterSpacing="4" fill="#1E3A8A"
+                style={{ paintOrder: 'stroke fill', stroke: '#F4EFE6', strokeWidth: '4px', strokeLinejoin: 'round' }}
+              >
+                — BOW RIVER TRUNK —
+              </text>
+              <text 
+                x="2640" y="1195" fontSize="13" fontWeight="800" letterSpacing="4" fill="#1E3A8A"
+                style={{ paintOrder: 'stroke fill', stroke: '#FBF5E8', strokeWidth: '4px', strokeLinejoin: 'round' }}
+              >
+                — BOW RIVER —
+              </text>
             </g>
           )}
 
@@ -528,7 +535,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                       <circle r="10" fill="#FFFFFF" stroke={isHighlighted ? '#F59E0B' : st.color} strokeWidth="4" />
                     )}
 
-                    {/* Station Name Label */}
+                    {/* Station Name Label with SVG Knockout Halo */}
                     <text
                       x={st.labelPos?.includes('left') ? -22 : st.labelPos?.includes('right') ? 22 : 0}
                       y={st.labelPos?.includes('top') ? -24 : st.labelPos?.includes('bottom') ? 28 : 5}
@@ -538,7 +545,13 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                           ? 'fill-amber-700 font-extrabold text-sm'
                           : 'fill-slate-900 group-hover:fill-blue-700'
                       }`}
-                      style={{ fontSize: isSelected ? '15px' : '12px' }}
+                      style={{ 
+                        fontSize: isSelected ? '15px' : '12px',
+                        paintOrder: 'stroke fill',
+                        stroke: '#F4EFE6',
+                        strokeWidth: '4px',
+                        strokeLinejoin: 'round'
+                      }}
                     >
                       {st.name}
                     </text>
@@ -548,6 +561,11 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
 
               // Tributary / Feeder Creek Station
               const shouldShowLabel = showAllLabels || isHovered || isSelected || isHighlighted || (st.isMajor && isZoomedIn);
+
+              // Strict Directional Text Placement (Rule 1 & 4)
+              const textAnchor = st.labelAnchor || 'start';
+              const textOffsetX = st.labelOffsetX !== undefined ? st.labelOffsetX : 9;
+              const textOffsetY = st.labelOffsetY !== undefined ? st.labelOffsetY : 3.5;
 
               return (
                 <g
@@ -567,13 +585,20 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
 
                   {shouldShowLabel && (
                     <text
-                      x="8"
-                      y="3.5"
-                      className={`text-[9.5px] tracking-tight transition-all ${
+                      x={textOffsetX}
+                      y={textOffsetY}
+                      textAnchor={textAnchor}
+                      className={`text-[9.5px] tracking-tight transition-all select-none ${
                         isSelected || isHighlighted
                           ? 'fill-amber-800 font-bold text-[11px]'
                           : 'fill-slate-700 font-medium group-hover:fill-slate-950'
                       }`}
+                      style={{
+                        paintOrder: 'stroke fill',
+                        stroke: '#F6F3EC',
+                        strokeWidth: '3.5px',
+                        strokeLinejoin: 'round'
+                      }}
                     >
                       {st.name}
                     </text>

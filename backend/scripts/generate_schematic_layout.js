@@ -4,8 +4,8 @@ const path = require('path');
 const topology = require('../data/bow_basin_topology.json');
 
 // Canvas dimensions for generous 2D geographic distribution
-const WIDTH = 3900;
-const HEIGHT = 2300;
+const WIDTH = 4000;
+const HEIGHT = 2400;
 
 // Waterways of America transit palette
 const LINE_PALETTES = {
@@ -30,62 +30,62 @@ const ECOREGIONS = [
     id: 'rockies',
     name: 'ROCKY MOUNTAINS & CONTINENTAL DIVIDE',
     subtext: 'Banff National Park • Kananaskis High Country',
-    x: 100, y: 100, width: 1450, height: 2100,
+    x: 100, y: 100, width: 1450, height: 2200,
     fill: '#F4EFE6', stroke: '#E5DCce'
   },
   {
     id: 'foothills',
     name: 'FOOTHILLS ECODISTRICT & CALGARY METROPOLITAN',
     subtext: 'Bragg Creek • Cochrane • Airdrie • Okotoks',
-    x: 1550, y: 100, width: 950, height: 2100,
+    x: 1580, y: 100, width: 950, height: 2200,
     fill: '#EDF5EC', stroke: '#DBE9DA'
   },
   {
     id: 'prairies',
     name: 'GRASSLAND PRAIRIES & EASTERN IRRIGATION',
     subtext: 'Siksika Nation • Bassano • Oldman Confluence',
-    x: 2500, y: 100, width: 1300, height: 2100,
+    x: 2560, y: 100, width: 1340, height: 2200,
     fill: '#FBF5E8', stroke: '#ECE2CC'
   }
 ];
 
-// Stylized Geometric Lakes and Reservoirs (Transit style pills and polygons)
+// Stylized Geometric Lakes and Reservoirs with clean non-colliding coordinates
 const WATERBODIES = [
-  { id: 'bow-lake', name: 'Bow Lake', x: 330, y: 340, width: 110, height: 65, rx: 16 },
-  { id: 'hector-lake', name: 'Hector Lake', x: 470, y: 440, width: 85, height: 50, rx: 12 },
-  { id: 'lake-louise', name: 'Lake Louise', x: 610, y: 535, width: 95, height: 55, rx: 14 },
-  { id: 'lake-minnewanka', name: 'Lake Minnewanka', x: 1050, y: 460, width: 220, height: 75, rx: 20 },
-  { id: 'spray-lakes', name: 'Spray Lakes Reservoir', x: 910, y: 1010, width: 170, height: 85, rx: 22 },
-  { id: 'kananaskis-lakes', name: 'Upper & Lower Kananaskis Lakes', x: 770, y: 1620, width: 210, height: 95, rx: 24 },
-  { id: 'barrier-lake', name: 'Barrier Lake', x: 1320, y: 960, width: 120, height: 60, rx: 16 },
-  { id: 'ghost-lake', name: 'Ghost Lake Reservoir', x: 1480, y: 770, width: 140, height: 65, rx: 18 },
-  { id: 'glenmore-reservoir', name: 'Glenmore Reservoir', x: 1940, y: 1060, width: 130, height: 65, rx: 16 },
-  { id: 'mcgregor-lake', name: 'McGregor Lake', x: 2750, y: 1500, width: 180, height: 80, rx: 20 },
-  { id: 'lake-newell', name: 'Lake Newell Reservoir', x: 3260, y: 1350, width: 210, height: 100, rx: 26 }
+  { id: 'bow-lake', name: 'Bow Lake', x: 310, y: 320, width: 130, height: 75, rx: 18, labelYOffset: 0 },
+  { id: 'hector-lake', name: 'Hector Lake', x: 450, y: 430, width: 95, height: 55, rx: 14, labelYOffset: 0 },
+  { id: 'lake-louise', name: 'Lake Louise', x: 580, y: 530, width: 110, height: 60, rx: 16, labelYOffset: 0 },
+  { id: 'lake-minnewanka', name: 'Lake Minnewanka', x: 1050, y: 440, width: 230, height: 80, rx: 20, labelYOffset: 0 },
+  { id: 'spray-lakes', name: 'Spray Lakes Reservoir', x: 890, y: 1020, width: 180, height: 90, rx: 22, labelYOffset: 0 },
+  { id: 'kananaskis-lakes', name: 'Upper & Lower Kananaskis Lakes', x: 740, y: 1650, width: 220, height: 100, rx: 24, labelYOffset: 0 },
+  { id: 'barrier-lake', name: 'Barrier Lake', x: 1310, y: 980, width: 130, height: 65, rx: 16, labelYOffset: 0 },
+  { id: 'ghost-lake', name: 'Ghost Lake Reservoir', x: 1480, y: 840, width: 170, height: 75, rx: 18, labelYOffset: 12 },
+  { id: 'glenmore-reservoir', name: 'Glenmore Reservoir', x: 1940, y: 1070, width: 140, height: 70, rx: 18, labelYOffset: 0 },
+  { id: 'mcgregor-lake', name: 'McGregor Lake', x: 2750, y: 1520, width: 190, height: 85, rx: 20, labelYOffset: 0 },
+  { id: 'lake-newell', name: 'Lake Newell Reservoir', x: 3260, y: 1380, width: 220, height: 110, rx: 26, labelYOffset: 0 }
 ];
 
-// Master Trunk Stations with careful 2D subway geometry
+// Master Trunk Stations with careful spatial clearance and alternating label anchors
 const TRUNK_STATIONS = [
-  { id: 'bow-glacier', name: 'Bow Glacier (Source)', x: 210, y: 370, type: 'headwater', labelPos: 'top-left' },
-  { id: 'bow-lake-stn', name: 'Bow Lake', x: 385, y: 370, type: 'lake-stn', labelPos: 'bottom' },
-  { id: 'hector-lake-stn', name: 'Hector Lake', x: 510, y: 465, type: 'lake-stn', labelPos: 'top-left' },
+  { id: 'bow-glacier', name: 'Bow Glacier (Source)', x: 190, y: 360, type: 'headwater', labelPos: 'top-left' },
+  { id: 'bow-lake-stn', name: 'Bow Lake', x: 375, y: 360, type: 'lake-stn', labelPos: 'bottom' },
+  { id: 'hector-lake-stn', name: 'Hector Lake', x: 500, y: 460, type: 'lake-stn', labelPos: 'top-left' },
   { id: 'lake-louise-stn', name: 'Lake Louise', x: 650, y: 560, type: 'major-interchange', labelPos: 'bottom-right' },
-  { id: 'castle-junction', name: 'Castle Junction', x: 810, y: 650, type: 'interchange', labelPos: 'bottom-right' },
+  { id: 'castle-junction', name: 'Castle Junction', x: 820, y: 650, type: 'interchange', labelPos: 'top-left' },
   { id: 'banff-stn', name: 'Banff', x: 1040, y: 710, type: 'central-hub', labelPos: 'top-left' },
-  { id: 'canmore-stn', name: 'Canmore', x: 1240, y: 750, type: 'town', labelPos: 'bottom-right' },
-  { id: 'exshaw-stn', name: 'Lac des Arcs / Exshaw', x: 1390, y: 775, type: 'town', labelPos: 'bottom-right' },
-  { id: 'ghost-lake-stn', name: 'Ghost Lake / Seebe', x: 1540, y: 800, type: 'central-hub', labelPos: 'top-left' },
-  { id: 'cochrane-stn', name: 'Cochrane', x: 1740, y: 840, type: 'major-interchange', labelPos: 'bottom-right' },
-  { id: 'bearspaw-stn', name: 'Bearspaw Dam', x: 1890, y: 880, type: 'dam', labelPos: 'top-right' },
-  { id: 'calgary-downtown', name: 'Calgary (Downtown / Peace Bridge)', x: 2060, y: 920, type: 'central-hub', labelPos: 'top-left' },
-  { id: 'fort-calgary-stn', name: 'Fort Calgary (Harvie Passage)', x: 2200, y: 950, type: 'major-interchange', labelPos: 'bottom-right' },
-  { id: 'fish-creek-stn', name: 'Fish Creek Provincial Park', x: 2330, y: 1030, type: 'interchange', labelPos: 'top-right' },
-  { id: 'carseland-stn', name: 'Carseland Weir', x: 2540, y: 1140, type: 'central-hub', labelPos: 'top-right' },
-  { id: 'shouldice-stn', name: 'Arrowwood / Shouldice', x: 2780, y: 1200, type: 'interchange', labelPos: 'bottom' },
-  { id: 'cluny-stn', name: 'Cluny / Siksika', x: 3020, y: 1200, type: 'interchange', labelPos: 'bottom' },
-  { id: 'bassano-stn', name: 'Bassano Dam', x: 3260, y: 1200, type: 'dam', labelPos: 'top' },
-  { id: 'bow-city-stn', name: 'Bow City / Scandia', x: 3480, y: 1200, type: 'town', labelPos: 'bottom' },
-  { id: 'grand-forks-stn', name: 'Grand Forks (Confluence -> South Sask)', x: 3730, y: 1200, type: 'terminal', labelPos: 'right' }
+  { id: 'canmore-stn', name: 'Canmore', x: 1220, y: 750, type: 'town', labelPos: 'bottom-right' },
+  { id: 'exshaw-stn', name: 'Lac des Arcs / Exshaw', x: 1370, y: 775, type: 'town', labelPos: 'top-left' },
+  { id: 'ghost-lake-stn', name: 'Ghost Lake / Seebe', x: 1580, y: 805, type: 'central-hub', labelPos: 'bottom-right' },
+  { id: 'cochrane-stn', name: 'Cochrane', x: 1780, y: 845, type: 'major-interchange', labelPos: 'top-left' },
+  { id: 'bearspaw-stn', name: 'Bearspaw Dam', x: 1940, y: 885, type: 'dam', labelPos: 'top-right' },
+  { id: 'calgary-downtown', name: 'Calgary (Downtown / Peace Bridge)', x: 2110, y: 925, type: 'central-hub', labelPos: 'top-left' },
+  { id: 'fort-calgary-stn', name: 'Fort Calgary (Harvie Passage)', x: 2250, y: 955, type: 'major-interchange', labelPos: 'bottom-right' },
+  { id: 'fish-creek-stn', name: 'Fish Creek Provincial Park', x: 2380, y: 1035, type: 'interchange', labelPos: 'top-right' },
+  { id: 'carseland-stn', name: 'Carseland Weir', x: 2590, y: 1145, type: 'central-hub', labelPos: 'top-right' },
+  { id: 'shouldice-stn', name: 'Arrowwood / Shouldice', x: 2820, y: 1210, type: 'interchange', labelPos: 'bottom' },
+  { id: 'cluny-stn', name: 'Cluny / Siksika', x: 3060, y: 1210, type: 'interchange', labelPos: 'bottom' },
+  { id: 'bassano-stn', name: 'Bassano Dam', x: 3300, y: 1210, type: 'dam', labelPos: 'top' },
+  { id: 'bow-city-stn', name: 'Bow City / Scandia', x: 3520, y: 1210, type: 'town', labelPos: 'bottom' },
+  { id: 'grand-forks-stn', name: 'Grand Forks (Confluence -> South Sask)', x: 3770, y: 1210, type: 'terminal', labelPos: 'right' }
 ];
 
 // Spatially routed tributary branch corridors
@@ -126,10 +126,10 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.GHOST,
     junctionId: 'ghost-lake-stn',
     path: [
-      { x: 1540, y: 800 },
-      { x: 1440, y: 640 },
-      { x: 1340, y: 480 },
-      { x: 1200, y: 340 }
+      { x: 1580, y: 805 },
+      { x: 1470, y: 640 },
+      { x: 1360, y: 480 },
+      { x: 1220, y: 340 }
     ],
     title: 'Ghost River & Waiparous Wilderness Line'
   },
@@ -137,12 +137,12 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.KANANASKIS,
     junctionId: 'ghost-lake-stn',
     path: [
-      { x: 1540, y: 800 },
-      { x: 1380, y: 960 },
-      { x: 1220, y: 1160 },
-      { x: 1040, y: 1420 },
-      { x: 860, y: 1680 },
-      { x: 740, y: 1860 }
+      { x: 1580, y: 805 },
+      { x: 1420, y: 970 },
+      { x: 1260, y: 1170 },
+      { x: 1060, y: 1430 },
+      { x: 880, y: 1690 },
+      { x: 750, y: 1880 }
     ],
     title: 'Kananaskis Country Valley Express'
   },
@@ -150,9 +150,9 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.JUMPINGPOUND,
     junctionId: 'cochrane-stn',
     path: [
-      { x: 1740, y: 840 },
-      { x: 1640, y: 980 },
-      { x: 1540, y: 1180 }
+      { x: 1780, y: 845 },
+      { x: 1680, y: 990 },
+      { x: 1570, y: 1190 }
     ],
     title: 'Jumpingpound Creek Branch'
   },
@@ -160,8 +160,8 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.JUMPINGPOUND,
     junctionId: 'cochrane-stn',
     path: [
-      { x: 1740, y: 840 },
-      { x: 1740, y: 620 }
+      { x: 1780, y: 845 },
+      { x: 1780, y: 620 }
     ],
     title: 'Bighill Creek Branch'
   },
@@ -169,10 +169,10 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.NOSE,
     junctionId: 'calgary-downtown',
     path: [
-      { x: 2060, y: 920 },
-      { x: 2060, y: 720 },
-      { x: 2060, y: 520 },
-      { x: 2060, y: 340 }
+      { x: 2110, y: 925 },
+      { x: 2110, y: 720 },
+      { x: 2110, y: 520 },
+      { x: 2110, y: 340 }
     ],
     title: 'Nose Creek Line (Airdrie / Crossfield)'
   },
@@ -180,11 +180,11 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.ELBOW,
     junctionId: 'fort-calgary-stn',
     path: [
-      { x: 2200, y: 950 },
-      { x: 1980, y: 1090 },
-      { x: 1780, y: 1250 },
-      { x: 1580, y: 1430 },
-      { x: 1380, y: 1610 }
+      { x: 2250, y: 955 },
+      { x: 2020, y: 1095 },
+      { x: 1810, y: 1260 },
+      { x: 1600, y: 1440 },
+      { x: 1390, y: 1620 }
     ],
     title: 'Elbow River Valley Line'
   },
@@ -192,9 +192,9 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.FISH,
     junctionId: 'fish-creek-stn',
     path: [
-      { x: 2330, y: 1030 },
-      { x: 2130, y: 1170 },
-      { x: 1930, y: 1290 }
+      { x: 2380, y: 1035 },
+      { x: 2170, y: 1180 },
+      { x: 1960, y: 1300 }
     ],
     title: 'Fish Creek & Priddis Branch'
   },
@@ -202,12 +202,12 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.HIGHWOOD,
     junctionId: 'carseland-stn',
     path: [
-      { x: 2540, y: 1140 },
-      { x: 2380, y: 1260 },
-      { x: 2220, y: 1400 },
-      { x: 2080, y: 1580 },
-      { x: 1880, y: 1780 },
-      { x: 1640, y: 2000 }
+      { x: 2590, y: 1145 },
+      { x: 2420, y: 1270 },
+      { x: 2250, y: 1410 },
+      { x: 2100, y: 1590 },
+      { x: 1900, y: 1790 },
+      { x: 1650, y: 2010 }
     ],
     title: 'Highwood River Express Line'
   },
@@ -215,10 +215,10 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.SHEEP,
     junctionId: 'carseland-stn',
     path: [
-      { x: 2220, y: 1400 }, // Branches off Highwood at Okotoks
-      { x: 2020, y: 1480 },
-      { x: 1820, y: 1580 },
-      { x: 1600, y: 1680 }
+      { x: 2250, y: 1410 },
+      { x: 2040, y: 1490 },
+      { x: 1830, y: 1590 },
+      { x: 1610, y: 1690 }
     ],
     title: 'Sheep River & Turner Valley Line'
   },
@@ -226,8 +226,8 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.LOWER_BOW,
     junctionId: 'cluny-stn',
     path: [
-      { x: 3020, y: 1200 },
-      { x: 3020, y: 940 }
+      { x: 3060, y: 1210 },
+      { x: 3060, y: 940 }
     ],
     title: 'Crowfoot Creek Prairie Branch'
   },
@@ -235,8 +235,8 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.LOWER_BOW,
     junctionId: 'shouldice-stn',
     path: [
-      { x: 2780, y: 1200 },
-      { x: 2780, y: 1480 }
+      { x: 2820, y: 1210 },
+      { x: 2820, y: 1490 }
     ],
     title: 'West Arrowwood Branch'
   },
@@ -244,8 +244,8 @@ const BRANCH_ROUTES = {
     palette: LINE_PALETTES.LOWER_BOW,
     junctionId: 'shouldice-stn',
     path: [
-      { x: 2780, y: 1200 },
-      { x: 2900, y: 1440 }
+      { x: 2820, y: 1210 },
+      { x: 2940, y: 1450 }
     ],
     title: 'East Arrowwood Branch'
   }
@@ -281,7 +281,7 @@ function interpolatePolyline(points, t) {
 }
 
 function buildOverhauledLayout() {
-  console.log('Compiling Waterways of America layout for Bow River Basin...');
+  console.log('Compiling anti-collision layout with strict directional text anchors...');
 
   const streams = topology.streams;
   const stationsMap = new Map();
@@ -307,13 +307,11 @@ function buildOverhauledLayout() {
   const assignedStreamNames = new Set(['BOW RIVER']);
 
   for (const [branchName, cfg] of Object.entries(BRANCH_ROUTES)) {
-    // Convert path to SVG path string
     let d = `M ${cfg.path[0].x} ${cfg.path[0].y}`;
     for (let i = 1; i < cfg.path.length; i++) {
       d += ` L ${cfg.path[i].x} ${cfg.path[i].y}`;
     }
 
-    // Find all streams that drain into this branch
     const branchCreeks = [];
     for (const stream of streams) {
       if (stream.name === 'BOW RIVER') continue;
@@ -344,25 +342,32 @@ function buildOverhauledLayout() {
       creekCount: branchCreeks.length
     });
 
-    // Sort creeks by Strahler Order descending so primary creeks get prime spacing
+    // Sort creeks by Strahler Order descending
     branchCreeks.sort((a, b) => b.strahlerOrder - a.strahlerOrder);
 
-    // Distribute tributary creeks evenly with comfortable spacing
     const count = branchCreeks.length;
     branchCreeks.forEach((creek, idx) => {
-      // Calculate normalized position along polyline
-      const t = (idx + 0.8) / (count + 1);
+      // Avoid junction buffer zone: t spans from 0.18 to 0.94
+      const t = 0.18 + (idx / Math.max(1, count)) * 0.76;
       const pos = interpolatePolyline(cfg.path, t);
 
       // Alternate spur direction cleanly (perpendicular +/- 90)
       const sign = idx % 2 === 0 ? 1 : -1;
       const spurAngleRad = ((pos.angleDeg + 90 * sign) * Math.PI) / 180;
       
-      // Short, tidy ticks (25px to 45px)
+      // Staggered two-lane offset (Rule 3)
       const isMajorCreek = creek.strahlerOrder >= 4;
-      const spurLength = isMajorCreek ? 42 : 26;
+      const laneOffset = (idx % 4 < 2) ? 32 : 64;
+      const spurLength = isMajorCreek ? (laneOffset + 8) : laneOffset;
+
       const endX = Math.round(pos.x + Math.cos(spurAngleRad) * spurLength);
       const endY = Math.round(pos.y + Math.sin(spurAngleRad) * spurLength);
+
+      // Strict Directional Text Anchor (Rule 1)
+      const isLeft = endX < pos.x - 2;
+      const labelAnchor = isLeft ? 'end' : 'start';
+      const labelOffsetX = isLeft ? -9 : 9;
+      const labelOffsetY = 3.5;
 
       const stnObj = {
         id: `st-${creek.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
@@ -380,6 +385,9 @@ function buildOverhauledLayout() {
         y: endY,
         confluenceX: pos.x,
         confluenceY: pos.y,
+        labelAnchor,
+        labelOffsetX,
+        labelOffsetY,
         isMajor: isMajorCreek,
         isTrunk: false
       };
@@ -405,12 +413,16 @@ function buildOverhauledLayout() {
   // Handle remaining unassigned direct prairie creeks along Bow trunk
   const unassigned = streams.filter(s => !assignedStreamNames.has(s.name));
   unassigned.forEach((creek, idx) => {
-    // Distribute along Bow trunk between Calgary and Grand Forks
-    const t = 0.55 + (idx / Math.max(1, unassigned.length)) * 0.40;
+    const t = 0.58 + (idx / Math.max(1, unassigned.length)) * 0.38;
     const pos = interpolatePolyline(TRUNK_STATIONS, t);
     const sign = idx % 2 === 0 ? -1 : 1;
+    const laneOffset = (idx % 4 < 2) ? 35 : 65;
     const endX = pos.x;
-    const endY = pos.y + sign * 35;
+    const endY = pos.y + sign * laneOffset;
+
+    const labelAnchor = 'middle';
+    const labelOffsetX = 0;
+    const labelOffsetY = sign > 0 ? 16 : -10;
 
     const stnObj = {
       id: `st-${creek.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
@@ -428,6 +440,9 @@ function buildOverhauledLayout() {
       y: endY,
       confluenceX: pos.x,
       confluenceY: pos.y,
+      labelAnchor,
+      labelOffsetX,
+      labelOffsetY,
       isMajor: creek.strahlerOrder >= 4,
       isTrunk: false
     };
@@ -488,7 +503,7 @@ function main() {
   const outFrontend = path.join(__dirname, '..', '..', 'frontend', 'src', 'data', 'bow_basin_schematic_map.json');
   fs.writeFileSync(outFrontend, JSON.stringify(layout, null, 2), 'utf8');
 
-  console.log(`Generated overhauled schematic map with ${layout.stations.length} stations across ${layout.branchPaths.length} branch corridors!`);
+  console.log(`Generated anti-collision schematic map with ${layout.stations.length} stations!`);
 }
 
 main();
