@@ -3,271 +3,368 @@ const path = require('path');
 
 const topology = require('../data/bow_basin_topology.json');
 
-// Configuration for subway schematic canvas
-const WIDTH = 3400;
-const HEIGHT = 2000;
+// Canvas dimensions for generous 2D geographic distribution
+const WIDTH = 3900;
+const HEIGHT = 2300;
 
-// Transit Line Color Palette (Harry Beck style)
-const LINE_COLORS = {
-  'BOW_TRUNK': { id: 'bow-trunk', name: 'Bow River Trunk Line', color: '#1D4ED8', lightColor: '#93C5FD', bg: '#EFF6FF', text: '#1E3A8A' },
-  'PIPESTONE_LINE': { id: 'pipestone-line', name: 'Pipestone & Upper Bow Line', color: '#0284C7', lightColor: '#BAE6FD', bg: '#F0F9FF', text: '#0369A1' },
-  'CASCADE_LINE': { id: 'cascade-line', name: 'Cascade & Minnewanka Line', color: '#6366F1', lightColor: '#C7D2FE', bg: '#EEF2FF', text: '#4338CA' },
-  'SPRAY_LINE': { id: 'spray-line', name: 'Spray Valley Line', color: '#0D9488', lightColor: '#99F6E4', bg: '#F0FDFA', text: '#0F766E' },
-  'GHOST_LINE': { id: 'ghost-line', name: 'Ghost Wilderness Line', color: '#9333EA', lightColor: '#E9D5FF', bg: '#FAF5FF', text: '#7E22CE' },
-  'KANANASKIS_LINE': { id: 'kananaskis-line', name: 'Kananaskis Country Line', color: '#059669', lightColor: '#A7F3D0', bg: '#ECFDF5', text: '#047857' },
-  'JUMPINGPOUND_LINE': { id: 'jumpingpound-line', name: 'Jumpingpound & Bighill Line', color: '#D97706', lightColor: '#FDE68A', bg: '#FFFBEB', text: '#B45309' },
-  'ELBOW_LINE': { id: 'elbow-line', name: 'Elbow River Line', color: '#0891B2', lightColor: '#A5F3FC', bg: '#ECFEFF', text: '#0E7490' },
-  'NOSE_LINE': { id: 'nose-line', name: 'Nose Creek Line', color: '#8B5CF6', lightColor: '#DDD6FE', bg: '#F5F3FF', text: '#6D28D9' },
-  'FISH_LINE': { id: 'fish-line', name: 'Fish Creek Line', color: '#65A30D', lightColor: '#D9F99D', bg: '#F7FEE7', text: '#4D7C0F' },
-  'HIGHWOOD_LINE': { id: 'highwood-line', name: 'Highwood River Line', color: '#DC2626', lightColor: '#FECACA', bg: '#FEF2F2', text: '#B91C1C' },
-  'SHEEP_LINE': { id: 'sheep-line', name: 'Sheep River Line', color: '#E11D48', lightColor: '#FECDD3', bg: '#FFF1F2', text: '#BE123C' },
-  'LOWER_BOW_LINE': { id: 'lower-bow-line', name: 'Lower Bow Prairie Line', color: '#EA580C', lightColor: '#FED7AA', bg: '#FFF7ED', text: '#C2410C' }
+// Waterways of America transit palette
+const LINE_PALETTES = {
+  BOW_TRUNK: { id: 'bow-trunk', name: 'Bow River Trunk Line', color: '#1E3A8A', light: '#93C5FD', bg: '#EFF6FF', label: 'BOW RIVER' },
+  PIPESTONE: { id: 'pipestone', name: 'Pipestone & Upper Bow', color: '#0284C7', light: '#BAE6FD', bg: '#F0F9FF', label: 'PIPESTONE RIVER' },
+  CASCADE: { id: 'cascade', name: 'Cascade & Minnewanka', color: '#4338CA', light: '#C7D2FE', bg: '#EEF2FF', label: 'CASCADE RIVER' },
+  SPRAY: { id: 'spray', name: 'Spray Valley', color: '#0F766E', light: '#99F6E4', bg: '#F0FDFA', label: 'SPRAY RIVER' },
+  GHOST: { id: 'ghost', name: 'Ghost Wilderness', color: '#7E22CE', light: '#E9D5FF', bg: '#FAF5FF', label: 'GHOST RIVER' },
+  KANANASKIS: { id: 'kananaskis', name: 'Kananaskis Country', color: '#047857', light: '#A7F3D0', bg: '#ECFDF5', label: 'KANANASKIS RIVER' },
+  JUMPINGPOUND: { id: 'jumpingpound', name: 'Jumpingpound & Bighill', color: '#B45309', light: '#FDE68A', bg: '#FFFBEB', label: 'JUMPINGPOUND CREEK' },
+  ELBOW: { id: 'elbow', name: 'Elbow River', color: '#0891B2', light: '#A5F3FC', bg: '#ECFEFF', label: 'ELBOW RIVER' },
+  NOSE: { id: 'nose', name: 'Nose Creek', color: '#6D28D9', light: '#DDD6FE', bg: '#F5F3FF', label: 'NOSE CREEK' },
+  FISH: { id: 'fish', name: 'Fish Creek', color: '#4D7C0F', light: '#D9F99D', bg: '#F7FEE7', label: 'FISH CREEK' },
+  SHEEP: { id: 'sheep', name: 'Sheep River', color: '#BE123C', light: '#FECDD3', bg: '#FFF1F2', label: 'SHEEP RIVER' },
+  HIGHWOOD: { id: 'highwood', name: 'Highwood River Express', color: '#B91C1C', light: '#FECACA', bg: '#FEF2F2', label: 'HIGHWOOD RIVER' },
+  LOWER_BOW: { id: 'lower-bow', name: 'Lower Bow Prairie', color: '#C2410C', light: '#FED7AA', bg: '#FFF7ED', label: 'LOWER BOW' }
 };
 
-// Bow River Trunk corridor station positions (Harry Beck octilinear routing)
-const TRUNK_STATIONS = [
-  { id: 'bow-glacier', name: 'Bow Glacier (Source)', x: 180, y: 400, type: 'headwater', branch: 'BOW_TRUNK' },
-  { id: 'bow-lake', name: 'Bow Lake', x: 280, y: 400, type: 'lake', branch: 'BOW_TRUNK' },
-  { id: 'lake-louise', name: 'Lake Louise', x: 440, y: 400, type: 'interchange', branch: 'BOW_TRUNK', labelPos: 'bottom' },
-  { id: 'castle-junction', name: 'Castle Junction', x: 600, y: 480, type: 'interchange', branch: 'BOW_TRUNK', labelPos: 'bottom-right' },
-  { id: 'banff', name: 'Banff', x: 800, y: 600, type: 'major-interchange', branch: 'BOW_TRUNK', labelPos: 'top-left' },
-  { id: 'canmore', name: 'Canmore', x: 980, y: 680, type: 'town', branch: 'BOW_TRUNK', labelPos: 'bottom-right' },
-  { id: 'exshaw', name: 'Lac des Arcs / Exshaw', x: 1140, y: 740, type: 'town', branch: 'BOW_TRUNK', labelPos: 'bottom-right' },
-  { id: 'ghost-lake', name: 'Ghost Lake / Seebe', x: 1300, y: 800, type: 'major-interchange', branch: 'BOW_TRUNK', labelPos: 'bottom-right' },
-  { id: 'cochrane', name: 'Cochrane', x: 1520, y: 860, type: 'interchange', branch: 'BOW_TRUNK', labelPos: 'bottom-right' },
-  { id: 'bearspaw', name: 'Bearspaw Dam', x: 1680, y: 900, type: 'dam', branch: 'BOW_TRUNK', labelPos: 'top' },
-  { id: 'calgary-downtown', name: 'Calgary (Downtown / Peace Bridge)', x: 1880, y: 940, type: 'central-hub', branch: 'BOW_TRUNK', labelPos: 'top-right' },
-  { id: 'fort-calgary', name: 'Fort Calgary / Harvie Passage', x: 2020, y: 970, type: 'major-interchange', branch: 'BOW_TRUNK', labelPos: 'bottom' },
-  { id: 'fish-creek-park', name: 'Fish Creek Park', x: 2160, y: 1040, type: 'interchange', branch: 'BOW_TRUNK', labelPos: 'bottom-left' },
-  { id: 'carseland', name: 'Carseland Weir', x: 2360, y: 1140, type: 'major-interchange', branch: 'BOW_TRUNK', labelPos: 'bottom-left' },
-  { id: 'shouldice', name: 'Arrowwood / Shouldice', x: 2560, y: 1200, type: 'interchange', branch: 'BOW_TRUNK', labelPos: 'bottom' },
-  { id: 'cluny', name: 'Cluny / Crowfoot', x: 2740, y: 1200, type: 'interchange', branch: 'BOW_TRUNK', labelPos: 'bottom' },
-  { id: 'bassano', name: 'Bassano Dam', x: 2940, y: 1200, type: 'dam', branch: 'BOW_TRUNK', labelPos: 'top' },
-  { id: 'grand-forks', name: 'Grand Forks (Terminal -> South Sask)', x: 3180, y: 1200, type: 'terminal', branch: 'BOW_TRUNK', labelPos: 'right' }
+// Eco-regions / Watershed landscape background sectors
+const ECOREGIONS = [
+  {
+    id: 'rockies',
+    name: 'ROCKY MOUNTAINS & CONTINENTAL DIVIDE',
+    subtext: 'Banff National Park • Kananaskis High Country',
+    x: 100, y: 100, width: 1450, height: 2100,
+    fill: '#F4EFE6', stroke: '#E5DCce'
+  },
+  {
+    id: 'foothills',
+    name: 'FOOTHILLS ECODISTRICT & CALGARY METROPOLITAN',
+    subtext: 'Bragg Creek • Cochrane • Airdrie • Okotoks',
+    x: 1550, y: 100, width: 950, height: 2100,
+    fill: '#EDF5EC', stroke: '#DBE9DA'
+  },
+  {
+    id: 'prairies',
+    name: 'GRASSLAND PRAIRIES & EASTERN IRRIGATION',
+    subtext: 'Siksika Nation • Bassano • Oldman Confluence',
+    x: 2500, y: 100, width: 1300, height: 2100,
+    fill: '#FBF5E8', stroke: '#ECE2CC'
+  }
 ];
 
-// Branch corridor vector configurations
-const BRANCH_CONFIGS = {
+// Stylized Geometric Lakes and Reservoirs (Transit style pills and polygons)
+const WATERBODIES = [
+  { id: 'bow-lake', name: 'Bow Lake', x: 330, y: 340, width: 110, height: 65, rx: 16 },
+  { id: 'hector-lake', name: 'Hector Lake', x: 470, y: 440, width: 85, height: 50, rx: 12 },
+  { id: 'lake-louise', name: 'Lake Louise', x: 610, y: 535, width: 95, height: 55, rx: 14 },
+  { id: 'lake-minnewanka', name: 'Lake Minnewanka', x: 1050, y: 460, width: 220, height: 75, rx: 20 },
+  { id: 'spray-lakes', name: 'Spray Lakes Reservoir', x: 910, y: 1010, width: 170, height: 85, rx: 22 },
+  { id: 'kananaskis-lakes', name: 'Upper & Lower Kananaskis Lakes', x: 770, y: 1620, width: 210, height: 95, rx: 24 },
+  { id: 'barrier-lake', name: 'Barrier Lake', x: 1320, y: 960, width: 120, height: 60, rx: 16 },
+  { id: 'ghost-lake', name: 'Ghost Lake Reservoir', x: 1480, y: 770, width: 140, height: 65, rx: 18 },
+  { id: 'glenmore-reservoir', name: 'Glenmore Reservoir', x: 1940, y: 1060, width: 130, height: 65, rx: 16 },
+  { id: 'mcgregor-lake', name: 'McGregor Lake', x: 2750, y: 1500, width: 180, height: 80, rx: 20 },
+  { id: 'lake-newell', name: 'Lake Newell Reservoir', x: 3260, y: 1350, width: 210, height: 100, rx: 26 }
+];
+
+// Master Trunk Stations with careful 2D subway geometry
+const TRUNK_STATIONS = [
+  { id: 'bow-glacier', name: 'Bow Glacier (Source)', x: 210, y: 370, type: 'headwater', labelPos: 'top-left' },
+  { id: 'bow-lake-stn', name: 'Bow Lake', x: 385, y: 370, type: 'lake-stn', labelPos: 'bottom' },
+  { id: 'hector-lake-stn', name: 'Hector Lake', x: 510, y: 465, type: 'lake-stn', labelPos: 'top-left' },
+  { id: 'lake-louise-stn', name: 'Lake Louise', x: 650, y: 560, type: 'major-interchange', labelPos: 'bottom-right' },
+  { id: 'castle-junction', name: 'Castle Junction', x: 810, y: 650, type: 'interchange', labelPos: 'bottom-right' },
+  { id: 'banff-stn', name: 'Banff', x: 1040, y: 710, type: 'central-hub', labelPos: 'top-left' },
+  { id: 'canmore-stn', name: 'Canmore', x: 1240, y: 750, type: 'town', labelPos: 'bottom-right' },
+  { id: 'exshaw-stn', name: 'Lac des Arcs / Exshaw', x: 1390, y: 775, type: 'town', labelPos: 'bottom-right' },
+  { id: 'ghost-lake-stn', name: 'Ghost Lake / Seebe', x: 1540, y: 800, type: 'central-hub', labelPos: 'top-left' },
+  { id: 'cochrane-stn', name: 'Cochrane', x: 1740, y: 840, type: 'major-interchange', labelPos: 'bottom-right' },
+  { id: 'bearspaw-stn', name: 'Bearspaw Dam', x: 1890, y: 880, type: 'dam', labelPos: 'top-right' },
+  { id: 'calgary-downtown', name: 'Calgary (Downtown / Peace Bridge)', x: 2060, y: 920, type: 'central-hub', labelPos: 'top-left' },
+  { id: 'fort-calgary-stn', name: 'Fort Calgary (Harvie Passage)', x: 2200, y: 950, type: 'major-interchange', labelPos: 'bottom-right' },
+  { id: 'fish-creek-stn', name: 'Fish Creek Provincial Park', x: 2330, y: 1030, type: 'interchange', labelPos: 'top-right' },
+  { id: 'carseland-stn', name: 'Carseland Weir', x: 2540, y: 1140, type: 'central-hub', labelPos: 'top-right' },
+  { id: 'shouldice-stn', name: 'Arrowwood / Shouldice', x: 2780, y: 1200, type: 'interchange', labelPos: 'bottom' },
+  { id: 'cluny-stn', name: 'Cluny / Siksika', x: 3020, y: 1200, type: 'interchange', labelPos: 'bottom' },
+  { id: 'bassano-stn', name: 'Bassano Dam', x: 3260, y: 1200, type: 'dam', labelPos: 'top' },
+  { id: 'bow-city-stn', name: 'Bow City / Scandia', x: 3480, y: 1200, type: 'town', labelPos: 'bottom' },
+  { id: 'grand-forks-stn', name: 'Grand Forks (Confluence -> South Sask)', x: 3730, y: 1200, type: 'terminal', labelPos: 'right' }
+];
+
+// Spatially routed tributary branch corridors
+const BRANCH_ROUTES = {
   'PIPESTONE RIVER': {
-    lineKey: 'PIPESTONE_LINE',
-    junctionStationId: 'lake-louise',
-    angleDeg: -45, // NW
-    length: 320,
+    palette: LINE_PALETTES.PIPESTONE,
+    junctionId: 'lake-louise-stn',
+    path: [
+      { x: 650, y: 560 },
+      { x: 530, y: 440 },
+      { x: 420, y: 330 }
+    ],
     title: 'Pipestone River Branch'
   },
   'CASCADE RIVER': {
-    lineKey: 'CASCADE_LINE',
-    junctionStationId: 'banff',
-    angleDeg: -90, // North
-    length: 380,
-    title: 'Cascade River & Lake Minnewanka Branch'
+    palette: LINE_PALETTES.CASCADE,
+    junctionId: 'banff-stn',
+    path: [
+      { x: 1040, y: 710 },
+      { x: 1050, y: 530 },
+      { x: 1050, y: 350 },
+      { x: 970, y: 270 }
+    ],
+    title: 'Cascade River & Lake Minnewanka Line'
   },
   'SPRAY RIVER': {
-    lineKey: 'SPRAY_LINE',
-    junctionStationId: 'banff',
-    angleDeg: 135, // South-West
-    length: 440,
-    title: 'Spray River Valley Branch'
+    palette: LINE_PALETTES.SPRAY,
+    junctionId: 'banff-stn',
+    path: [
+      { x: 1040, y: 710 },
+      { x: 960, y: 830 },
+      { x: 960, y: 1080 },
+      { x: 840, y: 1280 }
+    ],
+    title: 'Spray River Valley Line'
   },
   'GHOST RIVER': {
-    lineKey: 'GHOST_LINE',
-    junctionStationId: 'ghost-lake',
-    angleDeg: -45, // North-West into Ghost Wilderness
-    length: 460,
-    title: 'Ghost River & Waiparous Branch'
+    palette: LINE_PALETTES.GHOST,
+    junctionId: 'ghost-lake-stn',
+    path: [
+      { x: 1540, y: 800 },
+      { x: 1440, y: 640 },
+      { x: 1340, y: 480 },
+      { x: 1200, y: 340 }
+    ],
+    title: 'Ghost River & Waiparous Wilderness Line'
   },
   'KANANASKIS RIVER': {
-    lineKey: 'KANANASKIS_LINE',
-    junctionStationId: 'ghost-lake',
-    angleDeg: 135, // South-West into K-Country
-    length: 520,
-    title: 'Kananaskis Country Valley Branch'
+    palette: LINE_PALETTES.KANANASKIS,
+    junctionId: 'ghost-lake-stn',
+    path: [
+      { x: 1540, y: 800 },
+      { x: 1380, y: 960 },
+      { x: 1220, y: 1160 },
+      { x: 1040, y: 1420 },
+      { x: 860, y: 1680 },
+      { x: 740, y: 1860 }
+    ],
+    title: 'Kananaskis Country Valley Express'
   },
   'JUMPINGPOUND CREEK': {
-    lineKey: 'JUMPINGPOUND_LINE',
-    junctionStationId: 'cochrane',
-    angleDeg: 135, // South-West
-    length: 340,
+    palette: LINE_PALETTES.JUMPINGPOUND,
+    junctionId: 'cochrane-stn',
+    path: [
+      { x: 1740, y: 840 },
+      { x: 1640, y: 980 },
+      { x: 1540, y: 1180 }
+    ],
     title: 'Jumpingpound Creek Branch'
   },
   'BIGHILL CREEK': {
-    lineKey: 'JUMPINGPOUND_LINE',
-    junctionStationId: 'cochrane',
-    angleDeg: -90, // North
-    length: 240,
+    palette: LINE_PALETTES.JUMPINGPOUND,
+    junctionId: 'cochrane-stn',
+    path: [
+      { x: 1740, y: 840 },
+      { x: 1740, y: 620 }
+    ],
     title: 'Bighill Creek Branch'
   },
   'NOSE CREEK': {
-    lineKey: 'NOSE_LINE',
-    junctionStationId: 'calgary-downtown',
-    angleDeg: -90, // North through Airdrie
-    length: 360,
-    title: 'Nose Creek & West Nose Branch'
+    palette: LINE_PALETTES.NOSE,
+    junctionId: 'calgary-downtown',
+    path: [
+      { x: 2060, y: 920 },
+      { x: 2060, y: 720 },
+      { x: 2060, y: 520 },
+      { x: 2060, y: 340 }
+    ],
+    title: 'Nose Creek Line (Airdrie / Crossfield)'
   },
   'ELBOW RIVER': {
-    lineKey: 'ELBOW_LINE',
-    junctionStationId: 'fort-calgary',
-    angleDeg: 150, // South-West toward Bragg Creek & Elbow Falls
-    length: 560,
+    palette: LINE_PALETTES.ELBOW,
+    junctionId: 'fort-calgary-stn',
+    path: [
+      { x: 2200, y: 950 },
+      { x: 1980, y: 1090 },
+      { x: 1780, y: 1250 },
+      { x: 1580, y: 1430 },
+      { x: 1380, y: 1610 }
+    ],
     title: 'Elbow River Valley Line'
   },
   'FISH CREEK': {
-    lineKey: 'FISH_LINE',
-    junctionStationId: 'fish-creek-park',
-    angleDeg: 180, // West
-    length: 380,
+    palette: LINE_PALETTES.FISH,
+    junctionId: 'fish-creek-stn',
+    path: [
+      { x: 2330, y: 1030 },
+      { x: 2130, y: 1170 },
+      { x: 1930, y: 1290 }
+    ],
     title: 'Fish Creek & Priddis Branch'
   },
   'HIGHWOOD RIVER': {
-    lineKey: 'HIGHWOOD_LINE',
-    junctionStationId: 'carseland',
-    angleDeg: 150, // South-West towards High River & K-Pass
-    length: 620,
+    palette: LINE_PALETTES.HIGHWOOD,
+    junctionId: 'carseland-stn',
+    path: [
+      { x: 2540, y: 1140 },
+      { x: 2380, y: 1260 },
+      { x: 2220, y: 1400 },
+      { x: 2080, y: 1580 },
+      { x: 1880, y: 1780 },
+      { x: 1640, y: 2000 }
+    ],
     title: 'Highwood River Express Line'
   },
   'SHEEP RIVER': {
-    lineKey: 'SHEEP_LINE',
-    junctionStationId: 'carseland',
-    angleDeg: 165, // South-West branch from Highwood
-    length: 500,
+    palette: LINE_PALETTES.SHEEP,
+    junctionId: 'carseland-stn',
+    path: [
+      { x: 2220, y: 1400 }, // Branches off Highwood at Okotoks
+      { x: 2020, y: 1480 },
+      { x: 1820, y: 1580 },
+      { x: 1600, y: 1680 }
+    ],
     title: 'Sheep River & Turner Valley Line'
   },
   'CROWFOOT CREEK': {
-    lineKey: 'LOWER_BOW_LINE',
-    junctionStationId: 'cluny',
-    angleDeg: -90, // North
-    length: 260,
+    palette: LINE_PALETTES.LOWER_BOW,
+    junctionId: 'cluny-stn',
+    path: [
+      { x: 3020, y: 1200 },
+      { x: 3020, y: 940 }
+    ],
     title: 'Crowfoot Creek Prairie Branch'
   },
   'WEST ARROWWOOD CREEK': {
-    lineKey: 'LOWER_BOW_LINE',
-    junctionStationId: 'shouldice',
-    angleDeg: 90, // South
-    length: 220,
-    title: 'Arrowwood Creek Branch'
+    palette: LINE_PALETTES.LOWER_BOW,
+    junctionId: 'shouldice-stn',
+    path: [
+      { x: 2780, y: 1200 },
+      { x: 2780, y: 1480 }
+    ],
+    title: 'West Arrowwood Branch'
   },
   'EAST ARROWWOOD CREEK': {
-    lineKey: 'LOWER_BOW_LINE',
-    junctionStationId: 'shouldice',
-    angleDeg: 120, // South-East
-    length: 240,
+    palette: LINE_PALETTES.LOWER_BOW,
+    junctionId: 'shouldice-stn',
+    path: [
+      { x: 2780, y: 1200 },
+      { x: 2900, y: 1440 }
+    ],
     title: 'East Arrowwood Branch'
   }
 };
 
-function buildSchematicModel() {
-  console.log('Generating Harry Beck subway schematic layout for Bow River Basin...');
+function interpolatePolyline(points, t) {
+  let totalLen = 0;
+  const lens = [];
+  for (let i = 0; i < points.length - 1; i++) {
+    const dx = points[i+1].x - points[i].x;
+    const dy = points[i+1].y - points[i].y;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    lens.push(len);
+    totalLen += len;
+  }
 
-  // 1. Station Index
+  const targetDist = t * totalLen;
+  let running = 0;
+  for (let i = 0; i < lens.length; i++) {
+    if (running + lens[i] >= targetDist) {
+      const segT = (targetDist - running) / lens[i];
+      const p1 = points[i];
+      const p2 = points[i+1];
+      const x = p1.x + (p2.x - p1.x) * segT;
+      const y = p1.y + (p2.y - p1.y) * segT;
+      const angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+      return { x: Math.round(x), y: Math.round(y), angleDeg };
+    }
+    running += lens[i];
+  }
+  const last = points[points.length - 1];
+  return { x: last.x, y: last.y, angleDeg: 0 };
+}
+
+function buildOverhauledLayout() {
+  console.log('Compiling Waterways of America layout for Bow River Basin...');
+
+  const streams = topology.streams;
   const stationsMap = new Map();
-  const trunkStationsList = TRUNK_STATIONS.map((st, idx) => {
-    const obj = {
+
+  // 1. Trunk Line Stations
+  const allStations = [];
+  TRUNK_STATIONS.forEach((st, idx) => {
+    const station = {
       ...st,
-      strahlerOrder: 9,
-      sequence: idx,
       isTrunk: true,
-      lineId: 'bow-trunk',
-      color: LINE_COLORS.BOW_TRUNK.color
+      strahlerOrder: 9,
+      lineId: LINE_PALETTES.BOW_TRUNK.id,
+      color: LINE_PALETTES.BOW_TRUNK.color,
+      branchName: 'BOW RIVER'
     };
-    stationsMap.set(st.name.toUpperCase(), obj);
-    stationsMap.set(st.id, obj);
-    return obj;
+    allStations.push(station);
+    stationsMap.set(st.name.toUpperCase(), station);
   });
 
-  // 2. Build branch corridors
-  const branchCorridors = [];
-  const linesMap = new Map();
-
-  for (const [branchName, cfg] of Object.entries(BRANCH_CONFIGS)) {
-    const junc = TRUNK_STATIONS.find(s => s.id === cfg.junctionStationId);
-    if (!junc) continue;
-
-    const rad = (cfg.angleDeg * Math.PI) / 180;
-    const endX = Math.round(junc.x + Math.cos(rad) * cfg.length);
-    const endY = Math.round(junc.y + Math.sin(rad) * cfg.length);
-
-    const linePalette = LINE_COLORS[cfg.lineKey] || LINE_COLORS.BOW_TRUNK;
-
-    const corridor = {
-      branchName,
-      lineKey: cfg.lineKey,
-      lineId: linePalette.id,
-      lineName: linePalette.name,
-      color: linePalette.color,
-      lightColor: linePalette.lightColor,
-      startX: junc.x,
-      startY: junc.y,
-      endX,
-      endY,
-      junctionStationId: junc.id,
-      angleDeg: cfg.angleDeg,
-      length: cfg.length,
-      creeks: []
-    };
-
-    branchCorridors.push(corridor);
-    linesMap.set(branchName, corridor);
-  }
-
-  // 3. Attach all 272 named streams to branch corridors or trunk
-  const streams = topology.streams;
-  const unassigned = [];
-
-  // Direct branch attribution lookup
-  function findBranchCorridor(stream) {
-    let curr = stream;
-    while (curr) {
-      if (BRANCH_CONFIGS[curr.name]) {
-        return curr.name;
-      }
-      if (!curr.parentStream || curr.parentStream === 'BOW RIVER') {
-        break;
-      }
-      const parent = streams.find(s => s.name === curr.parentStream);
-      if (!parent || parent.name === curr.name) break;
-      curr = parent;
-    }
-    return null;
-  }
-
-  const allStations = [...trunkStationsList];
+  // 2. Prepare Branch Corridors and Feeder Lines
+  const branchLines = [];
   const feederLines = [];
+  const assignedStreamNames = new Set(['BOW RIVER']);
 
-  for (const stream of streams) {
-    if (stream.name === 'BOW RIVER') continue;
-
-    const branchName = findBranchCorridor(stream);
-    const corridor = branchName ? linesMap.get(branchName) : null;
-
-    if (corridor) {
-      corridor.creeks.push(stream);
-    } else {
-      unassigned.push(stream);
+  for (const [branchName, cfg] of Object.entries(BRANCH_ROUTES)) {
+    // Convert path to SVG path string
+    let d = `M ${cfg.path[0].x} ${cfg.path[0].y}`;
+    for (let i = 1; i < cfg.path.length; i++) {
+      d += ` L ${cfg.path[i].x} ${cfg.path[i].y}`;
     }
-  }
 
-  console.log(`Assigned streams to branch corridors. Direct branch matches: ${streams.length - unassigned.length}, Unassigned to sub-corridors: ${unassigned.length}`);
+    // Find all streams that drain into this branch
+    const branchCreeks = [];
+    for (const stream of streams) {
+      if (stream.name === 'BOW RIVER') continue;
+      
+      let curr = stream;
+      while (curr) {
+        if (curr.name === branchName) {
+          branchCreeks.push(stream);
+          assignedStreamNames.add(stream.name);
+          break;
+        }
+        if (!curr.parentStream || curr.parentStream === 'BOW RIVER') break;
+        const parent = streams.find(s => s.name === curr.parentStream);
+        if (!parent || parent.name === curr.name) break;
+        curr = parent;
+      }
+    }
 
-  // Lay out creek stations along each branch corridor
-  for (const corridor of branchCorridors) {
-    const creeks = corridor.creeks;
-    const count = creeks.length;
-    if (count === 0) continue;
+    branchLines.push({
+      branchName,
+      lineId: cfg.palette.id,
+      lineName: cfg.palette.name,
+      color: cfg.palette.color,
+      lightColor: cfg.palette.light,
+      label: cfg.palette.label,
+      d,
+      points: cfg.path,
+      creekCount: branchCreeks.length
+    });
 
-    // Distribute creeks evenly along the corridor line
-    creeks.forEach((creek, idx) => {
-      const t = (idx + 1) / (count + 1);
-      const cx = Math.round(corridor.startX + (corridor.endX - corridor.startX) * t);
-      const cy = Math.round(corridor.startY + (corridor.endY - corridor.startY) * t);
+    // Sort creeks by Strahler Order descending so primary creeks get prime spacing
+    branchCreeks.sort((a, b) => b.strahlerOrder - a.strahlerOrder);
 
-      // Spur tick angle (perpendicular to corridor: angle +/- 90)
-      const spurSign = idx % 2 === 0 ? 1 : -1;
-      const spurAngleRad = ((corridor.angleDeg + 90 * spurSign) * Math.PI) / 180;
-      const spurLength = 35 + (creek.strahlerOrder || 2) * 10;
-      const spurEndX = Math.round(cx + Math.cos(spurAngleRad) * spurLength);
-      const spurEndY = Math.round(cy + Math.sin(spurAngleRad) * spurLength);
+    // Distribute tributary creeks evenly with comfortable spacing
+    const count = branchCreeks.length;
+    branchCreeks.forEach((creek, idx) => {
+      // Calculate normalized position along polyline
+      const t = (idx + 0.8) / (count + 1);
+      const pos = interpolatePolyline(cfg.path, t);
 
-      const stationObj = {
+      // Alternate spur direction cleanly (perpendicular +/- 90)
+      const sign = idx % 2 === 0 ? 1 : -1;
+      const spurAngleRad = ((pos.angleDeg + 90 * sign) * Math.PI) / 180;
+      
+      // Short, tidy ticks (25px to 45px)
+      const isMajorCreek = creek.strahlerOrder >= 4;
+      const spurLength = isMajorCreek ? 42 : 26;
+      const endX = Math.round(pos.x + Math.cos(spurAngleRad) * spurLength);
+      const endY = Math.round(pos.y + Math.sin(spurAngleRad) * spurLength);
+
+      const stnObj = {
         id: `st-${creek.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
         name: creek.commonName || creek.name,
         officialName: creek.name,
@@ -275,144 +372,123 @@ function buildSchematicModel() {
         tier: creek.tier,
         huc8: creek.huc8,
         parentStream: creek.parentStream,
-        lineId: corridor.lineId,
-        lineName: corridor.lineName,
-        color: corridor.color,
-        branchName: corridor.branchName,
-        x: spurEndX,
-        y: spurEndY,
-        confluenceX: cx,
-        confluenceY: cy,
-        type: creek.tier >= 30 ? 'branch-junction' : 'creek-stop',
+        lineId: cfg.palette.id,
+        lineName: cfg.palette.name,
+        color: cfg.palette.color,
+        branchName: branchName,
+        x: endX,
+        y: endY,
+        confluenceX: pos.x,
+        confluenceY: pos.y,
+        isMajor: isMajorCreek,
         isTrunk: false
       };
 
-      allStations.push(stationObj);
-      stationsMap.set(creek.name.toUpperCase(), stationObj);
-      stationsMap.set(stationObj.id, stationObj);
+      allStations.push(stnObj);
+      stationsMap.set(creek.name.toUpperCase(), stnObj);
 
-      // Add feeder spur line segment
       feederLines.push({
-        id: `feeder-${stationObj.id}`,
-        fromX: cx,
-        fromY: cy,
-        toX: spurEndX,
-        toY: spurEndY,
+        id: `feeder-${stnObj.id}`,
+        fromX: pos.x,
+        fromY: pos.y,
+        toX: endX,
+        toY: endY,
         streamName: creek.name,
         parentName: creek.parentStream,
-        color: corridor.color,
-        order: creek.strahlerOrder
+        color: cfg.palette.color,
+        order: creek.strahlerOrder,
+        isMajor: isMajorCreek
       });
     });
   }
 
-  // Handle remaining unassigned prairie / trunk creeks by placing them on Bow trunk ticks
-  if (unassigned.length > 0) {
-    unassigned.forEach((creek, idx) => {
-      // Find closest trunk station by longitude
-      let closestTrunk = TRUNK_STATIONS[0];
-      let minLonDiff = Infinity;
-      for (const ts of TRUNK_STATIONS) {
-        // Approximate lon mapping
-        const diff = Math.abs((creek.center ? creek.center[0] : -114.0) - (ts.x / 3000 * -5 - 111));
-        if (diff < minLonDiff) {
-          minLonDiff = diff;
-          closestTrunk = ts;
-        }
-      }
+  // Handle remaining unassigned direct prairie creeks along Bow trunk
+  const unassigned = streams.filter(s => !assignedStreamNames.has(s.name));
+  unassigned.forEach((creek, idx) => {
+    // Distribute along Bow trunk between Calgary and Grand Forks
+    const t = 0.55 + (idx / Math.max(1, unassigned.length)) * 0.40;
+    const pos = interpolatePolyline(TRUNK_STATIONS, t);
+    const sign = idx % 2 === 0 ? -1 : 1;
+    const endX = pos.x;
+    const endY = pos.y + sign * 35;
 
-      const spurY = closestTrunk.y + (idx % 2 === 0 ? -50 : 50);
-      const spurX = closestTrunk.x + ((idx % 3) - 1) * 25;
+    const stnObj = {
+      id: `st-${creek.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
+      name: creek.commonName || creek.name,
+      officialName: creek.name,
+      strahlerOrder: creek.strahlerOrder,
+      tier: creek.tier,
+      huc8: creek.huc8,
+      parentStream: 'BOW RIVER',
+      lineId: LINE_PALETTES.BOW_TRUNK.id,
+      lineName: LINE_PALETTES.BOW_TRUNK.name,
+      color: LINE_PALETTES.BOW_TRUNK.color,
+      branchName: 'BOW RIVER',
+      x: endX,
+      y: endY,
+      confluenceX: pos.x,
+      confluenceY: pos.y,
+      isMajor: creek.strahlerOrder >= 4,
+      isTrunk: false
+    };
 
-      const stationObj = {
-        id: `st-${creek.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
-        name: creek.commonName || creek.name,
-        officialName: creek.name,
-        strahlerOrder: creek.strahlerOrder,
-        tier: creek.tier,
-        huc8: creek.huc8,
-        parentStream: 'BOW RIVER',
-        lineId: 'bow-trunk',
-        lineName: 'Bow River Trunk Line',
-        color: LINE_COLORS.BOW_TRUNK.color,
-        branchName: 'BOW RIVER',
-        x: spurX,
-        y: spurY,
-        confluenceX: closestTrunk.x,
-        confluenceY: closestTrunk.y,
-        type: 'creek-stop',
-        isTrunk: false
-      };
+    allStations.push(stnObj);
+    stationsMap.set(creek.name.toUpperCase(), stnObj);
 
-      allStations.push(stationObj);
-      stationsMap.set(creek.name.toUpperCase(), stationObj);
-      stationsMap.set(stationObj.id, stationObj);
-
-      feederLines.push({
-        id: `feeder-${stationObj.id}`,
-        fromX: closestTrunk.x,
-        fromY: closestTrunk.y,
-        toX: spurX,
-        toY: spurY,
-        streamName: creek.name,
-        parentName: 'BOW RIVER',
-        color: LINE_COLORS.BOW_TRUNK.color,
-        order: creek.strahlerOrder
-      });
+    feederLines.push({
+      id: `feeder-${stnObj.id}`,
+      fromX: pos.x,
+      fromY: pos.y,
+      toX: endX,
+      toY: endY,
+      streamName: creek.name,
+      parentName: 'BOW RIVER',
+      color: LINE_PALETTES.BOW_TRUNK.color,
+      order: creek.strahlerOrder,
+      isMajor: creek.strahlerOrder >= 4
     });
-  }
+  });
 
   // Build Trunk Path SVG definition
   let trunkPathD = `M ${TRUNK_STATIONS[0].x} ${TRUNK_STATIONS[0].y}`;
   for (let i = 1; i < TRUNK_STATIONS.length; i++) {
-    const prev = TRUNK_STATIONS[i - 1];
-    const curr = TRUNK_STATIONS[i];
-    // Check if 45 deg or straight
-    trunkPathD += ` L ${curr.x} ${curr.y}`;
+    trunkPathD += ` L ${TRUNK_STATIONS[i].x} ${TRUNK_STATIONS[i].y}`;
   }
 
-  // Build Branch Paths SVG definitions
-  const branchPaths = branchCorridors.map(bc => ({
-    branchName: bc.branchName,
-    lineId: bc.lineId,
-    lineName: bc.lineName,
-    color: bc.color,
-    d: `M ${bc.startX} ${bc.startY} L ${bc.endX} ${bc.endY}`
-  }));
-
   const schematic = {
-    title: "Bow River Basin Transit Map (Harry Beck Schematic)",
+    title: "Waterways of Alberta: Bow River Basin",
+    subtitle: "Schematic Hydrological Transit Network",
     dimensions: { width: WIDTH, height: HEIGHT },
-    lines: Object.values(LINE_COLORS),
+    ecoregions: ECOREGIONS,
+    waterbodies: WATERBODIES,
+    lines: Object.values(LINE_PALETTES),
     trunkPath: {
-      lineId: 'bow-trunk',
-      color: LINE_COLORS.BOW_TRUNK.color,
+      lineId: LINE_PALETTES.BOW_TRUNK.id,
+      color: LINE_PALETTES.BOW_TRUNK.color,
       width: 14,
-      d: trunkPathD
+      d: trunkPathD,
+      label: 'BOW RIVER'
     },
-    branchPaths,
-    feederLines,
+    branchPaths: branchLines,
+    feederLines: feederLines,
     stations: allStations,
     totalStations: allStations.length,
-    totalStreams: topology.totalStreams,
-    majorBranches: topology.majorBranches
+    totalStreams: topology.totalStreams
   };
 
   return schematic;
 }
 
 function main() {
-  const schematic = buildSchematicModel();
+  const layout = buildOverhauledLayout();
 
   const outBackend = path.join(__dirname, '..', 'data', 'bow_basin_schematic_map.json');
-  fs.writeFileSync(outBackend, JSON.stringify(schematic, null, 2), 'utf8');
+  fs.writeFileSync(outBackend, JSON.stringify(layout, null, 2), 'utf8');
 
   const outFrontend = path.join(__dirname, '..', '..', 'frontend', 'src', 'data', 'bow_basin_schematic_map.json');
-  fs.writeFileSync(outFrontend, JSON.stringify(schematic, null, 2), 'utf8');
+  fs.writeFileSync(outFrontend, JSON.stringify(layout, null, 2), 'utf8');
 
-  console.log(`Generated schematic map JSON with ${schematic.stations.length} stations!`);
-  console.log(`Backend written: ${outBackend}`);
-  console.log(`Frontend written: ${outFrontend}`);
+  console.log(`Generated overhauled schematic map with ${layout.stations.length} stations across ${layout.branchPaths.length} branch corridors!`);
 }
 
 main();

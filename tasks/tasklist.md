@@ -1,20 +1,21 @@
-﻿# Task List: Alberta River Schematic Atlas (Pilot: Bow River Basin)
+﻿# Task List: Alberta River Schematic Atlas (Aesthetic & Layout Overhaul)
 
-## Phase 1: Data Pipeline & Hydrology Ingestion
-- [x] 1.1 Ingest official Bow River Basin hydrographic arcs and geometry from Alberta EPA / FWMIS GIS MapServer.
-- [x] 1.2 Build topological tree parser to resolve upstream-downstream confluence graph (parent streams, confluence coordinates, stream orders).
-- [x] 1.3 Export clean, normalized JSON schema (`bow_basin_topology.json`) with nodes (headwaters, confluences, major towns, monitoring stations) and edges (river lines with Strahler orders).
+## Phase 1: Data Pipeline & Hydrology Ingestion (Completed)
+- [x] 1.1 Ingest official Bow River Basin hydrographic arcs from Alberta EPA / FWMIS GIS.
+- [x] 1.2 Build topological tree parser (272 streams, 0 cycles, strict DAG).
+- [x] 1.3 Export clean topology JSON schema.
 
-## Phase 2: Schematic / Subway Layout Generation
-- [x] 2.1 Design the Bow River Trunk corridor (Bow Glacier -> Lake Louise -> Banff -> Canmore -> Cochrane -> Calgary -> Carseland -> Bassano -> Grand Forks).
-- [x] 2.2 Construct octilinear branch routing engine (snapping tributaries to 45°/90° angles relative to trunk corridor).
-- [x] 2.3 Implement hierarchical level-of-detail / stream order pruning (Express/Trunk vs Branch vs Creek Feeder).
+## Phase 2: Waterways of America Layout Overhaul
+- [ ] 2.1 Re-route river corridors across a spacious 2D regional grid (Upper Bow, Ghost, Kananaskis, Elbow, Sheep/Highwood, Prairies).
+- [ ] 2.2 Add stylized geometric waterbodies (Bow Lake, Lake Louise, Lake Minnewanka, Spray Lakes, Ghost Lake, Glenmore Reservoir, Lake Newell).
+- [ ] 2.3 Implement hierarchical creek spacing: primary tributaries labeled along 45°/90° corridors; minor creeks as short clean ticks with zoom-dependent labels to banish clutter.
+- [ ] 2.4 Add basin ecodistrict background shading (Rockies, Foothills, Grassland Prairies).
 
-## Phase 3: Interactive Visualizer & Transit Map UI
-- [x] 3.1 Build interactive SVG/Canvas viewer with pan, zoom, and Beck transit map aesthetics (distinct branch line colors, interchange circles, clean label typography).
-- [x] 3.2 Add stream tracing interaction (click any creek to illuminate path to South Saskatchewan / Hudson Bay).
-- [x] 3.3 Add confluence and station inspection drawer (elevation profile, Strahler order, flow metadata).
+## Phase 3: Typography & Visual Polish
+- [ ] 3.1 Inline river name ribbons (`— BOW RIVER —`, `— ELBOW RIVER —`, `— HIGHWOOD RIVER —`).
+- [ ] 3.2 Transit interchange station discs with elevation/town markers.
+- [ ] 3.3 Dynamic semantic zoom and interactive station/creek highlight.
 
-## Phase 4: Verification & Extensibility
-- [x] 4.1 Verify complete coverage of all 272 named Bow Basin watercourses against official registry (100% connected, 0 cycles).
-- [x] 4.2 Document generalized pipeline for expanding to North Saskatchewan, Red Deer, Oldman, Athabasca, and Peace basins.
+## Phase 4: Verification & Git Deployment
+- [ ] 4.1 Validate visual layout on 1080p/4K viewports without text collision.
+- [ ] 4.2 Commit and push overhaul to origin/main.

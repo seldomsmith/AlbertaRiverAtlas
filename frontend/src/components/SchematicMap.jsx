@@ -5,15 +5,13 @@ import {
   RotateCcw, 
   Search, 
   Layers, 
-  Navigation, 
-  Info, 
   X, 
   GitBranch, 
-  Compass, 
   Droplets,
-  MapPin,
   Eye,
-  EyeOff
+  EyeOff,
+  Sparkles,
+  MapPin
 } from 'lucide-react';
 import fallbackData from '../data/bow_basin_schematic_map.json';
 
@@ -23,11 +21,11 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
   const [hoveredStation, setHoveredStation] = useState(null);
   const [activeLineFilter, setActiveLineFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showMinorCreeks, setShowMinorCreeks] = useState(true);
+  const [showAllLabels, setShowAllLabels] = useState(false);
   const [streamOrderMin, setStreamOrderMin] = useState(1);
 
   // SVG Pan & Zoom State
-  const [viewBox, setViewBox] = useState({ x: 0, y: 150, w: 3400, h: 1600 });
+  const [viewBox, setViewBox] = useState({ x: 100, y: 150, w: 3700, h: 2100 });
   const [isPanning, setIsPanning] = useState(false);
   const [startPan, setStartPan] = useState({ x: 0, y: 0 });
   const svgRef = useRef(null);
@@ -45,7 +43,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
     }
   }, [selectedStreamName, data]);
 
-  // Compute Downstream Drainage Route for selected station
+  // Compute Downstream Drainage Route for selected/hovered station
   const drainageRoute = useMemo(() => {
     const target = selectedStation || hoveredStation;
     if (!target || !data?.stations) return new Set();
@@ -59,7 +57,6 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
     let curr = target;
     route.add(curr.id);
 
-    // Trace upstream and downstream
     while (curr && curr.parentStream) {
       route.add(curr.parentStream);
       const parent = stationMap.get(curr.parentStream.toUpperCase());
@@ -71,27 +68,6 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
     return route;
   }, [selectedStation, hoveredStation, data]);
 
-  // Filtered stations and lines
-  const filteredStations = useMemo(() => {
-    if (!data?.stations) return [];
-    return data.stations.filter(s => {
-      if (s.isTrunk) return true;
-      if (activeLineFilter !== 'all' && s.lineId !== activeLineFilter) return false;
-      if (!showMinorCreeks && s.strahlerOrder < 3) return false;
-      if (s.strahlerOrder < streamOrderMin) return false;
-      return true;
-    });
-  }, [data, activeLineFilter, showMinorCreeks, streamOrderMin]);
-
-  // Search Results
-  const searchResults = useMemo(() => {
-    if (!searchQuery.trim() || !data?.stations) return [];
-    const q = searchQuery.toLowerCase();
-    return data.stations
-      .filter(s => s.name.toLowerCase().includes(q) || (s.officialName && s.officialName.toLowerCase().includes(q)))
-      .slice(0, 8);
-  }, [searchQuery, data]);
-
   // Zoom Handler
   const handleZoom = (factor) => {
     setViewBox(prev => {
@@ -100,21 +76,21 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
       const dx = (prev.w - newW) / 2;
       const dy = (prev.h - newH) / 2;
       return {
-        x: Math.max(-500, prev.x + dx),
-        y: Math.max(-500, prev.y + dy),
-        w: Math.min(5000, Math.max(600, newW)),
-        h: Math.min(3000, Math.max(350, newH))
+        x: Math.max(-200, prev.x + dx),
+        y: Math.max(-200, prev.y + dy),
+        w: Math.min(4800, Math.max(500, newW)),
+        h: Math.min(2800, Math.max(300, newH))
       };
     });
   };
 
   const handleResetZoom = () => {
-    setViewBox({ x: 0, y: 150, w: 3400, h: 1600 });
+    setViewBox({ x: 100, y: 150, w: 3700, h: 2100 });
   };
 
   // Mouse Pan Handlers
   const handleMouseDown = (e) => {
-    if (e.button !== 0) return; // Left click only
+    if (e.button !== 0) return;
     setIsPanning(true);
     setStartPan({ x: e.clientX, y: e.clientY });
   };
@@ -131,13 +107,11 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
     setStartPan({ x: e.clientX, y: e.clientY });
   };
 
-  const handleMouseUp = () => {
-    setIsPanning(false);
-  };
+  const handleMouseUp = () => setIsPanning(false);
 
   const handleWheel = (e) => {
     e.preventDefault();
-    const factor = e.deltaY > 0 ? 1.1 : 0.9;
+    const factor = e.deltaY > 0 ? 1.12 : 0.88;
     handleZoom(factor);
   };
 
@@ -147,54 +121,70 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
       onSelectStream(station.officialName || station.name);
     }
     setViewBox({
-      x: station.x - 400,
-      y: station.y - 250,
-      w: 800,
-      h: 500
+      x: station.x - 450,
+      y: station.y - 280,
+      w: 900,
+      h: 560
     });
     setSearchQuery('');
   };
 
+  // Filtered search results
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim() || !data?.stations) return [];
+    const q = searchQuery.toLowerCase();
+    return data.stations
+      .filter(s => s.name.toLowerCase().includes(q) || (s.officialName && s.officialName.toLowerCase().includes(q)))
+      .slice(0, 8);
+  }, [searchQuery, data]);
+
+  // Is zoomed in enough to show minor creek labels by default
+  const isZoomedIn = viewBox.w < 1600;
+
   return (
-    <div className="relative w-full h-full flex flex-col bg-[#FAF9F6] text-[#1E293B] overflow-hidden select-none font-sans">
+    <div className="relative w-full h-full flex flex-col bg-[#F6F3EC] text-[#1E293B] overflow-hidden select-none font-sans">
       
-      {/* Top Navigation & Subway Bar */}
-      <header className="z-20 bg-white/90 backdrop-blur-md border-b border-slate-200 px-6 py-3 flex flex-wrap items-center justify-between shadow-sm">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow">
-              <GitBranch className="w-5 h-5" />
-            </div>
-            <div>
-              <h1 className="font-bold text-lg leading-tight tracking-tight text-slate-900">
-                Alberta River Atlas <span className="text-xs font-semibold uppercase tracking-widest px-2 py-0.5 ml-2 bg-blue-100 text-blue-800 rounded-full">Subway Edition</span>
+      {/* Top Bar Header */}
+      <header className="z-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-6 py-2.5 flex flex-wrap items-center justify-between shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-[#1E3A8A] flex items-center justify-center text-white shadow-sm">
+            <GitBranch className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="font-bold text-base tracking-tight text-slate-900 font-serif">
+                Waterways of Alberta
               </h1>
-              <p className="text-xs text-slate-500">Bow River Basin Pilot Network • Harry Beck Octilinear Schematic</p>
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-blue-100/80 text-blue-900 rounded-full">
+                Bow River Basin
+              </span>
             </div>
+            <p className="text-[11px] text-slate-500">
+              Schematic Hydrological Transit Network • 272 Rivers & Creeks
+            </p>
           </div>
         </div>
 
-        {/* Global Controls & Filters */}
+        {/* Global Toolbar */}
         <div className="flex items-center gap-3">
-          {/* Search Box */}
+          {/* Autocomplete Search */}
           <div className="relative">
-            <div className="flex items-center bg-slate-100 rounded-lg px-3 py-1.5 border border-slate-200 focus-within:border-blue-500 focus-within:bg-white transition-all w-64 shadow-inner">
-              <Search className="w-4 h-4 text-slate-400 mr-2 shrink-0" />
+            <div className="flex items-center bg-slate-100/90 rounded-lg px-3 py-1.5 border border-slate-200 focus-within:border-blue-500 focus-within:bg-white transition-all w-60 shadow-inner">
+              <Search className="w-3.5 h-3.5 text-slate-400 mr-2 shrink-0" />
               <input
                 type="text"
-                placeholder="Search 272 rivers & creeks..."
+                placeholder="Search any river or creek..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent text-sm w-full outline-none text-slate-800 placeholder-slate-400"
+                className="bg-transparent text-xs w-full outline-none text-slate-800 placeholder-slate-400"
               />
               {searchQuery && (
                 <button onClick={() => setSearchQuery('')} className="text-slate-400 hover:text-slate-600">
-                  <X className="w-3.5 h-3.5" />
+                  <X className="w-3 h-3" />
                 </button>
               )}
             </div>
 
-            {/* Search Dropdown */}
             {searchResults.length > 0 && (
               <div className="absolute top-full mt-1 left-0 right-0 bg-white rounded-lg border border-slate-200 shadow-xl overflow-hidden z-50">
                 {searchResults.map(station => (
@@ -204,14 +194,14 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                     className="w-full text-left px-3 py-2 hover:bg-blue-50 flex items-center justify-between border-b border-slate-100 last:border-0 transition-colors"
                   >
                     <div>
-                      <div className="text-sm font-medium text-slate-800">{station.name}</div>
-                      <div className="text-xs text-slate-400">
-                        {station.isTrunk ? 'Trunk Line' : `Feeder: ${station.parentStream || 'Bow River'}`}
+                      <div className="text-xs font-semibold text-slate-800">{station.name}</div>
+                      <div className="text-[10px] text-slate-400">
+                        {station.isTrunk ? 'Bow Trunk Line' : `Feeder: ${station.parentStream || 'Bow River'}`}
                       </div>
                     </div>
                     <span 
-                      className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white"
-                      style={{ backgroundColor: station.color || '#2563EB' }}
+                      className="text-[9px] font-bold px-1.5 py-0.5 rounded text-white"
+                      style={{ backgroundColor: station.color || '#1E3A8A' }}
                     >
                       Order {station.strahlerOrder}
                     </span>
@@ -221,59 +211,42 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
             )}
           </div>
 
-          {/* Line Filter Selector */}
-          <div className="flex items-center bg-slate-100 rounded-lg p-1 border border-slate-200 text-xs">
+          {/* Line Filter */}
+          <div className="flex items-center bg-slate-100/90 rounded-lg p-1 border border-slate-200 text-xs">
             <Layers className="w-3.5 h-3.5 text-slate-500 ml-2 mr-1" />
             <select
               value={activeLineFilter}
               onChange={(e) => setActiveLineFilter(e.target.value)}
-              className="bg-transparent text-slate-700 font-medium outline-none py-1 pr-2 cursor-pointer"
+              className="bg-transparent text-slate-700 font-medium outline-none py-0.5 pr-2 cursor-pointer text-xs"
             >
-              <option value="all">All Transit Lines ({data?.totalStreams || 272} Creeks)</option>
+              <option value="all">All River Lines (All 272 Creeks)</option>
               {data?.lines?.map(l => (
                 <option key={l.id} value={l.id}>{l.name}</option>
               ))}
             </select>
           </div>
 
-          {/* Strahler Order Filter */}
-          <div className="flex items-center gap-1.5 bg-slate-100 rounded-lg px-2.5 py-1.5 border border-slate-200 text-xs text-slate-600">
-            <span>Min Order:</span>
-            {[1, 3, 5].map(order => (
-              <button
-                key={order}
-                onClick={() => setStreamOrderMin(order)}
-                className={`px-2 py-0.5 rounded font-semibold transition-colors ${
-                  streamOrderMin === order 
-                    ? 'bg-blue-600 text-white shadow-sm' 
-                    : 'bg-white text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {order}+
-              </button>
-            ))}
-          </div>
-
-          {/* Minor Creeks Toggle */}
+          {/* All Labels Toggle */}
           <button
-            onClick={() => setShowMinorCreeks(!showMinorCreeks)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
-              showMinorCreeks 
-                ? 'bg-blue-50 border-blue-200 text-blue-700' 
-                : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+            onClick={() => setShowAllLabels(!showAllLabels)}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
+              showAllLabels 
+                ? 'bg-blue-600 text-white border-blue-700 shadow-sm' 
+                : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
+            title="Toggle display of all creek labels at once"
           >
-            {showMinorCreeks ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
-            Minor Creeks
+            {showAllLabels ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+            <span>All Labels</span>
           </button>
         </div>
       </header>
 
-      {/* Main Canvas Area */}
+      {/* Main Canvas */}
       <div className="relative flex-1 w-full h-full overflow-hidden cursor-grab active:cursor-grabbing">
         
-        {/* Floating Zoom & Map Controls */}
-        <div className="absolute right-6 top-6 z-10 flex flex-col gap-2 bg-white/95 backdrop-blur-sm p-1.5 rounded-xl border border-slate-200 shadow-md">
+        {/* Floating Zoom Controls */}
+        <div className="absolute right-6 top-6 z-10 flex flex-col gap-1.5 bg-white/95 backdrop-blur-sm p-1.5 rounded-xl border border-slate-200 shadow-md">
           <button 
             onClick={() => handleZoom(0.8)} 
             className="p-2 hover:bg-slate-100 rounded-lg text-slate-700 transition-colors"
@@ -297,32 +270,32 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
           </button>
         </div>
 
-        {/* Legend Panel */}
-        <div className="absolute left-6 bottom-6 z-10 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-slate-200 shadow-lg max-w-xs text-xs">
+        {/* Legend Box */}
+        <div className="absolute left-6 bottom-6 z-10 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-slate-200 shadow-lg max-w-sm text-xs">
           <div className="font-bold text-slate-900 mb-2 flex items-center justify-between">
-            <span>Hydrological Transit Lines</span>
-            <span className="text-[10px] text-slate-400 font-normal">Click to highlight</span>
+            <span className="font-serif tracking-wide text-sm">River Lines</span>
+            <span className="text-[10px] text-slate-400 font-normal">Click line to isolate</span>
           </div>
-          <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
-            {data?.lines?.slice(0, 10).map(line => (
+          <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-[11px]">
+            {data?.lines?.map(line => (
               <button
                 key={line.id}
                 onClick={() => setActiveLineFilter(activeLineFilter === line.id ? 'all' : line.id)}
-                className={`flex items-center gap-2 p-1 rounded text-left transition-all ${
-                  activeLineFilter === line.id ? 'bg-slate-100 font-bold scale-105' : 'hover:bg-slate-50'
+                className={`flex items-center gap-2 px-1.5 py-1 rounded text-left transition-all ${
+                  activeLineFilter === line.id ? 'bg-blue-50 font-bold text-blue-900' : 'hover:bg-slate-50 text-slate-700'
                 }`}
               >
                 <div 
-                  className="w-3.5 h-1.5 rounded-full shrink-0" 
+                  className="w-3.5 h-2 rounded-full shrink-0" 
                   style={{ backgroundColor: line.color }} 
                 />
-                <span className="truncate text-slate-700">{line.name.replace(' Line', '')}</span>
+                <span className="truncate">{line.name.replace(' Line', '').replace(' River', '')}</span>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Interactive Schematic SVG */}
+        {/* SVG Viewport */}
         <svg
           ref={svgRef}
           className="w-full h-full"
@@ -334,35 +307,92 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
           onWheel={handleWheel}
         >
           <defs>
-            {/* Subway Route Glow Filter */}
             <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feGaussianBlur stdDeviation="5" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
-
-            {/* Pattern for background schematic grid */}
-            <pattern id="schematic-grid" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#E2E8F0" strokeWidth="0.5" strokeDasharray="2,4" />
-            </pattern>
           </defs>
 
-          {/* Background Grid */}
-          <rect x="-1000" y="-1000" width="6000" height="4000" fill="url(#schematic-grid)" />
+          {/* Ecoregion Background Sectors (America's Waterways style) */}
+          <g id="ecoregions">
+            {data?.ecoregions?.map(eco => (
+              <g key={eco.id}>
+                <rect
+                  x={eco.x}
+                  y={eco.y}
+                  width={eco.width}
+                  height={eco.height}
+                  fill={eco.fill}
+                  stroke={eco.stroke}
+                  strokeWidth="2"
+                  rx="24"
+                />
+                <text
+                  x={eco.x + 30}
+                  y={eco.y + 60}
+                  fontSize="22"
+                  fontWeight="800"
+                  fontFamily="serif"
+                  letterSpacing="3"
+                  fill="#78716C"
+                  opacity="0.6"
+                >
+                  {eco.name}
+                </text>
+                <text
+                  x={eco.x + 30}
+                  y={eco.y + 88}
+                  fontSize="14"
+                  fontWeight="500"
+                  letterSpacing="1"
+                  fill="#A8A29E"
+                  opacity="0.7"
+                >
+                  {eco.subtext}
+                </text>
+              </g>
+            ))}
+          </g>
 
-          {/* Directional Flow Indicators */}
-          <g opacity="0.15">
-            <text x="350" y="300" fontSize="32" fontWeight="800" fill="#1E293B" letterSpacing="4">ROCKY MOUNTAINS (HEADWATERS)</text>
-            <text x="1800" y="850" fontSize="32" fontWeight="800" fill="#1E293B" letterSpacing="4">FOOTHILLS & CALGARY</text>
-            <text x="2800" y="1130" fontSize="32" fontWeight="800" fill="#1E293B" letterSpacing="4">PRAIRIES & TERMINAL DRAINAGE</text>
+          {/* Stylized Geometric Waterbodies (Lakes & Reservoirs) */}
+          <g id="waterbodies">
+            {data?.waterbodies?.map(wb => (
+              <g key={wb.id}>
+                <rect
+                  x={wb.x}
+                  y={wb.y}
+                  width={wb.width}
+                  height={wb.height}
+                  rx={wb.rx}
+                  fill="#BAE6FD"
+                  stroke="#38BDF8"
+                  strokeWidth="2"
+                  opacity="0.85"
+                />
+                <text
+                  x={wb.x + wb.width / 2}
+                  y={wb.y + wb.height / 2 + 4}
+                  textAnchor="middle"
+                  fontSize="12"
+                  fontWeight="600"
+                  fontFamily="sans-serif"
+                  fill="#0369A1"
+                  letterSpacing="0.5"
+                >
+                  {wb.name}
+                </text>
+              </g>
+            ))}
           </g>
 
           {/* Feeder Spur Lines (Creeks) */}
           <g id="feeder-spurs">
             {data?.feederLines?.map(feeder => {
-              const isHighlight = drainageRoute.has(feeder.streamName) || drainageRoute.has(feeder.id);
-              const isVisible = showMinorCreeks || (feeder.order >= streamOrderMin);
-
-              if (!isVisible) return null;
+              const isHighlighted = drainageRoute.has(feeder.streamName) || drainageRoute.has(feeder.id);
+              if (activeLineFilter !== 'all') {
+                const streamObj = data.stations.find(s => s.officialName === feeder.streamName || s.name === feeder.streamName);
+                if (streamObj && streamObj.lineId !== activeLineFilter) return null;
+              }
 
               return (
                 <line
@@ -371,11 +401,11 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                   y1={feeder.fromY}
                   x2={feeder.toX}
                   y2={feeder.toY}
-                  stroke={isHighlight ? '#F59E0B' : (feeder.color || '#64748B')}
-                  strokeWidth={isHighlight ? 4 : (feeder.order >= 4 ? 2.5 : 1.5)}
+                  stroke={isHighlighted ? '#F59E0B' : (feeder.color || '#64748B')}
+                  strokeWidth={isHighlighted ? 4.5 : (feeder.isMajor ? 2.5 : 1.5)}
                   strokeLinecap="round"
-                  strokeOpacity={isHighlight ? 1 : 0.7}
-                  className="transition-all duration-300"
+                  strokeOpacity={isHighlighted ? 1 : 0.75}
+                  className="transition-all duration-200"
                 />
               );
             })}
@@ -384,55 +414,92 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
           {/* Major Branch Corridors */}
           <g id="branch-corridors">
             {data?.branchPaths?.map(bp => {
-              const isHighlight = drainageRoute.has(bp.branchName);
+              const isHighlighted = drainageRoute.has(bp.branchName);
+              const isFiltered = activeLineFilter !== 'all' && bp.lineId !== activeLineFilter;
+
               return (
-                <path
-                  key={bp.branchName}
-                  d={bp.d}
-                  stroke={isHighlight ? '#F59E0B' : bp.color}
-                  strokeWidth={isHighlight ? 10 : 7}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                  className="transition-all duration-300"
-                />
+                <g key={bp.branchName} opacity={isFiltered ? 0.2 : 1}>
+                  {/* Outer casing */}
+                  <path
+                    d={bp.d}
+                    stroke="#FFFFFF"
+                    strokeWidth={10}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                  />
+                  {/* Colored Core Track */}
+                  <path
+                    d={bp.d}
+                    stroke={isHighlighted ? '#F59E0B' : bp.color}
+                    strokeWidth={6}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    className="transition-all duration-300"
+                  />
+                  
+                  {/* Inline River Name Label along path */}
+                  {bp.points && bp.points.length >= 2 && (
+                    <text
+                      x={(bp.points[0].x + bp.points[bp.points.length - 1].x) / 2}
+                      y={(bp.points[0].y + bp.points[bp.points.length - 1].y) / 2 - 12}
+                      textAnchor="middle"
+                      fontSize="11"
+                      fontWeight="800"
+                      letterSpacing="2.5"
+                      fill={bp.color}
+                      className="select-none"
+                    >
+                      — {bp.label || bp.branchName} —
+                    </text>
+                  )}
+                </g>
               );
             })}
           </g>
 
-          {/* Bow River Trunk Line (Main Arterial) */}
+          {/* Bow River Trunk Line (Main Spine) */}
           {data?.trunkPath && (
             <g id="trunk-corridor">
-              {/* White casing for crisp subway track separation */}
+              {/* White casing */}
               <path
                 d={data.trunkPath.d}
                 stroke="#FFFFFF"
-                strokeWidth={18}
+                strokeWidth={20}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 fill="none"
               />
+              {/* Main Line Ribbon */}
               <path
                 d={data.trunkPath.d}
                 stroke={drainRouteActive() ? '#F59E0B' : data.trunkPath.color}
-                strokeWidth={12}
+                strokeWidth={13}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 fill="none"
                 className="transition-all duration-300"
               />
+              {/* Inline Trunk Badges */}
+              <text x="890" y="660" fontSize="13" fontWeight="800" letterSpacing="4" fill="#1E3A8A">— BOW RIVER TRUNK —</text>
+              <text x="2640" y="1185" fontSize="13" fontWeight="800" letterSpacing="4" fill="#1E3A8A">— BOW RIVER —</text>
             </g>
           )}
 
-          {/* Stations & Confluence Interchange Nodes */}
+          {/* Stations and Creek Nodes */}
           <g id="stations">
-            {filteredStations.map(st => {
+            {data?.stations?.map(st => {
               const isSelected = selectedStation?.id === st.id;
               const isHovered = hoveredStation?.id === st.id;
-              const isDrainagePath = drainageRoute.has(st.id) || drainageRoute.has(st.officialName || st.name);
+              const isHighlighted = drainageRoute.has(st.id) || drainageRoute.has(st.officialName || st.name);
+
+              if (activeLineFilter !== 'all' && st.lineId !== activeLineFilter && !st.isTrunk) {
+                return null;
+              }
 
               if (st.isTrunk) {
-                // Major Trunk Station Styles
+                // Major Trunk Stations
                 return (
                   <g
                     key={st.id}
@@ -442,11 +509,10 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                     onMouseEnter={() => setHoveredStation(st)}
                     onMouseLeave={() => setHoveredStation(null)}
                   >
-                    {/* Interchange Ring */}
-                    {st.type === 'major-interchange' || st.type === 'central-hub' ? (
+                    {st.type === 'central-hub' ? (
                       <g>
-                        <circle r="14" fill="#FFFFFF" stroke={isDrainagePath ? '#F59E0B' : st.color} strokeWidth="5" />
-                        <circle r="6" fill={isDrainagePath ? '#F59E0B' : st.color} />
+                        <circle r="15" fill="#FFFFFF" stroke={isHighlighted ? '#F59E0B' : st.color} strokeWidth="5" />
+                        <circle r="7" fill={isHighlighted ? '#F59E0B' : st.color} />
                       </g>
                     ) : st.type === 'dam' ? (
                       <g>
@@ -455,22 +521,22 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                       </g>
                     ) : st.type === 'terminal' ? (
                       <g>
-                        <polygon points="0,-14 14,0 0,14 -14,0" fill="#FFFFFF" stroke="#DC2626" strokeWidth="5" />
-                        <circle r="5" fill="#DC2626" />
+                        <polygon points="0,-16 16,0 0,16 -16,0" fill="#FFFFFF" stroke="#DC2626" strokeWidth="5" />
+                        <circle r="6" fill="#DC2626" />
                       </g>
                     ) : (
-                      <circle r="9" fill="#FFFFFF" stroke={isDrainagePath ? '#F59E0B' : st.color} strokeWidth="4" />
+                      <circle r="10" fill="#FFFFFF" stroke={isHighlighted ? '#F59E0B' : st.color} strokeWidth="4" />
                     )}
 
                     {/* Station Name Label */}
                     <text
-                      x={st.labelPos === 'top' ? 0 : st.labelPos === 'bottom' ? 0 : st.labelPos === 'left' ? -20 : 20}
-                      y={st.labelPos === 'top' ? -22 : st.labelPos === 'bottom' ? 26 : 5}
-                      textAnchor={st.labelPos === 'top' || st.labelPos === 'bottom' ? 'middle' : st.labelPos === 'left' ? 'end' : 'start'}
+                      x={st.labelPos?.includes('left') ? -22 : st.labelPos?.includes('right') ? 22 : 0}
+                      y={st.labelPos?.includes('top') ? -24 : st.labelPos?.includes('bottom') ? 28 : 5}
+                      textAnchor={st.labelPos?.includes('left') ? 'end' : st.labelPos?.includes('right') ? 'start' : 'middle'}
                       className={`text-xs font-bold transition-all ${
-                        isSelected || isHovered || isDrainagePath
-                          ? 'fill-amber-600 font-extrabold text-sm'
-                          : 'fill-slate-900 group-hover:fill-blue-600'
+                        isSelected || isHovered || isHighlighted
+                          ? 'fill-amber-700 font-extrabold text-sm'
+                          : 'fill-slate-900 group-hover:fill-blue-700'
                       }`}
                       style={{ fontSize: isSelected ? '15px' : '12px' }}
                     >
@@ -480,7 +546,9 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 );
               }
 
-              // Tributary / Creek Feeder Station Dot
+              // Tributary / Feeder Creek Station
+              const shouldShowLabel = showAllLabels || isHovered || isSelected || isHighlighted || (st.isMajor && isZoomedIn);
+
               return (
                 <g
                   key={st.id}
@@ -491,21 +559,20 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                   onMouseLeave={() => setHoveredStation(null)}
                 >
                   <circle
-                    r={isDrainagePath ? 6 : (st.strahlerOrder >= 4 ? 4.5 : 3)}
-                    fill={isDrainagePath ? '#F59E0B' : '#FFFFFF'}
-                    stroke={isDrainagePath ? '#D97706' : st.color}
-                    strokeWidth={isDrainagePath ? 3 : 2}
+                    r={isHighlighted ? 5.5 : (st.isMajor ? 4 : 2.5)}
+                    fill={isHighlighted ? '#F59E0B' : '#FFFFFF'}
+                    stroke={isHighlighted ? '#D97706' : st.color}
+                    strokeWidth={isHighlighted ? 3 : 2}
                   />
 
-                  {/* Creek Label (Shown conditionally or on hover) */}
-                  {(isHovered || isSelected || isDrainagePath || st.strahlerOrder >= 4 || viewBox.w < 1800) && (
+                  {shouldShowLabel && (
                     <text
-                      x="10"
-                      y="4"
-                      className={`text-[10px] font-medium tracking-tight ${
-                        isSelected || isDrainagePath
-                          ? 'fill-amber-700 font-bold'
-                          : 'fill-slate-600 group-hover:fill-slate-900'
+                      x="8"
+                      y="3.5"
+                      className={`text-[9.5px] tracking-tight transition-all ${
+                        isSelected || isHighlighted
+                          ? 'fill-amber-800 font-bold text-[11px]'
+                          : 'fill-slate-700 font-medium group-hover:fill-slate-950'
                       }`}
                     >
                       {st.name}
@@ -525,7 +592,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 <div className="flex items-center gap-2">
                   <span 
                     className="w-3 h-3 rounded-full" 
-                    style={{ backgroundColor: selectedStation.color || '#2563EB' }} 
+                    style={{ backgroundColor: selectedStation.color || '#1E3A8A' }} 
                   />
                   <h3 className="font-bold text-base text-slate-900 leading-tight">
                     {selectedStation.name}
@@ -544,10 +611,10 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
             </div>
 
             {/* Spec Cards */}
-            <div className="grid grid-cols-2 gap-2 my-3.5">
+            <div className="grid grid-cols-2 gap-2 my-3">
               <div className="bg-slate-50 rounded-xl p-2.5 border border-slate-100">
                 <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Strahler Order</div>
-                <div className="text-base font-bold text-blue-700 mt-0.5">
+                <div className="text-base font-bold text-blue-900 mt-0.5">
                   Level {selectedStation.strahlerOrder}
                 </div>
               </div>
@@ -559,7 +626,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
               </div>
             </div>
 
-            {/* Drainage Transit Journey Route */}
+            {/* Drainage Transit Journey */}
             <div className="bg-amber-50/70 rounded-xl p-3 border border-amber-200/80">
               <div className="text-[10px] font-bold uppercase tracking-wider text-amber-800 flex items-center gap-1.5 mb-2">
                 <Droplets className="w-3.5 h-3.5 text-amber-600" />
@@ -579,11 +646,11 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 {selectedStation.parentStream !== 'BOW RIVER' && !selectedStation.isTrunk && (
                   <div className="flex items-center gap-2 pl-1">
                     <div className="w-0.5 h-3 bg-amber-300 ml-0.5" />
-                    <span className="text-slate-600 text-[11px]">into Bow River Trunk Line</span>
+                    <span className="text-slate-600 text-[11px]">into Bow River Trunk</span>
                   </div>
                 )}
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-600 shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-blue-700 shrink-0" />
                   <span className="text-blue-900 font-semibold">Grand Forks Confluence</span>
                 </div>
                 <div className="flex items-center gap-2 pl-1">
@@ -592,7 +659,7 @@ export const SchematicMap = ({ onSelectStream, selectedStreamName }) => {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
-                  <span className="text-emerald-900 font-bold">South Saskatchewan ➔ Lake Winnipeg / Hudson Bay</span>
+                  <span className="text-emerald-900 font-bold">South Saskatchewan ➔ Hudson Bay</span>
                 </div>
               </div>
             </div>
